@@ -1,0 +1,90 @@
+<!--拍品信息-->
+		<div class="listDivLi" id="listDiv">
+			<div class="listDivImg">
+				<navigator url="/pages/detail/detail?goodId={{orderMessage.goodsId}}">
+					<image src="{{orderMessage.thumbnailUrl}}" mode="aspectFit"/>
+				</navigator>
+			</div>
+			<div class="listDivItr">
+				<p class="listDivItrP1">{{orderMessage.goodsName}}</p>
+				<p class="listDivItrP2">
+					我的报价：<span>{{orderMessage.priceUnit}}{{orderMessage.clientPrice}}</span>
+				</p>
+				<p class="listDivItrP2">
+					成交价：<span>{{orderMessage.priceUnit}}{{orderMessage.transPrice}}</span>
+				</p>
+			</div>
+		</div>
+		<p class="hengp"></p>
+		<!--价格-->
+		<div class="voucher">
+			<p class="peisongPrice" bindtap='detailHtml'>
+				<span>支付总价</span> 
+				<span id="allMoney">{{orderMessage.priceUnit}}{{orderMessage.payMoney}}</span> (￥<span id="allMoneyRmb">{{orderMessage.realMoney}}</span>)
+				<image src="{{sanBottom}}" class="peisongPriceImg"/>
+			</p>
+			<div class="peisongPriceDiv {{detailShow?'':'none'}}">
+				<p class="peisongP3">
+					<span>拍库代运服务费</span> 
+					<span id="pecoo10">{{orderMessage.priceUnit}}{{orderMessage.freightServiceFee}}</span>
+				</p>
+				
+				<div class="peisongP3">
+					<span>运费</span>
+					<span id="freight">{{orderMessage.priceUnit}}{{orderMessage.freight}}</span>
+				</div>
+				<div class="peisongP3 peisongPriceDivP {{orderMessage.transferStatus == 'Y'?'hidden':''}}">
+					<span>保险费</span>
+					<span id="premiumAmount">{{orderMessage.priceUnit}}{{orderMessage.premiumAmount}}</span>
+				</div>
+			</div>
+		</div>
+		<!--保险费用-->
+		<div class="premiumDiv {{orderMessage.transferStatus == 'Y'?'':'none'}}">
+			<div class="premium peisongP3" style="border-bottom: 1px solid #f3f3f3; line-height: 45px;height: 45px;">
+				<span>
+					保险费
+					<!-- <a href="javascript:;">保险协议</a> -->
+				</span>
+				<span id="bxfyId">{{orderMessage.priceUnit}}{{orderMessage.premiumAmount}}</span>
+				(<span id="bxfyIdRmb">￥{{orderMessage.premiumRmb}}</span>)
+				<checkbox type="checkbox" id="bxfyVal" value="Y" checked='{{bxfyCheck}}' bindtap='baoInput'/>
+			</div>
+		</div>
+		<div class="peisongP3" style="height: 44px; line-height: 44px;">
+			<span>可用余额(￥<span id="usedMoneyId">{{orderMessage.usedMoney}}</span>)</span>
+				<span style="color: #24988b; display: block;">-￥<span id="nowUsedMoney">{{nowUsedMoney}}</span></span>
+        <checkbox id="usedMoney" name="usedMoney" checked='{{checkBox}}' class="yueInput" value="N" bindtap='yueInput'></checkbox>
+		</div>
+		<div class="totalDiv">
+			<p class="totalDivP1">待支付<span class="dzforderMoney">￥{{actualMoney}}</span></p>
+			<p>抵扣￥<span class="dikouMoney">{{nowUsedMoney}}</span></p>
+			<p>订单￥<span id="dingdanMoney">{{orderMessage.realMoney}}</span></p>
+		</div>
+		<p class="hengp"></p>
+		<!--支付方式-->
+		<div class="voucher">
+			<p class="peisongP2">
+				<span>支付方式</span> 
+				<navigator url="/pages/limitState/limitState" class="limitSateIconA">
+					限额说明
+					<image src="{{baseImg}}pay/limitSateIcon.png" class="limitSateIcon"/>
+				</navigator>
+			</p>
+			<ul class="payUl">
+				<li>
+					<image src="{{baseImg}}common/weixinIcon.png"/>微信支付
+          <radio name="rechargeWay" checked="{{rechargeChecked}}" disabled='{{rechargeDisabled}}' id="payWei" value="03"/>
+				</li>
+			</ul>
+		</div>
+		<!--提交订单-->
+		<div class="submitOrderDiv">
+			<p>
+				待支付￥<span class="dzforderMoney">{{actualMoney}}</span>
+			</p>
+			<p>
+				抵扣￥<br /><span class="dikouMoney">{{nowUsedMoney}}</span>
+			</p>
+			<p bindtap="payRecharge">支付</p>
+		</div> 

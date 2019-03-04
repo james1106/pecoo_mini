@@ -1,0 +1,132 @@
+page{
+	background: #F3F3F3;
+  font-family: 'MicrosoftYaHei';
+  overflow-y: auto;
+}
+.not-address{
+  height: 160rpx;
+  line-height: 160rpx;
+  font-size: 14px;
+  background: #FFFFFF;
+  padding-left: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.add-address{
+  max-width: 44rpx;
+  max-height: 44rpx;
+  margin-right: 20rpx;
+}
+.transparency{
+  background: #dddddd;
+  opacity: .5;
+}
+/* 订单总价 */
+.order-status{
+  margin-top: 20rpx;
+  background: #FFFFFF;
+}
+.order-status view{
+  margin: 0 30rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #E2E2E2;
+  align-items: center;
+  font-size: 14px;
+}
+/* 可用余额 */
+.balance{
+  margin-top: 20rpx;
+  background: #FFFFFF;
+  font-size: 14px;
+}
+.voucher{
+  margin: 0 30rpx;
+}
+.balance view{
+  display: flex;
+  height: 100rpx;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.money{
+  display: flex;
+  padding: 0 30rpx;
+}
+.balance-order{
+  padding: 0 30rpx;
+  border-bottom: none;
+}
+/* 保险 */
+.insurance{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+  background: #FFFFFF;
+  padding: 0 30rpx;
+  height: 100rpx;
+  font-size: 13px;
+  color: #333333;
+}
+.insurance view{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 100rpx;
+}
+.tips{
+  padding: 22rpx 30rpx;
+  color: #999999;
+  font-size: 13px;
+}
+/* 支付方式 */
+.payment{
+  margin-top: 20rpx;
+  background: #FFFFFF;
+  font-size: 14px;
+  overflow: hidden;
+}
+.pay-mode{
+  height: 79rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+}
+.payment>view{
+  display: flex;
+  height: 79rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #E2E2E2;
+  justify-content: space-between;
+}
+.wx-box{
+  display: flex;
+  height: 120rpx !important;
+  align-items: center;
+  border-bottom: none !important;
+  padding: 0 30rpx;
+}
+/* 底部 */
+.order-bottom{
+  box-shadow:8px 0px 13px rgba(51,51,51,0.06);
+  height: 96rpx;
+  background: #FFFFFF;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.pay{
+  width: 30%;
+  height: 76rpx;
+  background: #1A191E;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 76rpx;
+}

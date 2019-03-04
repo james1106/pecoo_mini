@@ -1,0 +1,19 @@
+<view>
+  <view class="referrerUl1">
+    <view>手机号</view>
+    <view>注册时间</view>
+  </view>
+  <view class="referrerUl2" style="margin-top: 45px;">
+    <!--推荐记录-->
+    <view id="shareUl" style="display: block;">
+      <view wx:for="{{userRecommendsList}}" wx:key=""> 
+        <span>{{item.mobile}}</span>
+        <span>{{item.regTime}}</span>
+      </view>
+    </view>
+    <div class="voucherNone none" style="display: block; margin-top:80px;" wx:if="{{userRecommendsList.length == 0}}">
+      <image src="{{baseImg}}mine/voucherOutdate.png"></image>
+      <p>没有更多记录~</p>
+    </div>
+  </view>
+</view>

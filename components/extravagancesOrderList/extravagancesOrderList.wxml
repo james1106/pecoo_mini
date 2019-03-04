@@ -1,0 +1,20 @@
+<!-- 订单状态（00，01刚下单，10已收款/已支付，15已发货，30已完成，90已失效，92已取消（退款），94已取消） -->
+<view wx:for="{{extravagancesOrderList}}" wx:for-index="index" wx:key="{{item.orderId}}" class="item-order">
+  <view class="item-order-num">
+    <text style="white-space:nowrap;">订单号:     {{item.orderNo}}</text>
+    <text style="white-space:nowrap;" class="theme-col">{{item.orderStateMc}}</text>
+  </view>
+  <extravagances-order orderId="{{item.orderId}}" pic="{{item.goodsThumbnailUrl}}" goodsName="{{item.goodsName}}" priceUnit="{{item.priceUnit}}" price="{{item.goodsPrice}}" color="{{item.goodsColor}}" size="{{item.goodsSize}}" num="{{item.buyNum}}" bindjumpHandle="clickCurOrder"></extravagances-order>
+  <view class="item-order-price">
+    <view>合计:  ¥{{item.priceTotal}}</view>
+    <view>
+      <text wx:if="{{item.orderState == '00' || item.orderState == '01'}}" class="process-btn1 process-btn" data-id="{{item.orderId}}" bindtap="cancelOrder">取消订单</text>
+      <text wx:if="{{item.orderState == '00' || item.orderState == '01'}}" class="process-btn2 process-btn" data-id="{{item.orderId}}" bindtap="pay">支付</text>
+       <text wx:if="{{item.orderState == '10' && item.isUploadCard == 'N'}}" class="process-btn1 process-btn" bindtap="remind">提醒发货</text> 
+      <text wx:if="{{item.orderState == '10' && item.isUploadCard == 'Y'}}" class="process-btn2 process-btn" bindtap="uploadCard" data-index="{{index}}" data-orderId="{{item.orderId}}">上传身份证</text>
+      <text wx:if="{{item.orderState == '15'}}" data-id="{{item.orderId}}" class="process-btn1 process-btn" bindtap="look">查看物流</text>
+      <text wx:if="{{item.orderState == '15'}}" class="process-btn2 process-btn" bindtap="confirmGoods" data-id="{{item.orderId}}">确认收货</text>
+      <text wx:if="{{item.orderState == '30'}}" class="process-btn2 process-btn" bindtap="callMe">申请售后</text>
+    </view>
+  </view>
+</view>

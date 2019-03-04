@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "奢侈品详情",
+  "usingComponents": {
+    "extravagances-list": "/components/extravagancesList/extravagancesList",
+    "is-open-app": "/components/isOpenApp/isOpenApp",
+    "go-home-btn": "/components/goHomeBtn/goHomeBtn"
+  }
+}

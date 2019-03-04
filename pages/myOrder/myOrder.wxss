@@ -1,0 +1,92 @@
+/* pages/myOrder/myOrder.wxss */
+page{
+  background: #F3F3F3;
+  width: 100%;
+  font-family: 'MicrosoftYaHei';
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.cate-order-box{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  color: #333333;
+  height: 98rpx;
+  align-items: center;
+  font-size: 14px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E2E2E2;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+.cate-order-box view{
+  height: 70rpx;
+  line-height: 70rpx;
+}
+/* 流程 */
+.process-box{
+  height: 100rpx;  
+  color: #666666;
+  font-size: 13px;
+  display: flex;
+  white-space: nowrap;
+  width: 100%;
+  background: #FFFFFF;
+  position: fixed;
+  top: 100rpx;
+  z-index: 99;
+}
+.status{
+  display: inline-block;
+}
+.around{
+  width: 25%;
+  text-align: center;
+}
+.item-status{
+  display: inline-block;
+  margin: 0 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.active{
+  border-bottom: 2px solid #D74A42 !important;
+  color: #D74A42 !important;
+}
+/* 无订单 */
+.not-order-box{
+  width: 100%;
+  margin-top: 400rpx;
+  text-align: center;
+}
+.image-box{
+  width: 200rpx;
+  height: 200rpx;
+  margin: 260rpx auto 0;
+}
+.image-box image{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.nothing{
+  margin-top: 40rpx;
+  color: #BBBBBB;
+  font-family: 'PingFang-SC-Medium';
+  font-size: 14px;
+}
+.look{
+  margin: 60rpx auto 0;
+  width: 340rpx;
+  height: 80rpx;
+  color: #333333;
+  border: 1rpx solid #1B1B1B;
+  font-family: 'PingFang-SC-Medium';
+  font-size: 15px;
+  text-align: center;
+  line-height: 80rpx;
+}

@@ -1,0 +1,32 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view wx:if="{{hidden}}" class="overflow">
+  <is-open-app wx:if="{{isShare == 'IOS' || isShare == 'android'}}" appParams="{{appParams}}"></is-open-app>
+  <go-home-btn wx:if="{{isShare == 'IOS' || isShare == 'android'}}"></go-home-btn>
+  <view class="meetingplace {{isShare == 'IOS' || isShare == 'android' ? 'open-app' : 'default'}}">
+    <view class="pic-box">
+      <image class="item-pic" mode="aspectFit" src="{{auctionHouse.auctionThumPic || baseImg+'common/default_small.png'}}"></image>
+    </view>
+    <view class="item-name warp">{{auctionHouse.name}}</view>
+    <view class="public start-time">开拍时间:    {{auctionHouse.startTime}}</view>
+    <view class="public address">竞拍地点:    {{auctionHouse.address}}</view>
+    <navigator hover-class="none" url="{{'/pages/auctionHouseDetail/auctionHouseDetail?id=' + auctionHouse.auctionHouseId}}" class="public auction-house">所属拍卖行：    {{auctionHouse.auctionCompany}}</navigator>
+    <image src="{{baseImg}}detail/collection.png" wx:if="{{auctionHouse.isCol == 'N'}}" class="collection {{isShare == 'IOS' || isShare == 'android' ? 'top1' : 'top2'}}" mode="aspectFit" bindtap="setCollection"></image>
+    <image src="{{baseImg}}detail/collection_selected.png" wx:if="{{auctionHouse.isCol == 'Y'}}" class="collection {{isShare == 'IOS' || isShare == 'android' ? 'top1' : 'top2'}}" mode="aspectFit" bindtap="cancelCollection"></image>
+  </view>
+  <scroll-view class="all-auction-house" scroll-y>
+    <view class="list-box" wx:for="{{goodsList}}" wx:for-index="index" wx:key="{{item.id}}">
+      <navigator hover-class="none" url="/pages/detail/detail?id={{item.id}}&shareCode={{shareCode}}" class="item-list {{index % 2 ? 'right-list' : 'left-list'}}">
+        <view class="list-pic">
+          <image src="{{item.thumbnailUrl}}" lazy-load='true' mode="aspectFit"></image>
+        </view>
+        <view class="warp auction-name">Lot{{item.lotNum}}:{{item.engName}}</view>
+        <view class="start-time-str">{{item.startTimeStr}}</view>
+        <view class="start-price"><text style="font-size: 12px">起拍价:   </text>{{item.priceUnit}}{{item.startPrice}}</view>
+      </navigator>
+    </view>
+  </scroll-view>
+  <pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+  <load-all wx:if="{{pageNum >= 2 && hidden && goodsList.length >= totalCount}}"></load-all>
+</view>

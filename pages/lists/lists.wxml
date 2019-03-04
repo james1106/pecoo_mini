@@ -1,0 +1,56 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading>
+<view class="search-box">
+  <view class="search-input" bindtap="goSearch">
+    <image src="{{baseImg}}common/search.png" class="icon"></image>
+    <text class="words">搜索您喜欢的</text>
+  </view>
+</view>
+<view class="cate {{conditionFlag ? 'not-border' : ''}}">
+  <view wx:for="{{sortList}}" wx:key="{{item.name}}" wx:for-index="index" data-index="{{index}}" class="item-cate {{index == selectedIndex? 'selected-head' : ''}}" bindtap="changeList">
+    {{item.name}}
+    <image class="small-arrow" src="{{index == selectedIndex ? baseImg + 'list/arrow-selected.png' : baseImg + 'list/arrow.png'}}"></image>
+  </view>
+  <view class="item-cate warp {{editCate ? 'selected-head' : ''}}" bindtap="changeCate">
+    <view class="warp">{{htmlwords}}</view>
+    <image src="{{editCate ? baseImg + 'list/arrow-selected.png' : baseImg + 'list/arrow.png'}}" class="small-arrow"></image>
+  </view>
+  <view class="screening">
+    <text class="thread">|</text>
+    <text class="screen-words" bindtap="goScreen">筛选</text>
+  </view>
+</view>
+<view class="condition" wx:if="{{conditionFlag}}">
+  <view wx:for="{{condition}}" wx:for-index="index" class="item-condition {{(item.sort == sort || item.isChecked) ? 'current' : ''}}" wx:key="{{item.name}}" data-sort="{{item.sort}}" data-index="{{index}}" data-code="{{item.code}}" data-name="{{item.name}}" bindtap="clickCate">{{item.name}}
+    <text wx:if="{{item.goodsNum}}">({{item.goodsNum}})</text>
+  </view>
+</view>
+<view class="mask" wx:if="{{conditionFlag}}" bindtap="hide"></view> 
+<scroll-view class="list-menu" style="height: {{scrollH}}px" scroll-y="{{!conditionFlag}}" bindscrolltolower="loadmore" bindscroll="scrollPage" scroll-with-animation="true" enable-back-to-top="true" scrollTop="{{scrollTop}}" upper-threshold="0" bindscrolltoupper="refresh">
+  <navigator wx:for="{{listData}}" class="list-item {{index <= 1 ? 'margin' : ''}}" wx:key="{{item.id}}" wx:for-index="index" url="{{'/pages/detail/detail?id='+ item.id}}" hover-class="none">
+    <view class="pic-box">
+      <image class="item-image" mode="aspectFit" lazy-load='true' src="{{item.thumbnailUrl || baseImg+'common/default_medium.png'}}"></image> 
+    </view>
+    <view class="item-detail" wx:if="{{currentType != '12' && currentType != '15'}}">
+      <view class="item-goods-name">Lot{{item.lotNum}}:{{item.goodsName}}</view>
+      <view class="item-time">{{item.startTimeStr}}</view>
+      <view class="item-price">
+        <text style="padding-right: 8rpx;">起拍价:</text>
+        <text class="start-price">{{item.priceUnit}}{{item.startPrice}}</text>
+      </view>
+    </view>
+    <view wx:else class="item-detail">
+      <view class="item-goods-brand">{{item.goodsBrand}}</view>
+      <view class="item-goods-name">{{item.goodsName}}</view>
+      <view class="item-price">
+        <text wx:if="{{item.isDiscount == 'Y'}}" class="discount">{{item.priceDiscount}}折</text>
+        {{item.priceUnit}}{{item.price}}
+      </view>
+    </view>
+  </navigator>
+  <view class="pagination" wx:if="{{showGoBack}}" bindtap='backTop'></view>
+  <pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+  <load-all wx:if="{{hidden && listData.length && listData.length >= totalCount}}"></load-all>
+  <no-data wx:if="{{hidden && !listData.length && !totalCount}}"></no-data>
+</scroll-view>

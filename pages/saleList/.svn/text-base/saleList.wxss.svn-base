@@ -1,0 +1,77 @@
+.header{
+	background:#ffffff;
+	padding: 3px 3%;
+	color: #444;
+	background-size: 100%;
+	height: 75px;
+	width:94%;
+	display: -webkit-box;
+	box-shadow: 0 3px 3px #ddd;
+	z-index: 400;
+	position: fixed;
+	top: 0;
+}
+.saleUlDiv1{
+	font-size: 14px;
+	line-height: 25px;
+	-webkit-box-flex: 1;
+}
+.saleUlDiv1>view{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.saleUlDiv2{
+	width: 30px;
+	padding: 15px 10px;
+	text-align: center;
+}
+.saleUlDiv2 image{
+	width: 45px;
+  height: 45px;
+	vertical-align: middle;
+}
+.saleUlDiv2>div{
+	display: -webkit-box;
+	-webkit-box-flex: 1.0;
+	
+}
+.loveDdP2>span{
+  color: #24988b;
+}
+/*列表部分*/
+#wrapper{
+	margin-top:84px;
+}
+section,.scroller li{
+	padding:0;
+}
+.auctionListLi{
+	width: 50%;
+	height: 250px;
+	overflow: hidden;
+	margin-left: -5px;
+	background:#ffffff;
+  	border-left: 5px solid #EEF1F8;
+  	border-bottom: 5px solid #EEF1F8;
+  	float: left;
+}
+.auctionListLi>navigator:first-child{
+	height:185px;
+	vertical-align: middle;
+	text-align: center;
+}
+.auctionListLi image{
+	max-width:100%;
+	max-height:185px;
+}
+.auctionListLi view{
+	padding: 3.5px 5px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+}
+.auctionListLi p.loveDdP2 span{
+	color: #24988b;
+}

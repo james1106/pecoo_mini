@@ -1,0 +1,14 @@
+<view class="search-content">
+  <view class="title history-name" wx:if="{{historyData.length}}">
+    <text>历史记录</text>
+    <image class="trash" bindtap="delHistory" src="{{baseImg}}common/trash.png"></image>
+  </view>
+  <view class="history-box">
+    <view wx:for="{{historyData}}" data-content="{{item}}" bindtap="changeSearchContent" class="public" wx:key="{{item}}">{{item}}</view>
+  </view>
+  <view wx:if="{{historyData.length}}" style="height: 1rpx;border-bottom: 1rpx solid #EEEEEE;"></view>
+  <view class="title {{historyData.length ? 'recommend-name' : ''}}" wx:if="{{recommendData.length}}">热门推荐</view>
+  <view class="recommend-box">
+    <view wx:for="{{recommendData}}" data-content="{{item.name}}" data-code="{{item.code}}" bindtap="changeSearchContent" class="public" wx:key="{{item.code}}">{{item.name}}</view>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+<view>
+  <view class="classifyUl">
+    <view class="classifyLi" wx:for="{{classify}}" wx:key="classify">
+      <navigator url="/pages/list/list?kindCode={{item.code}}" class="navigator">
+        <image src="{{item.picPhoneKind}}" mode="widthFix"></image>
+        <view>{{item.name}}</view>
+      </navigator>
+    </view>
+  </view>
+</view>  

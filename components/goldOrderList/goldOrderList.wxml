@@ -1,0 +1,22 @@
+<view wx:for="{{goldOrderList}}" wx:key="{{item.id}}" class="item-gold">
+  <view class="item-order-no">
+    <text>订单号: {{item.orderNo}}</text>
+    <text class="theme-col">{{item.orderStateMc}}</text>
+  </view>
+  <view class="item-order-content">
+    <view class="product-img">
+      <image src="{{item.thumbnailUrl}}" mode="aspectFit"></image>
+    </view>
+    <view class="item-goodsname">{{item.goodsName}}</view>
+  </view>
+  <view class="item-gold-money">
+    <view>金币  <text style="font-size: 16px;">{{item.coinAmount}}</text></view>
+    <view>
+      <text class="btn btn1" wx:if="{{item.orderState == '10'}}" bindtap="callMe">联系客服</text>    
+      <text class="btn btn2" wx:if="{{item.orderState == '30'}}" bindtap="callMe">申请售后</text>
+      <text class="btn btn2" wx:if="{{item.orderState == '10'}}" bindtap="remind">提醒发货</text>
+      <text class="btn btn1" data-expressNo="{{item.expressNo}}" data-expressCompany="{{item.expressCompany}}" wx:if="{{item.orderState == '25'}}" bindtap="look">查看物流</text>
+      <text class="btn btn2" data-id="{{item.id}}" wx:if="{{item.orderState == '25'}}" bindtap="confirmGoods">确认收货</text>
+    </view>
+  </view>
+</view>

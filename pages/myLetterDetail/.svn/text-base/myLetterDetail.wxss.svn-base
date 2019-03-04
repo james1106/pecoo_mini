@@ -1,0 +1,4 @@
+@import '../myLetter/myLetter.wxss';
+page{
+  background: #fff;
+}

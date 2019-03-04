@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "会场",
+  "usingComponents": {
+    "is-open-app": "/components/isOpenApp/isOpenApp",
+    "pull-up-loading": "/components/pullUpLoading/pullUpLoading",
+    "go-home-btn": "/components/goHomeBtn/goHomeBtn",
+    "load-all": "/components/loadAll/loadAll",
+    "no-data": "/components/noData/noData"
+  }
+}

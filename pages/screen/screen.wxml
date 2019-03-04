@@ -1,0 +1,66 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view class="screen-box" wx:if="{{hidden}}">
+  <view class="screen-content">
+    <view class="screen-title" wx:if="{{currentType}}">
+      <text>适用群体</text>
+      <text class="theme-col">{{sexName}}</text>
+    </view>
+    <view class="screen-condition" wx:if="{{currentType}}">
+      <view wx:for="{{sexList}}" class="{{item.name == sexName ? 'border' : ''}}" wx:key="{{item.sex}}" data-sex="{{item.sex}}" data-name="{{item.name}}" bindtap="setSex">
+        {{item.name}}
+        <text wx:if="{{item.name == sexName}}" class="triangle"></text>
+      </view>
+    </view>
+    <view class="screen-title">
+      <text class="mask-condition-name">币种</text>
+      <text class="theme-col filter">{{money}}</text>
+    </view>
+    <view class="screen-condition">
+      <view wx:for="{{unitList}}" wx:for-index="index" class="item-condition-contnet {{item.isCheck ? 'border' : ''}}" wx:key="{{item.name}}" bindtap='setMoney' data-name="{{item.name}}" data-index="{{index}}" data-code="{{item.code}}">
+        {{item.name}}
+        <text wx:if="{{item.isCheck}}" class="triangle"></text>
+      </view>
+    </view>
+    <view class="screen-title" style="margin-top: 20rpx">价格区间</view>
+    <view class="screen-price">
+      <input placeholder='最低价' placeholder-class="input-placeholder" data-differ="min" class="min-price" bindblur="blurHandle" type="number" value="{{minPrice}}"></input>
+      <text class="link"></text>
+      <input placeholder='最高价' placeholder-class="input-placeholder" data-differ="max" class="max-price" bindblur="blurHandle" type="number" value="{{maxPrice}}"></input>
+    </view>
+    <view class="screen-title" wx:if="{{currentType != 12 && currentType != 15}}">
+      <text class="mask-condition-name" style="margin-top: 20rpx">时间</text>
+      <text class="theme-col filter">{{picker}}</text>
+    </view>
+    <view class="screen-condition" wx:if="{{currentType != 12 && currentType != 15}}">
+      <view wx:for="{{dateList}}" class="item-condition-contnet  {{item.code == dateCode ? 'border' : ''}}" wx:key="{{item.name}}" bindtap="setPicker" data-name="{{item.name}}" data-code="{{item.code}}">
+        {{item.name}}
+        <text wx:if="{{item.code == dateCode}}" class="triangle"></text>
+      </view>
+    </view>
+    <view class="screen-title" wx:if="{{currentType == 12}}">
+      <text class="mask-condition-name">商品品牌</text>
+      <text class="theme-col filter">{{brand}}</text>
+    </view>
+    <view wx:if="{{currentType == 12}}" class="screen-condition">
+      <view wx:for="{{brandList}}" wx:key="{{item.code}}" class="item-condition-contnet {{item.code == brandCode ? 'border' : ''}}" data-code="{{item.code}}" bindtap="setBrand" data-name="{{item.name}}">{{item.name}}
+        <text wx:if="{{item.code == brandCode}}" class="triangle"></text>
+      </view>
+    </view>
+    <view class="screen-title" wx:if="{{currentType == 15 && cateList.length}}">
+      <text class="mask-condition-name">商品分类</text>
+      <text class="theme-col filter">{{cate}}</text>
+    </view>
+    <view wx:if="{{currentType == 15}}" class="screen-condition">
+      <view wx:for="{{cateList}}" wx:key="{{item.code}}" class="item-condition-contnet warp {{item.code == cateCode ? 'border' : ''}}" data-code="{{item.code}}" bindtap="setCate" data-name="{{item.name}}">{{item.name}}
+        <text wx:if="{{item.code == cateCode}}" class="triangle"></text>
+      </view>
+    </view>
+  </view>
+  <navigator url="/pages/moreBrands/moreBrands"></navigator>
+  <view class="screen-btn">
+    <view class="reset" bindtap="reset">重置</view>
+    <view class="confirm" bindtap="confirm">确认</view>
+  </view>
+</view>

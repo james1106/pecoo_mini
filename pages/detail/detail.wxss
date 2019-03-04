@@ -1,0 +1,509 @@
+.open-app{
+  margin-top: 80rpx;
+}
+.swiperTime{
+	position: absolute;
+	top:0;
+	z-index: 200;
+	background: rgba(255,255,255,.6);
+	width: 100%;
+	height: 25px;
+	color: #DB1014;
+	font-size: 14px;
+	text-align: center;
+	line-height: 25px;
+}
+.swiper-container {
+  width: 100%;
+  position: relative;
+}
+swiper {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width:100%;
+  height: 330px;
+}
+swiper image{
+  width: 100%;
+  height: 650rpx;
+	max-width:100%;
+	max-height: 650rpx;
+}
+.swiper-pagination-bullet{
+	background: #666;
+	width:5px;
+	height:5px;
+}
+.swiper-container-horizontal>.swiper-pagination {
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  overflow: hidden;
+}
+.pro-detail-notice{
+  margin: 60rpx 30rpx 0;
+  line-height:110rpx;
+  border-top:1rpx solid #EEEEEE;
+  text-align: center;
+  color: #333333;
+  font-size: 16px;
+  font-family: 'PingFang-SC-Medium';
+}
+.pro-detail-cont{
+  padding: 0 30rpx;
+  font-family: 'PingFang-SC-Regular';
+  font-size: 13px;
+  color: #333333;
+  text-indent: 28px;
+}
+/*商品详情*/
+.product-detail{
+	box-sizing: border-box;
+	background: #FFFFFF;
+	padding: 50rpx 30rpx 47rpx;
+}
+.hengP{
+	height: 10px;
+	background: #F0EFF7;
+	width: 100%;
+}
+.pro-price-box{
+  display: flex;
+  justify-content: space-between;
+}
+.pro-price{
+  font-family: 'Avenir';
+  color: #333333;
+  font-size: 14px;
+  width: 80%;
+}
+.price-number{
+  font-size: 26px;
+  margin-right: 24rpx;
+  font-family: 'Avenir';
+}
+.original-price{
+  text-decoration:line-through;
+  color: #999999;
+  font-size: 13px;
+}
+.pro-collect{
+  width:50rpx;
+  height:50rpx;
+  float: right;
+  vertical-align: middle;
+}
+.start-price{
+  background:#E83E3E;
+  color: white;
+  font-family: 'PingFang-SC-Regular';
+  font-size: 10px;
+  height:30rpx;
+  width: 74rpx;
+  line-height: 30rpx;
+  text-align: center;
+  margin-bottom: 15rpx;
+}
+.estimate{
+  font-family: 'PingFang-SC-Regular';
+  display: flex;
+  justify-content: space-between;
+}
+.estimate:nth-child(1){
+  font-size: 13px;
+  color: #333333;
+}
+.estimate:nth-child(3){
+  font-family: 'PingFang-SC-Regular';
+  font-size: 13px;
+  color: #999999;
+}
+.estimate-offer{
+  padding-left: 8rpx;
+  color: #333333;
+}
+.pro-name{
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  font-size: 20px;
+  margin: 30rpx 0 24rpx;
+}
+.time-icon{
+	width: 12px;
+  height: 12px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.pro-public{
+  font-family: 'PingFang-SC-Regular';
+  color: #666666;
+  font-size: 13px;
+  padding-bottom: 4rpx;
+  display: flex;
+  align-items: center;
+}
+.pro-auction{
+  margin-top: -8rpx;
+  font-family: 'PingFang-SC-Regular';
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pro-auction navigator{
+	text-decoration: underline;
+  color:#1B1B1B;
+  font-size: 13px;
+}
+/* 拍品详情 */
+.pro-detail-box{
+  padding:0 30rpx;
+}
+.pro-detail-name{
+  text-align:center;
+  padding: 40rpx 0;
+  font-family: 'PingFang-SC-Medium';
+  font-size: 16px;
+  color: #333333;
+}
+.pro-detail-desc{
+  font-family: 'PingFang SC';
+  color: #333333;
+  font-size: 13px;
+  padding-bottom: 10rpx;
+}
+.pro-detail-images{
+  border: 1px solid #DDDDDD;
+  margin: 20rpx auto 0;
+  width: 100%;
+  text-align: center;
+}
+.pro-detail-images image{
+  max-width: 100%;
+  vertical-align:middle;
+}
+.pro-detail-rule{
+  padding: 0 30rpx;
+  text-align: center;
+  margin-top: 40rpx;
+}
+.rule-pic{
+  width: 692rpx;
+  height: 421rpx;
+}
+.bid-price-pic{
+  width: 690rpx;
+  height: 662rpx;
+  margin-bottom:30rpx;
+}
+.rule-name{
+  margin-top: 30rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  font-size: 16px;
+  height: 110rpx;
+  line-height: 110rpx;
+  border-top: 1rpx solid #EEEEEE;
+}
+.like-title{
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  font-size: 16px;
+  height: 110rpx;
+  text-align: center;
+  line-height: 110rpx
+}
+.bottom-pos{-webkit-transform:translateY(100%);transform:translateY(100%);}
+/* 猜你喜欢 */
+.like-list-box{
+  width: 100%;
+  overflow: hidden;
+}
+.like-content{
+  width: 100%;
+}
+.item-like{
+  width: 50%;
+  float: left;
+}
+.like-pics{
+  height: 330rpx;
+  border-radius: 6rpx;
+}
+.left-margin{
+  margin: 0 10rpx 0 30rpx;
+}
+.right-margin{
+  margin: 0 30rpx 0 10rpx;
+}
+.like-pics image{
+  width: 100%;
+  height: 100%;
+  margin:0 auto;
+}
+.like-name{
+  padding: 19rpx 30rpx 0;
+  font-size: 14px;
+}
+.like-price{
+  padding: 0 0 40rpx 30rpx;
+  font-size: 18px;
+}
+.like-start-time{
+  padding: 4rpx 0 10rpx 30rpx;
+  font-size: 11px;
+  color: #666666;
+  font-family: 'PingFang-SC-Regular';
+}
+/* 底部 ma */
+.detailFix{
+	background: #FFFFFF;
+	height: 130rpx;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	display: -webkit-box;
+	font-size: 12px;
+	color: #333333;
+  font-family: 'PingFang-SC-Regular';
+  box-shadow:8px 0px 13px rgba(51,51,51,0.06);
+}
+.detail-btn{
+  margin: 20rpx 0;
+	width:100rpx;
+  display: flex;
+  height: 90rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.detailFix button{
+  border: none;
+  background: #FFFFFF
+}
+.detail-btn image{
+	display: block;
+	width: 22px;
+	height: 22px;
+	margin:0 auto;
+}
+.detailFix button{
+	background: #1B1B1B;
+	-webkit-box-flex: 1.0;
+  margin:20rpx 30rpx 0 30rpx;
+	text-align: center;
+  height: 90rpx;
+	line-height: 90rpx;
+	color: #FFFFFF;
+  border-radius: 0;
+	font-size: 15px;
+}
+/*出价提示弹框*/
+/* 出价弹框 */
+.bids-box{
+  width: 100%;
+  height: 830rpx;  
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 3001;
+  background: #fff;
+}
+.bids-detail{
+  padding: 40rpx 30rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+.first-pic{
+  width: 200rpx;
+  height: 200rpx;
+  background: #FFFFFF;
+  border: 1rpx solid #DDDDDD;
+}
+.first-pic image{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.bids-name{
+  max-width: 400rpx;
+  flex: 1;
+}
+.start-price2{
+  font-size: 26px;
+}
+.close-icon{
+  width: 28rpx;
+  height: 28rpx;
+  margin-top: 26rpx;
+}
+.bids-title{
+  width: 100%;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 60rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  font-size: 14px;
+  margin: 20rpx 0 50rpx;
+}
+.bids-price{
+  color: #333333;
+  font-family: 'PingFang SC';
+  font-size: 14px;
+}
+.bids-money{
+  padding: 0 30rpx;
+  display: flex;
+  height: 190rpx;
+  font-size: 15px;
+  font-family: 'PingFang-SC-Regular';
+  color: #333333;
+  justify-content: space-between;
+  align-items: center;
+}
+.bids-number{
+  display: flex;
+  width: 360rpx;
+}
+.input-price{
+  width: 180rpx;
+  height: 72rpx;
+  text-align: center;
+  border: 1rpx solid #757575;
+  font-size: 16px;
+}
+.min{
+  display: inline-block;
+	width: 90rpx;
+	height: 72rpx;
+  text-align:center;
+  line-height: 72rpx;
+	vertical-align: middle;
+  border: 1rpx solid #DDDDDD;
+  background: url(https://static.pecoo.com/images/detail/reduce.png) no-repeat center center;
+  border-right: none;
+  background-size: 26rpx;
+  font-size: 20px;
+  color: #DDDDDD;
+}
+.colour{
+  background: url(https://static.pecoo.com/images/detail/reduce_selected.png) no-repeat center center;
+  border-color: #757575;
+  background-size: 26rpx;
+}
+.add{
+  display: inline-block;
+	width: 90rpx;
+	height: 72rpx;
+  text-align:center;
+  line-height: 72rpx;
+	vertical-align: middle;
+  border: 1rpx solid #757575;
+  border-left: none;
+  font-size: 20px;
+  background: url(https://static.pecoo.com/images/detail/add_selected.png) no-repeat center center;
+  background-size: 26rpx;
+}
+.bids-total{
+  padding: 0 30rpx;
+  height: 170rpx;
+	font-size: 16px;
+	line-height: 170rpx;
+  position: relative;
+}
+.total-price{
+  float: right;
+  font-family: 'PingFang SC';
+  color: #333333;
+  font-size: 16px;
+}
+.cont{
+  position: absolute;
+  height: 24rpx;
+  line-height: 24rpx;
+  font-family: 'PingFang-SC-Regular';
+  font-size: 12px;
+  color: #999999;
+  bottom: 0;
+  right: 30rpx;
+}
+.yes{
+	position: absolute;
+	bottom: 0;
+  
+	height: 110rpx;
+	width: 100%;
+	background: #1B1B1B;
+	color: #FFFFFF;
+	font-size: 17px;
+	text-align: center;
+	line-height: 110rpx;
+}
+.tips{
+  font-size: 12px;
+  font-family: 'PingFangSC-Regular';
+  color: #E83D3E;
+  padding: 20rpx 30rpx;
+}
+/* 弹出框的title和起拍价 */
+.sug-box{
+  position: fixed;
+  width:100%;
+  height: auto;
+  left:0%;
+  bottom:0px;
+  background: #fff;
+  font-size: 18px;
+  text-align:center;
+  line-height: 20px;
+  z-index: 3001;
+}
+.sug-box>view:first-child{
+  font-size: 13px;
+  color: #999999;
+  display: flex;
+  align-items: center;
+  font-family: 'PingFang SC';
+  height: 109rpx;
+  padding:0 64rpx;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.item-price{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 20px;
+  color: #333333;
+}
+.sug-box>view:last-child{
+  height: 130rpx;
+  display: flex;
+  align-items: center;
+}
+.item-suggest-price{
+  background: #F4F4F4;
+}
+.cancel{
+  margin: 0 30rpx;
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #1B1B1B;
+  color: #FFFFFF;
+  font-size: 17px;
+}

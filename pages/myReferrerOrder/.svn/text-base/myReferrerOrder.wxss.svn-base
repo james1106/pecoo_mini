@@ -1,0 +1,310 @@
+div,p,ul,li{
+  display: block;
+}
+page{
+	background: #F3F3F3;
+}
+.orderUl2{
+	margin-top: 56px;
+}
+.orderUl2>li{
+	margin-top: 10px;
+}
+.color23{
+  color:#23998C!important;
+}
+.orderUl2 li>div{
+	padding: 0 10px;
+	height: 44px;
+	line-height: 44px;
+	font-size: 14px;
+	background: #FFFFFF;
+	border-top: 1px solid #F0F0F0;
+}
+.orderTime{
+	display: inline-block;
+}
+.orderResult{
+	display: inline-block;
+	float: right;
+	color: #DB1014;
+}
+.orderA{
+	display:-webkit-box;
+	padding: 5px 10px;
+	border-bottom: 1px solid #F0F0F0;
+	background:#F8F8F8;
+}
+.orderADiv1{
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	vertical-align: middle;
+}
+.orderADiv1 image{
+  width: 100px;
+	height: 100px;
+	max-width: 100px;
+	max-height: 100px;
+}
+.orderADiv2{
+	-webkit-box-flex: 1;
+	padding-left: 8px;
+	font-size: 13px;
+	color: #545454;
+	line-height: 25px;
+}
+.orderADiv2 p.orderADiv2Lot{
+	display:-webkit-box;
+	overflow:hidden;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+	font-size: 15px;
+	color: #333333;
+}
+.orderADiv2P2 span{
+	color: #B10000;
+}
+.myBid img{
+	width: 25px;
+	vertical-align: middle;
+	margin-top: -5px;
+}
+.realPay{
+	font-size: 12px;
+	border-bottom: 1px solid #F0F0F0;
+	height: 44px;
+	line-height: 44px;
+	padding-right: 10px;
+	display: 
+	
+	-webkit-box;
+	padding: 0 10px;
+}
+.realPayTotal{
+	display: block;
+	-webkit-box-flex: 1.0;
+	font-size: 14px!important;
+}
+.realPayBid{
+	width:72px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	display: block;
+	border: 1px solid #24988b;
+	color: #24988b;
+	margin-top: 7px;
+	margin-left: 8px;
+}
+.realPayPay{
+	width: 56px;
+	height: 26px;
+	text-align: center;
+	line-height: 26px;
+	display: block;
+	border: 1px solid #24988b;
+	color: #24988b;
+	margin-top: 8px;
+	margin-left: 8px;
+}
+.realPayBidPay{
+	width:72px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	display: block;
+	border: 1px solid #DDDDDD;
+	color: #aaa;
+	margin-top: 7px;
+	margin-left: 8px;
+}
+.realPay span b{
+	color: #24988b;
+}
+.orderNone{
+	padding: 0 10px;
+	height: 40px;
+	text-align: right;
+    line-height: 40px;
+}
+.tishiP{
+	line-height: 25px;
+	padding: 0 10px;
+	text-align: right;
+	font-size: 11px;
+	color: #DB1014;
+}
+.orderNone span{
+	float: right;
+	display: inline-block;
+	width: 70px;
+	height: 30px;
+	text-align: center;
+	background: #FFFFFF;
+	color: #DB1014;
+	border:1px solid #DB1014;
+	border-radius: 5px;
+	font-size: 15px;
+	line-height: 30px;
+	margin-top: 5px;
+	margin-right:5px;
+}
+.orderVoucher{
+	font-size: 12px;
+	color: #24988b;
+}
+
+.listFix{
+	display: -webkit-box;
+	position: fixed;
+	width: 100%;
+	top:0;
+	height: 45px;
+	border-bottom: 1px solid #E2E2E2;
+	line-height: 45px;
+	font-size:14px;
+	background: #fff;
+	z-index: 100;
+}
+.listFix ul{
+	display: -webkit-box;
+	width: 100%;
+}
+.listFix ul li{
+	-webkit-box-flex:0.8;
+	text-align: center;
+	color: #545454;
+	font-size: 14px;
+}
+.listFix ul li.active{
+	color:#24988b;
+}
+.listFix ul li.active span{
+	background: url(https://www.pecoo.com/pecooh5/img/mine/sanActive.png) no-repeat center center;
+	width: 20px;
+	height: 45px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 12px;
+}
+.listPrice span,.listCreated span{
+	background: url(https://www.pecoo.com/pecooh5/img/list/san.png) no-repeat center center;
+	width: 20px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 10px;
+}
+.listPrice image{
+  width: 10px;
+  height: 14px;
+  vertical-align: middle;
+}
+.listDiqu image{
+  width: 10px;
+  height: 7px;
+  vertical-align: middle
+}
+.listDiqu span{
+	background: url(https://www.pecoo.com/pecooh5/img/list/san1.png) no-repeat center center;
+	width: 20px;
+	height: 45px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 10px;
+}
+.listZhTai span{
+	background: url(https://www.pecoo.com/pecooh5/img/mine/san.png) no-repeat center center;
+	width: 20px;
+	height: 45px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 10px;
+}
+.listChange{
+	background: url(https://www.pecoo.com/pecooh5/img/list/listSmall.png) no-repeat center center;
+	width: 40px;
+	background-size: 16px;
+}
+.listMenu{
+	background: #FFFFFF;
+	position: fixed;
+	top:46px;
+	width: 100%;
+	z-index: 100;
+	border-bottom: 1px solid #F3F3F3;
+}
+.listMenuUl1{
+	width: 98%;
+	margin: 10px auto;
+	max-height: 140px;
+	overflow: auto;
+	margin-bottom: 15px;
+}
+.listMenuUl1 li{
+	width: 16%;
+	margin: 5px 1%;
+	text-align: center;
+	height: 30px;
+	background: #F3F3F3;
+	color: #666666;
+	line-height: 30px;
+	font-size: 13px;
+	float: left;
+	overflow: hidden;
+	padding: 0 1%;
+}
+.listMenuUl1 li.active{
+	background: #24998B;
+	color: #FFFFFF;
+}
+
+/****订单详情增加样式***/
+.orderUl2>li>p{
+	background: #FFF;
+	line-height: 40px;
+	color: #999999;
+	text-align: right;
+	padding: 0 10px;
+  font-size: 12px;
+}
+.referrerDet{
+	margin: 10px auto;
+	border-top: 1px solid #F0F0F0;
+	border-bottom: 1px solid #F0F0F0;
+	background: #FFFFFF;
+}
+.referrerDet>ul{
+	padding: 10px;
+	font-size: 13px;
+	color: #999999;
+	line-height: 22px;
+}
+.referrerDet>ul li span{
+	float: right;
+}
+.referrerDet>p{
+	height: 45px;
+	border-top: 1px solid #F0F0F0;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 45px;
+	padding: 0 10px;
+}
+.referrerDet>p span{
+	float: right;
+	color: #469788;
+}
+.referrerTime{
+	padding: 10px;
+	background: #FFFFFF;
+	margin-top: 10px;
+	border-top: 1px solid #F0F0F0;
+	border-bottom: 1px solid #F0F0F0;
+	font-size: 13px;
+	line-height: 22px;
+	color: #999999;
+}
+

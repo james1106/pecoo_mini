@@ -1,0 +1,27 @@
+<!--pages/myOrder/myOrder.wxml-->
+<loading hidden="{{hidden}}">
+  加载中...
+</loading> 
+<view class="cate-order-box">
+  <view wx:for="{{cateOrder}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="changeCate" class="{{currentCate == item.id ? 'active' : ''}}">{{item.name}}</view>
+</view>
+<scroll-view class="process-box" scroll-x="true" scroll-with-animation>
+  <view wx:for="{{curOrderProcess}}" data-status="{{item.status}}" bindtap="changeProcess" wx:key="{{item.status}}" class="status {{currentCate == 2 ? 'around' : ''}}">
+    <view class="item-status {{selected == item.status ? 'active' : ''}}">{{item.title}}</view>
+  </view>
+</scroll-view>
+<view style="position: absolute;left: 0; top: 220rpx;width: 100%;overflow: hidden;">
+  <auction-order-list wx:if="{{currentCate == 0}}" curStatus="{{selected}}" auctionOrderList="{{orderListData}}" bindchangeOrderStatus="auctionStatus"></auction-order-list>
+  <extravagances-order-list wx:if="{{currentCate == 1}}" extravagancesOrderList="{{orderListData}}" bindchangeOrderStatus="extravagancesStatus"></extravagances-order-list>
+  <gold-order-list wx:if="{{currentCate == 2}}" goldOrderList="{{orderListData}}" bindchangeOrderStatus="goldStatus"></gold-order-list>
+  <pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+  <load-all wx:if="{{orderListData.length && orderListData.length >= totalCount && hidden}}"></load-all>
+</view>
+<view class="not-order-box" wx:if="{{!orderListData.length && !totalCount && hidden}}">
+  <view class="image-box">
+    <image src="{{baseImage}}common/notOrder.png"></image>
+  </view>
+  <view class="nothing">暂无订单</view>
+  <view class="look" bindtap="goPages" wx:if="{{currentCate != 2}}">随便看看</view>
+</view>
+

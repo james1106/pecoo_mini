@@ -1,0 +1,8 @@
+.go-home{
+  position: fixed;
+  right: 0;
+  width: 168rpx;
+  height: 168rpx;
+  bottom: 210rpx;
+  z-index: 100;
+}

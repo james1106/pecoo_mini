@@ -1,0 +1,23 @@
+ <view>
+  <!--充值-->
+		<view class="recharge">
+			<view class="{{transferShow?'active':''}}" type="02" bindtap='yueShow'>余额转保证金</view>
+			<view class="{{transferShow?'':'active'}}" type="01" bindtap='baoShow'>保证金转余额</view>
+		</view>
+		<view class="addCard">
+      <view class="{{transferView?'show':'hidden'}}">
+        <view class="addCardP2">
+          <span>金额：</span>
+          <input id="text1" type="text" bindinput='priceYu' placeholder="请输入余额转保证金金额" onkeyup="this.value=this.value.replace(/[^0-9.]+/,'');"/>
+        </view>
+        <view class="submitOrder" bindtap='transferYu'>确定</view>
+      </view> 
+      <view class="{{transferView?'hidden':'show'}}">
+        <view class="addCardP2">
+          <span>金额：</span><input id="text2" bindinput='priceBao' type="text" placeholder="请输入保证金转余额金额" onkeyup="this.value=this.value.replace(/[^0-9.]+/,'');"/>
+        </view>
+        <view class="submitOrder" bindtap='transferBao'>确定</view>
+      </view>
+		</view> 
+		
+ </view> 

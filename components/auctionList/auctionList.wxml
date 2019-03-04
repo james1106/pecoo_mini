@@ -1,0 +1,10 @@
+<navigator wx:for="{{auctionList}}" class="list-item" wx:key="{{item.id}}" wx:for-index="index" url="/pages/detail/detail?id={{item.id}}" hover-class="none">
+  <view class="pic-box">
+    <image class="item-image" mode="aspectFit" src="{{item.thumbnailUrl || item.picUrl}}"></image> 
+  </view>
+  <view class="item-detail">
+    <view class="item-goods-name">Lot{{item.lotNum}}:{{item.goodsName}}</view>
+    <view class="item-time">{{item.startTimeStr || item.startTime}}</view>
+    <view class="item-price"><text style="font-size: 12px;padding-right: 8rpx;">起拍价:</text>{{item.priceUnit}}{{item.startPrice}}</view>
+  </view>
+</navigator>

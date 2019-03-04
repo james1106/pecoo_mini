@@ -1,0 +1,34 @@
+.referrerUl1{
+	height: 44px;
+	line-height: 44px;
+	font-size: 15px;
+	color: #545454;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: #F3F3F3;
+	display: -webkit-box;
+	border-bottom: 1px solid #F2F2F2;
+}
+.referrerUl1>view.active{
+	color: #24988b;
+	border-bottom: 2px solid #24988b;
+}
+.referrerUl1>view{
+	text-align: center;
+	-webkit-box-flex: 1;
+	margin: 0 48px;
+}
+#shareUl>view{
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	padding: 0 20px;
+	color: #666666;
+	border-bottom: 1px solid #F3F3F3;
+}
+#shareUl>view span{
+	display: inline-block;
+	width: 50%;
+	text-align: center;
+}

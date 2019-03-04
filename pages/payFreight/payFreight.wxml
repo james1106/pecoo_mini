@@ -1,0 +1,62 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<loading hidden="{{paybtn}}">
+  获取支付数据...
+</loading>
+<view style="overflow: hidden;" wx:if="{{hidden}}">
+  <view style="border-top: 1rpx solid #E2E2E2">
+    <auction-order disable="true" goodsId="{{curOrderDetail.goodsId}}" pic="{{curOrderDetail.thumbnailUrl}}" goodsName="{{curOrderDetail.goodsName}}" priceUnit="{{curOrderDetail.priceUnit}}" clientPrice="{{curOrderDetail.clientPrice}}" transPrice="{{curOrderDetail.transPrice}}"></auction-order>
+  </view>
+  <view class="pay-money-box">
+    <view class="total-price">
+      <text>运费</text>
+      <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.totalFreight}}(¥{{curOrderDetail.freightMoney}})</text>
+    </view>
+    <view class="total-price" wx:if="{{curOrderDetail.transferStatus == 'G'}}">
+      <text>保险费</text>
+      <view bindtap="changeInsurance">
+        <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.premiumAmount}}(¥{{curOrderDetail.premiumRmb}})</text>
+        <image style="margin-left: 20rpx;" class="checked-pic" src="{{isInsurance ? baseImg + 'common/checked.png' : baseImg + 'common/no_checked.png'}}"></image>
+      </view>
+    </view>
+    <view class="balance">
+      <view>
+        <text>可用余额</text>
+        <text class="theme-col">(¥{{curOrderDetail.usedMoney}})</text>
+      </view>
+      <view>
+        <view wx:if="{{fareMoney > 0}}" style="padding-right: 20rpx;">-¥{{fareMoney}}</view>  
+        <image class="checked-pic" wx:if="{{balancePay}}" src="{{baseImg}}common/checked.png" bindtap="changeBalancePay"></image>      
+        <image class="checked-pic" wx:else src="{{baseImg}}common/no_checked.png" bindtap="changeBalancePay"></image>
+      </view>
+    </view>
+    <view class="end-price">
+      <text style="color: #999999;">总额￥{{isInsurance ? curOrderDetail.realMoney : (curOrderDetail.badMoney ? curOrderDetail.badMoney : curOrderDetail.realMoney)}}  可抵金额￥{{fareMoney}}</text>
+      <text>待支付：<text class="theme-col">¥{{payMoney}}</text></text>
+    </view>
+  </view>
+  <view class="payment">
+    <view style="padding: 0 30rpx;">
+      <text>支付方式:</text>
+      <navigator style="color: #999999; display: flex; align-items: center" url="/pages/limitState/limitState">限额说明<image style="width: 30rpx;height: 30rpx;margin-left: 10rpx" src="{{baseImg}}common/limit_icon.png"></image></navigator>
+    </view>
+    <view class="wx-box {{disable? 'transparency' : ''}}">
+      <view style="display: flex;">
+        <image class="wx-pic" src="{{baseImg}}common/wx.png"></image>
+        <text style="padding-left: 10rpx;margin-top: 12rpx;">微信</text>
+      </view>
+      <image class="checked-pic" src="{{baseImg}}common/checked.png"></image>
+    </view>
+  </view>
+  <view class="insure" wx:if="{{curOrderDetail.transferStatus == 'N'}}">
+    <text>提示：</text>
+    <text>若您想继续为您的货品投保，请务必于支付运费前联系客服。</text>
+  </view>
+  <!-- 底部 -->
+  <view class="order-bottom">
+    <view>待支付:<text class="theme-col">¥{{payMoney}}</text></view>|
+    <view style="color: #999999">抵付:<text>¥{{fareMoney}}</text></view>
+    <view class="pay" bindtap="pay">支付</view>
+  </view>
+</view>

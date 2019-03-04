@@ -1,0 +1,397 @@
+var app = getApp();
+const api = require('../../utils/api.js')
+const acc = require('../../utils/calculate.js')
+var detailB = true;
+var orderId;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    tokenId:'',
+    baseImg: 'https://www.pecoo.com/pecooh5/img/',
+    sanBottom: 'https://www.pecoo.com/pecooh5/img/mine/sanBottom.png',
+    orderId:'',
+    detailShow: false,
+    rechargeWay:'03',
+    isBalance:'N',
+    actualMoney:'',
+    transferStatus:'Y',
+    orderMessage:[],
+    usedMoneyAcc:'',
+    bxfyMoney:'',
+    realMoney:'',
+    dikouMoney:0,
+    nowUsedMoney:0,
+    checkBox:false,
+    bxfyCheck:false,
+    rechargeChecked:true,
+    rechargeDisabled: false
+  },
+  detailHtml() {
+    if (detailB) {
+      this.setData({
+        detailShow: true,
+        sanBottom: 'https://www.pecoo.com/pecooh5/img/mine/sanTop.png'
+      })
+      detailB = false
+    } else {
+      this.setData({
+        detailShow: false,
+        sanBottom: 'https://www.pecoo.com/pecooh5/img/mine/sanBottom.png'
+      })
+      detailB = true
+    }
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId')
+    }) 
+    orderId = options.orderId;
+    let getOrderPayMess = api.getOrderPayMessUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+      orderId: options.orderId,
+    });
+    getOrderPayMess.then((res) => {
+      if (res.code == "0000") {
+        this.setData({
+          orderId: options.orderId,
+          orderMessage: res.orderMessage,
+          actualMoney: res.orderMessage.realMoney,
+          usedMoneyAcc: res.orderMessage.usedMoney,
+          bxfyMoney: res.orderMessage.premiumRmb ? res.orderMessage.premiumRmb : 0,
+          realMoney: res.orderMessage.realMoney,
+        })
+      } else {
+        app.isLoginGo();
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  //点击余额
+  yueInput(){
+    if(!this.data.checkBox){
+      this.setData({
+        checkBox: true,
+        isBalance: 'Y'
+      })
+      if (this.data.bxfyCheck){
+        var actualMoney = acc.accSub(this.data.usedMoneyAcc, acc.accAdd(this.data.bxfyMoney, this.data.realMoney));
+        var nowUsedMoney = acc.accAdd(this.data.bxfyMoney, this.data.realMoney);
+        if (Number(actualMoney) <= 0) {
+          actualMoney = 0;
+          //微信不被选中
+          this.setData({
+            rechargeChecked: false,
+            rechargeWay: "",
+            rechargeDisabled: true
+          })
+        } else {
+          //微信选中
+          this.setData({
+            rechargeChecked: true,
+            rechargeWay: "03",
+            rechargeDisabled: false
+          })
+        }
+        this.setData({
+          actualMoney: actualMoney
+        })
+        if (Number(this.data.usedMoneyAcc) < Number(nowUsedMoney)) {
+          this.setData({
+            nowUsedMoney: this.data.usedMoneyAcc
+          })
+        } else {
+          this.setData({
+            nowUsedMoney: nowUsedMoney
+          })
+        }
+      } else {
+        var actualMoney = acc.accSub(this.data.usedMoneyAcc, this.data.realMoney);
+        if (Number(actualMoney) <= 0) {
+          actualMoney = 0;
+          //微信不被选中
+          this.setData({
+            rechargeChecked: false,
+            rechargeWay: "",
+            rechargeDisabled: true
+          })
+        } else {
+          //微信选中
+          this.setData({
+            rechargeChecked: true,
+            rechargeWay: "03",
+            rechargeDisabled: false
+          })
+        }
+        this.setData({
+          actualMoney: actualMoney
+        })
+        if (Number(this.data.usedMoneyAcc) < Number(this.data.realMoney)) {
+          this.setData({
+            nowUsedMoney: this.data.usedMoneyAcc
+          })
+        } else {
+          this.setData({
+            nowUsedMoney: this.data.realMoney
+          })
+        }
+      }
+    }else{
+      //微信显示
+      this.setData({
+        checkBox: false,
+        isBalance: 'N',
+        rechargeChecked: true,
+        rechargeWay: "03",
+        rechargeDisabled: false
+      })
+      if (this.data.bxfyCheck) {
+        var actualMoney = acc.accAdd(this.data.bxfyMoney, this.data.realMoney);
+        this.setData({
+          actualMoney: actualMoney,
+          nowUsedMoney:0
+        })
+      } else {
+        this.setData({
+          actualMoney: this.data.realMoney,
+          nowUsedMoney: 0
+        })
+      }
+    }
+  },
+  //点击保险费
+  baoInput() {
+    if (!this.data.bxfyCheck) {
+      this.setData({
+        bxfyCheck: true,
+        transferStatus: 'G'
+      })
+      if (this.data.checkBox) {
+        var actualMoney = acc.accSub(this.data.usedMoneyAcc, acc.accAdd(this.data.bxfyMoney, this.data.realMoney));
+        var nowUsedMoney = acc.accAdd(this.data.bxfyMoney, this.data.realMoney);
+        if (Number(actualMoney) <= 0) {
+          actualMoney = 0;
+          //微信不被选中
+          this.setData({
+            rechargeChecked: false,
+            rechargeWay: "",
+            rechargeDisabled: true
+          })
+        } else {
+          //微信选中
+          this.setData({
+            rechargeChecked: true,
+            rechargeWay: "03",
+            rechargeDisabled: false
+          })
+        }
+        this.setData({
+          actualMoney: actualMoney
+        })
+        if (Number(this.data.usedMoneyAcc) < Number(nowUsedMoney)) {
+          this.setData({
+            nowUsedMoney: this.data.usedMoneyAcc
+          })
+        } else {
+          this.setData({
+            nowUsedMoney: nowUsedMoney
+          })
+        }
+      } else {
+        var actualMoney = acc.accAdd(this.data.bxfyMoney, this.data.realMoney);
+        this.setData({
+          actualMoney: actualMoney
+        })
+      } 
+    }else{
+      this.setData({
+        bxfyCheck: false,
+        transferStatus: 'Y'
+      })
+      if (this.data.checkBox) {
+        var actualMoney = acc.accSub(this.data.usedMoneyAcc, this.data.realMoney);
+        if (Number(actualMoney) <= 0) {
+          actualMoney = 0;
+          //微信不被选中
+          this.setData({
+            rechargeChecked: false,
+            rechargeWay: "",
+            rechargeDisabled: true
+          })
+        } else {
+          //微信选中
+          this.setData({
+            rechargeChecked: true,
+            rechargeWay: "03",
+            rechargeDisabled: false
+          })
+        }
+        this.setData({
+          actualMoney: actualMoney
+        })
+        if (Number(this.data.usedMoneyAcc) < Number(this.data.realMoney)) {
+          this.setData({
+            nowUsedMoney: this.data.usedMoneyAcc
+          })
+        } else {
+          this.setData({
+            nowUsedMoney: this.data.realMoney
+          })
+        }
+      } else {
+        this.setData({
+          actualMoney: this.data.realMoney
+        })
+      } 
+    }
+  },
+  //点击支付
+  payRecharge() {
+    var self = this
+    self.setData({
+      loading: true
+    })
+    let openid = wx.getStorageSync('wxOpenId');
+    if (openid) {
+      let setOrderPayMobile = api.setOrderPayMobileUrl({
+        sourceMode: app.globalData.sourceMode,
+        openId: openid,
+        tokenId: this.data.tokenId,
+        orderId: this.data.orderId,
+        rechargeWay: this.data.rechargeWay,
+        isBalance: this.data.isBalance,
+        actualMoney: this.data.actualMoney,
+        transferStatus: this.data.transferStatus
+      });
+      setOrderPayMobile.then((res) => {
+        if (res.code == "0000") {
+          if (this.data.rechargeWay == '03') {
+            var payargs = JSON.parse(res.backdata)
+            wx.requestPayment({
+              'timeStamp': payargs.timestamp,
+              'nonceStr': payargs.noncestr,
+              'package': payargs.package,
+              'signType': payargs.signType,
+              'paySign': payargs.finalsign,
+              'success': function (rs) {
+                wx.navigateTo({
+                  url: `/pages/myPaidan/myPaidan`
+                })
+              },
+              'fail': function (rs) {
+              }
+            })
+            self.setData({
+              loading: false
+            })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '支付成功',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: `/pages/myPaidan/myPaidan`
+                  })
+                } else if (res.cancel) {
+
+                }
+              }
+            })
+          }
+        } else if (res.code == "800002" || res.code == "800001") {
+          wx.showModal({
+            title: '提示',
+            content: res.message,
+            success: function (res) {
+              if (res.confirm) {
+                let failedOrderPay = api.failedOrderPayUrl({
+                  sourceMode: app.globalData.sourceMode,
+                  tokenId: self.data.tokenId,
+                  orderId: orderId
+                });
+                failedOrderPay.then((res) => {
+                  //self.onLoad();
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.message,
+            success: function (res) {
+              if (res.confirm) {
+
+              } else if (res.cancel) {
+
+              }
+            }
+          })
+        }
+      })
+    } else {
+      console.log('err:', "请求支付失败,openid为空")
+      self.setData({
+        loading: false
+      })
+    }
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  // onShareAppMessage: function () {
+    
+  // }
+})

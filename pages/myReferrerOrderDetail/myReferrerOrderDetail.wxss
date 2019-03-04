@@ -1,0 +1,76 @@
+page{
+   background: #FFFFFF; 
+}
+.order-no{
+  padding: 0 30rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  background: #FFFFFF;
+}
+.order-content{
+  width: 100%;
+  min-height: 160rpx;
+  border-top: 1px solid #E9E9E9;
+  background: #F6F8FA;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 20rpx 0;
+  color: #999999;
+  font-family: 'HiraginoSansGB-W3';
+}
+.order-pic{
+  margin-left: 30rpx;
+  width: 180rpx;
+  height: 180rpx;
+}
+.order-pic image{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.order-detail{
+  flex: 1;
+  max-width: 500rpx;
+  padding-left: 20rpx;
+  margin-right: 30rpx;
+}
+.mobile{
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #FFFFFF;
+  padding: 0 30rpx;
+  color: #999999;
+  font-size: 14px;
+  text-align: right;
+}
+.order-info{
+  background: #FFFFFF;
+  padding: 30rpx 30rpx;
+  color: #999999;
+  font-size: 14px;
+}
+.order-info view{
+  display: flex;
+  justify-content: space-between;
+}
+.total-price{
+  border-top: 1px solid #E2E2E2;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 0 30rpx;
+  color: #333333;
+  font-family: 'MicrosoftYaHei';
+}
+.time{
+  padding: 30rpx 30rpx 0;
+  background: white;
+  color: #999999;
+  font-size: 14px;
+}

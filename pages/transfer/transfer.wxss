@@ -1,0 +1,36 @@
+page{
+  background: #ffffff;
+  font-size: 15px;
+  font-family: 'MicrosoftYaHei';  
+}
+.recharge{
+  display: -webkit-box;
+  background: #ffffff;
+  height: 60px;
+}
+.recharge view{
+  font-family: 'MicrosoftYaHei';  
+	-webkit-box-flex: 1;
+	text-align: center;
+	height: 44px;
+	line-height: 44px;
+	margin: 0 45px;
+  color: #666666;
+}
+.recharge view.active{
+	border-bottom: 3px solid #D74A42;
+  color: #D74A42;
+}
+.money{
+  color: #333333;
+  margin: 30rpx 0 0 40rpx;
+}
+.addCard{
+  background: #ffffff;
+}
+.addCard input{
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #E2E2E2;
+  margin:20rpx 40rpx 0;
+}

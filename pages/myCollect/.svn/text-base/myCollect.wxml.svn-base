@@ -1,0 +1,62 @@
+<view>
+ <!--头部导航栏-->
+  <view class="collectUl">
+    <view class="collectUlLi2 {{colleType?'active':''}}" colleType="01" bindtap='selectSale'>拍卖会</view>
+    <view class="collectUlLi1 {{colleType?'':'active'}}" colleType="02" bindtap='selectPro'>拍品</view>
+    <!-- <view class="collectUlLi3" colleType="03">奢侈品</view> -->
+  </view>
+  <view class="listFix {{colleType?'hidden':''}}">
+    <view class='listFixUl'>
+      <view class="listAll {{listIndex==0?'active':''}}" bindtap='listZong' data-current="0">综合</view>
+      <view class="listPrice {{listIndex==1?'active':''}}" bindtap='listPrice' data-current="1">价格 <image src="{{priceBg}}" ></image></view>
+      <view class="listDiqu {{listIndex==2?'active':''}}" bindtap='listUnit' data-current="2">{{fontName}} <image src="{{createdBg}}" ></image></view>
+    </view>
+  </view>
+  <view class="listMenu {{colleType?'hidden':''}}">
+    <ul class="listMenuUl1 clearfix {{auctionView?'hidden':''}}" id="listMenuUl1">
+        <li bindtap='changeNameAll' class="{{changeNameAll?'active':''}}">全部</li>
+        <li wx:for="{{unitList}}" wx:key="" bindtap='changeName' data-variable="{{item.code}}" data-text="{{item.name}}"  class="{{kindCode == item.code?'active':''}}">{{item.code}}{{item.name}}</li>
+    </ul>
+  </view>
+  <view id="myPro">
+    <!--我的拍卖会收藏-->
+    <view class="saleListUl {{colleType?'':'hidden'}}" style="margin-top:46px;">
+      <li wx:for="{{auction}}"  wx:key="">
+        <image src="{{baseImg}}mine/collectDelete.png" class="abs collectDelete" bindtap='collectDelete' data-variable="{{item.pkId}}" data-text="01"/>
+        <view>
+          <navigator url="/pages/saleList/saleList?auctionId={{item.pkId}}">
+            <image src="{{item.thumbnailUrl}}" mode="aspectFit"/> 
+          </navigator>
+          <view class="loveDdP1">{{item.goodsName}}</view>
+          <view class="loveDdP2"><span>{{item.startTime}}</span></view>
+        </view>
+      </li>
+      <div class="voucherNone none" style="display: block;" wx:if="{{auction.length == 0}}">
+          <image src="{{baseImg}}mine/voucherOutdate.png"></image>
+          <p>没有更多拍卖会~</p>
+        </div>
+    </view>
+    <!--我的拍品收藏-->
+    <view class="saleListUl {{colleType?'hidden':''}}" style="margin-top:91px;">
+        <li wx:for="{{goods}}"  wx:key=""> 
+          <image src="{{baseImg}}mine/collectDelete.png" class="abs collectDelete"  bindtap='collectDelete' data-variable="{{item.pkId}}" data-text="02"/>
+        <view>
+          <navigator url="/pages/detail/detail?goodId={{item.pkId}}">
+            <image src="{{item.thumbnailUrl}}" mode="aspectFit"/> 
+            </navigator>
+            <view class="loveDdP1">{{item.goodsName}}</view>
+            <view class="loveDdP2 {{item.startTime == '已过期'?'none':''}}">起拍价: <span>{{item.priceUnit}}{{item.startPrice}}</span></view>
+             <view class="loveDdP2 {{item.startTime == '已过期'?'':'none'}}"><span style="color:#e93639">已过期</span></view>
+          </view>
+        </li>
+        <div class="voucherNone none" style="display: block;" wx:if="{{goods.length == 0}}">
+          <image src="{{baseImg}}mine/voucherOutdate.png"></image>
+          <p>没有更多拍品~</p>
+        </div>
+    </view>
+    <!--奢侈品收藏-->
+    <!-- <ul id="lightListUl" class="saleListUl none">
+      
+    </ul> -->
+  </view>
+</view>

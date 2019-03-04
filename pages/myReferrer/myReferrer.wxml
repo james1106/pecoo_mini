@@ -1,0 +1,10 @@
+<view class="box {{shareFlag ? 'bgcols' : ''}}">
+  <text class="{{shareFlag ? 'show' : 'hide'}}">点击右上角···分享</text>
+  <view class="qr-code">
+    <canvas style="width: 200px;height: 200px" canvas-id="myQrcode"></canvas>
+  </view>
+  <view class="words" bindtap='codeShare'>扫一扫，添加好友一起</view>
+  <view class="btn-share" bindtap="share">一键分享</view>
+  <navigator class="share-order" wx:if="{{isChannel == 'Y'}}" hover-class="none" url="/pages/myReferrerOrder/myReferrerOrder">推荐订单</navigator>
+  <navigator class="share-record" hover-class="none" url="/pages/myReferrerList/myReferrerList">推荐记录</navigator>
+</view>

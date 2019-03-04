@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "订单",
+  "usingComponents": {
+    "extravagances-order-list": "/components/extravagancesOrderList/extravagancesOrderList",
+    "auction-order-list": "/components/auctionOrderList/auctionOrderList",
+    "gold-order-list": "/components/goldOrderList/goldOrderList",
+    "pull-up-loading": "/components/pullUpLoading/pullUpLoading",
+    "load-all": "/components/loadAll/loadAll"
+  }
+}

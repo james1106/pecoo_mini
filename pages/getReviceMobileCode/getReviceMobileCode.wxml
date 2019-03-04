@@ -1,0 +1,11 @@
+<view style="width: 100%;height: 20rpx;background: ##F6F8FA"></view>
+<view class="content">
+  <view class="phone">当前登录手机号为<text style="color: #333333;">{{mobile}}</text></view>
+  <view class="code">
+    <text>短信验证码</text>
+    <input type="number" placeholder='请输入验证码' type="number" bindinput="setCode" class="input-code"></input>
+    <view bindtap="getCode" class="{{disabled ? 'computing' : 'get-code'}}">{{html}}</view>
+  </view>
+  <view class="not-revice" bindtap="notRecive">收不到验证码</view>
+  <view class="next" bindtap="next">下一步</view>
+</view>

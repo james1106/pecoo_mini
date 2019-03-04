@@ -1,0 +1,9 @@
+<view class="solid"></view>
+<view class="open-app">
+  <view class="open-app-content">
+    <image src="{{baseImg}}common/open_app_logo2.png" mode="aspectFit"></image>
+    <text class="open-app-title">前往APP，更多精彩等着你！</text>
+  </view>
+  <button class="click-open" open-type='launchApp' plain="true" app-parameter="{{appParams}}" binderror="launchAppError">点击打开 >
+  </button>
+</view>

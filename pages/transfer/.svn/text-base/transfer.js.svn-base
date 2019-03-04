@@ -1,0 +1,162 @@
+const app = getApp()
+const api = require('../../utils/api.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    tokenId:'',
+    transferShow:true,
+    transferView:true,
+    yuNum:'',
+    baoNum:''
+  },
+
+  /** 
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId')
+    })
+  },
+  yueShow(){
+    this.setData({
+      transferShow: true,
+      transferView:true
+    })
+  },
+  baoShow() {
+    this.setData({
+      transferShow: false,
+      transferView:false
+    })
+  },
+  transferYu(){
+    let re = /^[0-9]*[0-9]$/i;
+    if (re.test(this.data.yuNum) && this.data.yuNum % 2000 === 0){
+      let transferAccounts = api.transferAccountsUrl({
+        sourceMode: app.globalData.sourceMode,
+        tokenId: this.data.tokenId,
+        money: this.data.yuNum,
+        type: '02',
+      });
+      transferAccounts.then((res) => {
+        if (res.code == "0000"){
+          wx.navigateBack({
+            delta: 1
+          })
+        }else{
+          return app.showErrorModal(res.message);
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '请确保转账金额是2000或2000的整数倍',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+          }
+        }
+      })
+    }
+  },
+  transferBao() {
+    let re = /^[0-9]*[0-9]$/i;
+    if (re.test(this.data.BaoNum) && this.data.BaoNum % 2000 === 0) {
+      let transferAccounts = api.transferAccountsUrl({
+        sourceMode: app.globalData.sourceMode,
+        tokenId: this.data.tokenId,
+        money: this.data.BaoNum,
+        type: '01',
+      });
+      transferAccounts.then((res) => {
+        if (res.code == "0000") {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          return app.showErrorModal(res.message);
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '请确保转账金额是2000或2000的整数倍',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+          }
+        }
+      })
+    }
+  },
+  priceYu: function (e) {
+    this.data.yuNum = e.detail.value;
+  },
+  priceBao: function (e) {
+    this.data.BaoNum = e.detail.value;
+  },
+  // function isNumberBy2000(moeny) {
+  //   var re = /^[0-9]*[0-9]$/i;       //校验是否为数字
+  //   if(re.test(moeny) && moeny % 2000 === 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  // onShareAppMessage: function () {
+    
+  // }
+})

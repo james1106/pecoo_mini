@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "支付运费",
+  "usingComponents": {
+    "auction-order": "/components/auctionOrder/auctionOrder"
+  }
+}

@@ -1,0 +1,23 @@
+<view>
+  <view class="personalData">
+    <navigator url="/pages/address/address">
+      <view>
+        收货地址
+        <image src="{{baseImg}}mine/rightOpen.png"></image>
+      </view>
+    </navigator>
+    <navigator url="/pages/editPassword/editPassword">
+      <view>
+        修改密码
+        <image src="{{baseImg}}mine/rightOpen.png"></image>
+      </view>
+    </navigator>
+    <navigator url="/pages/aboutUs/aboutUs">
+      <view>
+        关于我们 
+        <image src="{{baseImg}}mine/rightOpen.png"></image>
+      </view>
+    </navigator>
+  </view>
+  <view class="submitOrder" bindtap='logout'>退出登录</view>
+</view>

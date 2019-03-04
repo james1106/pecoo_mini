@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "推荐订单",
+  "usingComponents": {
+    "load-all": "/components/loadAll/loadAll",
+    "no-data": "/components/noData/noData"
+  }
+}

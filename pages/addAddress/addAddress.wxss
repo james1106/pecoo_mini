@@ -1,0 +1,134 @@
+@import '../../model/model.wxss';
+page{
+	background: #F0F0F0;
+  height: 100%;
+}
+header{
+	height: 35px;
+	border-bottom: 1px solid #DDDDDD;
+	text-align: center;
+	line-height: 35px;
+	display: -webkit-box;
+	font-size: 15px;
+	background: #FFFFFF;
+	position: fixed;
+	top:0;
+	width: 100%;
+}
+.check{
+  width: 30rpx;
+  height: 30rpx;
+}
+.hengp{
+	height: 8px;
+	border-top: 1px solid #DDDDDD;
+	background: #EEEEEE;
+	border-bottom: 1px solid #DDDDDD;
+}
+header p{
+	-webkit-box-flex: 1;
+}
+.addAddress p{
+	height: 30px;
+	padding: 10px 10px 10px 0;
+	background: #FFFFFF;
+	border-bottom: 1px solid #E2E2E2;
+	font-size: 15px;
+	color: #444;
+	line-height: 30px;
+	display:-webkit-box;
+}
+.addAddress{
+  background: #FFFFFF;
+}
+.addAddress p span{
+  display: inline-block;
+  min-width: 160rpx;
+  padding-left: 30rpx;
+}
+.addAddress p input{
+	-webkit-box-flex: 1;
+	display: block;
+	height: 30px;
+	margin-left: 10px;
+}
+.addressRight{
+  position: absolute;
+  right:0;
+  margin-left: 50px;
+}
+.addressRight image{
+	width:12rpx;
+  height:22rpx;
+  vertical-align:middle;
+  margin-left:10px;
+  margin-right:10px;
+}
+.addAddress p.xiangxi{
+	height: 100px;
+}
+.setMoren{
+  display: flex;
+  align-items: center;
+	height: 30px;
+	padding: 10px 0 0 30rpx;
+	background: #FFFFFF;
+	font-size: 15px;
+	color: #444444;
+  position: relative;
+}
+.setMoren>view{
+  position: absolute;
+  right:10px;
+  top:10px;
+}
+.save{
+	width: 90%;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	color: #FFFFFF;
+	font-size: 18px;
+	background: #24998B;
+	margin: 20px auto;
+	margin-top: 50px;
+}
+.bottom{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 130rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:0px -8px 13px 0px rgba(51,51,51,0.06);
+}
+.confirm{
+  width: 90%;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  color: #FFFFFF;
+  font-size: 16px;
+  background: #1A191E;
+}
+/*��ַ*/
+.dqld_div{
+	width:100%;
+	background-color:#fff;
+	top:0;
+	font-size: 14px;
+	position: absolute;
+	z-index: 50;
+}
+
+.dqld_div ul{
+	width:100%;
+}
+
+.dqld_div ul li{
+	height:35px;
+	line-height:35px;
+	border-bottom:1px solid #cccccc;
+	padding-left:10px;
+}

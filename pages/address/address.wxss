@@ -1,0 +1,110 @@
+page{
+  background: #F3F3F3;
+  width: 100%;
+  height: 100%;
+}
+.bg-col{
+  background: #FFFFFF;
+  width: 100%;
+  height: 100%;
+}
+.address{
+  width: 100%;
+	margin-bottom: 130rpx;
+  position: relative;
+  overflow-y: auto;
+}
+.addressDiv{
+  margin: 20rpx 20rpx 0;
+	padding:0 10px;
+	background: #FFFFFF;
+  border-radius: 20rpx;
+}
+.user-info{
+  min-height: 167rpx;
+  padding-bottom: 10rpx;
+  font-size: 14px;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.user-name{
+  padding-top: 44rpx;
+}
+.user-address{
+  margin-top: 26rpx;
+  color: #666666;
+  font-size: 12px;
+}
+.user-action{
+  height: 102rpx;
+  line-height: 102rpx;
+  font-size: 12px;
+}
+.delete{
+	background: url(https://static.pecoo.com/images/common/trash.png)no-repeat left center;
+	padding-left: 25px;
+	margin-left: 20px;
+	background-size: 32rpx;
+}
+.bianji{
+	background: url(https://static.pecoo.com/images/common/bianjiIcon.png)no-repeat left center;
+	padding-left: 25px;
+	background-size: 32rpx;
+}
+.addressNone{
+	font-size: 15px;
+	text-align: center;
+	color: #545454;
+	margin-top: 100px;
+}
+.addressDivP3Span{
+	background: url(https://static.pecoo.com/images/common/no_checked.png)no-repeat 0 center;
+	background-size: 16px;
+  padding-left: 20px;
+	display: inline-block;
+}
+.address view.active .addressDivP3Span{
+	background: url(https://static.pecoo.com/images/common/checked.png)no-repeat 0 center !important;
+	background-size: 15px !important;
+	color: #E93B39;
+}
+.add-address{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 130rpx;
+  background: #FFFFFF;
+}
+.add-address view{
+  font-size: 15px;
+  font-family: 'MicrosoftYaHei';
+  text-align: center;
+  margin: 20rpx 20rpx 0;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #1A191E;
+  color: white;
+}
+.not-address-pic{
+  width: 240rpx;
+  height: 240rpx;
+  margin:auto;
+}
+.not-address{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.not-address-pic image{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.add{
+  width: 340rpx;
+  height: 80rpx;
+  border: 1rpx solid #1B1B1B;
+  text-align: center;
+  margin: 0 auto;
+  color: #333333;
+  line-height: 80rpx;
+}

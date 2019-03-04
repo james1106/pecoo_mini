@@ -1,0 +1,27 @@
+<view class="header">
+  <view class="pay-cate" data-val="01" bindtap="change">
+    <view>余额</view>
+    <image src="{{rechargeOrder == '01' ? baseImg + 'common/checked.png' : baseImg + 'common/no_checked.png'}}" mode='aspectFit' class="is-checked"></image>
+  </view>
+  <view class="pay-cate" data-val="02" bindtap="change">
+    <view>保证金</view>
+    <image src="{{rechargeOrder == '02' ? baseImg + 'common/checked.png' : baseImg + 'common/no_checked.png'}}" mode='aspectFit' class="is-checked"></image>
+  </view>
+</view>
+ <view class="recharge-money">
+  <text>金额</text>
+  <input type="digit" bindinput='rechargeInput' placeholder="充值金额不高于500,000元"/>
+</view>
+<view class="pay">
+  <view class="pay-type">
+    <text>支付方式:</text>
+    <navigator url='/pages/limitState/limitState' hover-class="none" class="limit">限额说明</navigator>
+  </view>
+  <view class="wx-pay"> 
+    <view class="wx-box">
+      <image src="{{baseImg}}common/wx.png"/>微信支付
+    </view>
+    <image src="{{baseImg}}common/checked.png" class="is-checked"></image>
+  </view>
+</view>
+<view class='confirm' bindtap='submitOrder'>确定</view>

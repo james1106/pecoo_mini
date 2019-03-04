@@ -1,0 +1,33 @@
+page{
+	background: #F3F3F3;
+}
+.classifyUl{
+	margin-bottom: 60px;
+	padding: 10px;
+}
+.classifyLi{
+	width:49%;
+	float: left;
+	overflow: hidden;
+  background: #FFFFFF;
+  margin-right: 2.5px;
+  box-shadow: 0 3px 3px #DDDDDD;
+  margin-bottom: 10px;
+}
+.navigator{
+	padding: 5px;
+	display:block;
+}
+.classifyLi:nth-child(2n){
+	float: right;
+}
+.navigator image{
+	width: 100%;
+	display: block;
+}
+.navigator view{
+	line-height: 36px;
+	text-align: center;
+	font-size: 15px;
+	color: #333333;
+}

@@ -1,0 +1,210 @@
+const app = getApp()
+const api = require('../../utils/api.js')
+var switchZong = true;
+var switchPrice = true;
+var switchUnit = true;
+var sort = "";
+var priceUnit = "";
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    tokenId:'',
+    orders: [],
+    pageNo: 1,
+    hidden: false,
+    hasMore: true,
+    sort:'',
+    orderState:'',
+    hasRefesh: false,
+    baseImg: 'https://www.pecoo.com/pecooh5/img/',
+    priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+    createdBg: 'https://www.pecoo.com/pecooh5/img/list/san1.png',
+    listIndex: 0,
+    fontName: '订单状态',
+    kindCode: '',
+    unitList:[],
+    changeNameAll: false,
+    auctionView:true
+  },
+  onShow: function () {
+    
+  },
+  //点击综合
+  listZong(e) {
+    var cur = e.target.dataset.current;
+    this.setData({
+      listIndex: cur
+    })
+    sort = "";
+    switchPrice = true;
+    switchUnit = true;
+    this.setData({
+      auctionView: true,
+      priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+      createdBg: 'https://www.pecoo.com/pecooh5/img/list/san1.png',
+    })
+    this.onLoad();
+  },
+  //点击价格
+  listPrice(e) {
+    var cur = e.target.dataset.current;
+    this.setData({
+      listIndex: cur
+    })
+    switchUnit = true;
+    this.setData({
+      auctionView: true,
+      createdBg: 'https://www.pecoo.com/pecooh5/img/list/san1.png',
+    })
+    if (switchPrice) {
+      this.setData({
+        auctionView: true,
+        priceBg: 'https://www.pecoo.com/pecooh5/img/list/sanTop.png',
+      })
+      sort = "created_time/02";
+      this.onLoad();
+      switchPrice = false;
+    } else {
+      this.setData({
+        auctionView: true,
+        priceBg: 'https://www.pecoo.com/pecooh5/img/list/sanBottom.png',
+      })
+      sort = "created_time/01";
+      this.onLoad();
+      switchPrice = true;
+    }
+  },
+  //点击货币单位
+  listUnit(e) {
+    var cur = e.target.dataset.current;
+    this.setData({
+      listIndex: cur,
+      priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+    })
+    switchPrice = true;
+    if (switchUnit) {
+      switchUnit = false;
+      this.setData({
+        auctionView: false,
+        createdBg: 'https://www.pecoo.com/pecooh5/img/list/san2.png',
+      })
+    } else {
+      switchUnit = true;
+      this.setData({
+        auctionView: true,
+        createdBg: 'https://www.pecoo.com/pecooh5/img/list/san1.png',
+      })
+    }
+  },
+  //点击分类列表
+  changeName: function (e) {
+    var kindCode = e.currentTarget.dataset.variable;
+    var name = e.currentTarget.dataset.text;
+    this.setData({
+      kindCode: kindCode,
+      fontName: name
+    })
+    switchUnit = true;
+    this.setData({
+      changeNameAll: false,
+      auctionView: true,
+      createdBg: "https://www.pecoo.com/pecooh5/img/list/san1.png",
+      priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+    })
+    priceUnit = kindCode;
+    this.onLoad();
+  },
+  changeNameAll() {
+    var kindCode = '';
+    switchUnit = true;
+    this.setData({
+      kindCode:'',
+      changeNameAll: true,
+      auctionView: true,
+      fontName: '全部',
+      createdBg: "https://www.pecoo.com/pecooh5/img/list/san1.png",
+      priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+    })
+    priceUnit = kindCode;
+    this.onLoad();
+  },
+  //获取货币单位列表
+  getUnit() {
+    let queryOrderStateList = api.queryOrderStateListUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+    });
+    queryOrderStateList.then((res) => {
+      this.setData({
+        unitList: res.data
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  /** 
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId')
+    })
+    let ChannelOrderListNew = api.ChannelOrderListNewUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+      pageNo: 1,
+      sort: sort,
+      orderState: priceUnit, 
+    });
+    ChannelOrderListNew.then((res) => {
+      this.setData({
+        orders: res.orders
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  onReachBottom: function () {
+    this.setData({
+      hasRefesh: true,
+    });
+    if (!this.data.hasMore) return;
+    let ChannelOrderListNew = api.ChannelOrderListNewUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+      pageNo: ++this.data.pageNo,
+      sort: this.data.sort,
+      orderState:priceUnit, 
+    });
+    ChannelOrderListNew.then((res) => {
+      this.setData({
+        orders: this.data.orders.concat(res.orders),
+        hidden: true,
+        hasRefesh: false,
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  onShow:function(){
+    this.getUnit();
+  },
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    switchZong = true;
+    switchPrice = true;
+    switchUnit = true;
+    sort = "";
+    priceUnit = "";
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  // onShareAppMessage: function () {
+
+  // }
+})

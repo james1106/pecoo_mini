@@ -1,0 +1,6 @@
+<div class="letterDetail">
+    <p>{{title}}</p>
+    <div>
+      {{content}}
+    </div>
+</div>

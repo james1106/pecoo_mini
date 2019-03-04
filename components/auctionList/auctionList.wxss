@@ -1,0 +1,42 @@
+.list-item{
+  width: 50%;
+  float: left;
+  margin-bottom: 20rpx;
+}
+.pic-box{
+  max-width: 335rpx;
+  max-height: 334rpx;
+  margin: 0 auto;
+}
+.item-image{
+  max-width: 335rpx;
+  max-height: 334rpx;
+}
+.item-goods-name{
+  padding: 10rpx 20rpx 0;
+  font-family: 'PingFang-SC-Medium';
+  font-size: 14px;
+  color: #333333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item-time{
+  padding: 10rpx 20rpx 0;
+  font-family: 'PingFang-SC-Medium';
+  font-size: 12px;
+  color: #666666;
+}
+.item-price{
+  padding: 10rpx 20rpx 0;
+  font-size: 18px;
+  color: #333333;
+  font-family: 'PingFang SC';
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.item-price text{
+  font-size: 12px;
+  font-family: 'PingFang-SC-Medium';
+}

@@ -1,0 +1,27 @@
+<!--头部-->
+<view class='header'>
+  <view class="saleUlDiv1">
+    <!-- <input type="hidden" id="isCollectionId"/> -->
+    <view>{{startName}}</view>
+    <view>拍卖地点：{{startAdd}}</view>
+    <view>开拍时间：{{startTime}}</view>
+  </view>
+  <view class="saleUlDiv2" bindtap='collectWay'>
+    <image src="{{collectBg}}" class="saleCollect"></image>
+  </view>
+</view>
+<!--列表部分-->
+<view id="wrapper"> 
+  <view class="auctionList"> 
+      <view wx:for="{{auction}}"  wx:key="" class="auctionListLi">
+        <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+          <image src="{{item.thumbnailUrl}}" mode="aspectFit"></image>
+        </navigator>
+        <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+          <view class="loveDdP1">Lot{{item.lotNum}} {{item.goodsName}}</view>
+          <view class="loveDdP2">起拍价：<span>{{item.priceUnit}}{{item.startPrice}}</span></view>
+        </navigator>
+      </view>
+      <view wx:if="{{auction.length == 0}}" class="dataNone">暂无数据 </view>
+    </view>
+</view>

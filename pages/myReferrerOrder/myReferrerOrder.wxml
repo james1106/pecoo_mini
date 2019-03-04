@@ -1,0 +1,46 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view class="referrer-header">
+  <view data-index="0" bindtap="changeSortIndex">
+    {{sortHead1}}
+    <image src="{{selectedSortIndex == 0 ? baseImg + 'list/arrow-selected.png' : baseImg + 'list/arrow.png'}}" class="arrow"></image>
+  </view>
+  <view data-index="1" bindtap="changeSortIndex">
+    {{sortHead2}}
+    <image src="{{selectedSortIndex == 1 ? baseImg + 'list/arrow-selected.png' : baseImg + 'list/arrow.png'}}" class="arrow"></image>
+  </view>
+</view>
+<!-- 条件 -->
+<view wx:if="{{selectedSortIndex == 0}}" class="sort-box">
+  <view class="sort-time" wx:for="{{TimeSortList}}" wx:key="{{item.name}}" data-name="{{item.name}}" data-sort="{{item.sort}}" bindtap="timeChangeList">{{item.name}}</view>
+</view>
+<view wx:if="{{selectedSortIndex == 1}}" class="sort-box sort-order-box">
+  <view wx:for="{{orderStatusList}}" wx:key="{{item.name}}" data-name="{{item.name}}" data-status="{{item.orderStatus}}" bindtap="statusChangeList">{{item.name}}</view>
+</view>
+<!-- 遮罩 -->
+<view class="mask" wx:if="{{selectedSortIndex == 0 || selectedSortIndex == 1}}" bindtap="cancelMask"></view>
+<view style="margin-top: 80rpx;">
+  <view class="share-order" wx:for="{{recommendOrder}}" wx:key="{{item.id}}">
+    <view class="contact">
+      <text>联系方式:    {{item.mobile}}                {{item.realName ||''}}</text>
+      <text>{{item.orderStateMc}}</text>
+    </view>
+    <navigator class="order-detail" url="/pages/myReferrerOrderDetail/myReferrerOrderDetail?id={{item.id}}" hover-class="none">
+      <view class="pic-box">
+        <image src="{{item.thumbnailUrl || baseImg + 'common/default_medium.png'}}"></image>
+      </view>
+      <view class="content">
+        <view class="order-name line">Lot{{item.lotNum}}:{{item.goodsName}}</view>
+        <view class="public">
+          货款总价:  <text class="money">¥{{item.goodsAmountRmb}}</text>(券： -￥{{item.voucherMoney}})
+        </view>
+        <view class="public">
+          下单日期:  {{item.createTime}}
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<load-all wx:if="{{recommendOrder.length && recommendOrder.length >= totalCount}}"></load-all>
+<no-data html="暂无推荐订单" wx:if="{{hidden && !recommendOrder.length && !totalCount}}"></no-data>

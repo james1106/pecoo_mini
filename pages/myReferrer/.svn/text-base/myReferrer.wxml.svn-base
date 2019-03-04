@@ -1,0 +1,13 @@
+<view>
+  <view class='codeDiv'>
+    <canvas style="width: 200px; height: 200px;" canvas-id="myQrcode"></canvas>
+  </view>
+  <view class="codeP1">扫一扫二维码，推荐好友一起</view>		
+  <view class="codeShare" bindtap='codeShare'>一键分享</view>
+  <view class="tuijianP">
+    <navigator url="/pages/myReferrerList/myReferrerList">推荐记录</navigator> 
+  </view>
+  <view class="shadeBlack {{shareClick?'':'none'}}" bindtap='shareClick'>
+			<p>点击右上角 ··· 分享</p>
+  </view>
+</view>

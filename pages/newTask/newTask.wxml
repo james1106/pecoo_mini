@@ -1,0 +1,26 @@
+<view class="task-box">
+  <view class="item-task">
+    <view>
+      <view>完成注册</view>
+      <view class="reward">奖励<text class="theme-col">200</text>金币</view>
+    </view>
+    <view class="complete" wx:if="{{userName}}">已领取</view>
+    <view class="go" wx:else bindtap="goLogin">去完成</view>
+  </view>
+  <view class="item-task">
+    <view>
+      <view>实名认证</view>
+      <view class="reward">奖励<text class="theme-col">100</text>金币</view>
+    </view>
+    <view class="complete" wx:if="{{taskCertificated == 'Y'}}">已领取</view>
+    <view class="go" wx:else bindtap="goRealName">去完成</view> 
+  </view>
+  <view class="item-task">
+    <view>
+      <view>首单购买</view>
+      <view class="reward">奖励<text class="theme-col">200</text>金币</view>
+    </view>
+    <view class="complete" wx:if="{{buyStatus == 'Y'}}">已领取</view>
+    <view class="go" wx:else bindtap="goBuy">去完成</view>
+  </view>
+</view>

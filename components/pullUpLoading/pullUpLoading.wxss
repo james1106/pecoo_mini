@@ -1,0 +1,9 @@
+.loadmore{
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #FFFFFF;
+  font-family: 'PingFang-SC-Medium';
+}

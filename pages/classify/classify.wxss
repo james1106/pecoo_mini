@@ -1,0 +1,141 @@
+page{
+  width: 100%;
+  height: 100%;
+}
+.class-box{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.selected {
+  border-bottom: none !important;
+  background: #FFFFFF;
+}
+/* 搜索的样式 */
+.search-box{
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  background: #FFFFFF;
+  top: 0; 
+  border-bottom: 1rpx solid #DDDDDD;
+  z-index: 100;
+}
+.search-icon{
+  position: absolute;
+  left: 50rpx;
+  top: 22rpx;
+}
+.search-words{
+  display: inline-block;
+  width: 90%;
+  margin:0 5%;
+  padding-left: 76rpx;
+}
+.class-content{
+  margin-top: 88rpx;
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: row;
+}
+/* 左侧class分类的样式 */
+.content-left{
+  width: 20%;
+  overflow-y: auto;
+  color: #333333;
+  font-size: 13px;
+  font-family:'PingFang-SC-Regular';
+  background:rgba(248,248,248,1);
+  text-align: center;
+}
+.left-item{
+  height: 104rpx;
+  line-height: 104rpx;
+  border-bottom: 1rpx solid #E5E5E5;
+}
+/* 右侧内容样式 */
+.content-right{
+  flex: 1;
+  width: 80%;
+}
+.list-box{
+  width: 100%;
+  margin-top: 260rpx;
+}
+.right-image{
+  width: 80%;
+  height: 220rpx;
+  background: #FFFFFF;
+}
+.right-image image{
+  height: 100%;
+  width: 100%;
+}
+.right-title{
+  color: #333333;
+  font-family: 'PingFang-SC-Regular';
+  font-size: 15px;
+  margin: 60rpx 0 50rpx;
+}
+.right-arrow{
+  width: 12rpx;
+  height: 12px;
+  float: right;
+}
+.list-item{
+  width: 100%;
+  height: auto;
+  border-bottom: 1rpx solid #EEEEEE;
+  float: left;
+}
+.elem-box{
+  float: left;
+  width: 33.3%;
+  text-align: center;
+  margin-bottom: 40rpx;  
+}
+.elem-pic{
+  width: 30%;
+  height: 140rpx;
+  display:table-cell;
+  text-align:center;
+  vertical-align:middle;
+}
+.elem-pic image{
+  max-width: 140rpx;
+  max-height: 140rpx;
+  margin: 0 auto;
+}
+.elem-name{
+  font-family:'PingFang-SC-Regular';
+  color:rgba(51,51,51,1);
+  font-size: 13px;
+}
+/* 字母样式 */
+.letters-content{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size:14px;
+  font-family:'PingFang-SC-Regular';
+  color:rgba(51,51,51,1);
+  padding-left: 30rpx;
+}
+.right-scroll{
+  position: fixed;
+  right: 10rpx;
+  top: 130rpx;
+  font-size: 14px;
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  width: 50rpx;
+  text-align: center;
+}
+.loading{
+  margin-bottom: 44px;
+}

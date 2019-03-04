@@ -1,0 +1,11 @@
+<view class="order-pro" bindtap="goPages">
+  <view class="pro-pic-box">
+    <image src="{{thumbnailUrl}}" mode="aspectFit"></image>
+  </view>
+  <view class="pro-detail">
+    <view class="pro-name">{{goodsName}}</view>
+    <view>我的报价：{{priceUnit}}{{clientPrice || '0.00'}}</view>
+    <view>开拍时间：{{startTimeShow}}</view>
+    <view>开拍地点：{{address ? address : '暂无'}}</view>
+  </view>
+</view>

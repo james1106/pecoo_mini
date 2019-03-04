@@ -1,0 +1,71 @@
+<!--pages/auction.wxml-->
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading>
+<view class="header {{selected ? '' : 'header-border'}}" wx:if="{{!showSearch}}">
+  <view data-selected="0" style="text-align: right;" class="{{!selected? 'auction-selected' : ''}}" bindtap="switchAuction">拍卖会</view>
+  <view data-selected="1" class="header-right {{selected? 'auction-selected' : ''}}" bindtap="switchAuction">
+  拍卖行
+    <image src="{{baseImg}}common/search.png" wx:if="{{selected && !showSearch}}" bindtap="searchAuctionHouse" class="search"></image>
+  </view>
+</view>
+<search-input wx:else width="85%" focus="true" bindmyevent="searchList" placeholder="搜索拍卖行">
+    <view class="cancel" bindtap="cancelSearch">取消</view>
+</search-input> 
+<view wx:if="{{(selected && !showSearch) || (selected && searchVal)}}" class="{{selected && !showSearch ? 'top' : ''}}">
+  <scroll-view scroll-y scroll-with-animation style="height: 100%">
+    <navigator class="auction-item" wx:for="{{auctionHouse}}" wx:key="{{item.id}}" wx:for-index="index" url="/pages/auctionHouseDetail/auctionHouseDetail?id={{item.id}}">
+      <view class="auction-pic-box">
+        <image src="{{item.pic || baseImg+'common/default_medium.png'}}" lazy-load='true' mode="aspectFit"></image>
+      </view>
+      <view class="item-name">拍卖行:    {{item.name}}</view>
+      <view class="item-content">
+        <text>近期<text class="num">{{item.num}}</text>场拍卖会</text>
+        <text class="solid">|</text>
+        <text>共<text class="num">{{item.total}}</text>件商品</text>
+      </view>
+      <view class="item-address">竞拍地点:    <text>{{item.address || '暂无'}}</text></view>
+    </navigator>
+    <load-all wx:if="{{hidden && auctionHouseCount <= auctionHouse.length && pageNumAuctionHouse >= 2}}"></load-all>
+    <pull-up-loading wx:if="{{selected && loading}}"></pull-up-loading>
+    <no-data wx:if="{{!auctionHouse.length && hidden && !auctionHouseCount}}" html="暂无拍卖行"></no-data>
+  </scroll-view>
+</view>
+<view wx:if="{{!selected}}">
+  <view class="picker-box">
+    <scroll-view scroll-x="true" class="picker-content">
+      <view wx:for="{{pickerData}}" data-picker="{{item.calendarDate}}" bindtap='changeDate' wx:key="{{item.calendarDate}}" class="item-picker">
+      <view class="{{selectedPicker === item.calendarDate ? 'active' : ''}}">{{item.calendarDateMobile}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <scroll-view scroll-y="true" style="height: 100%;margin-top: 80rpx;" bindscrolltolower="loadMore" bindscrolltoupper="refesh">
+    <view class="saleListUl" style="display: block;" id="allAuction">
+      <view class='saleListLi' wx:for="{{auctions}}" wx:key="{{item.name}}" >
+        <navigator url="/pages/saleList/saleList?id={{item.id}}" hover-class="none" class='navigator' style="display: flex;background: #FFFFFF;margin-top: 20rpx;">
+          <view class="pic-box">
+            <image src="{{item.auctionThumPic|| baseImg+'common/default_medium.png'}}" lazy-load='true' mode="aspectFit"></image>
+          </view>
+          <view class="auction-content">
+            <view class="auction-name warp">{{item.name}}</view>
+            <view class="auction-company warp">拍卖行:{{item.auctionCompany}}</view>
+            <view class="auction-time" wx:if="{{item.startTime[0] == '00' && item.startTime[1] == '00' && item.startTime[2] == '00' && item.startTime[3] == '00'}}">已结束</view>
+            <view class="auction-time" wx:elif="{{item.startTime[0] == '12'}}">已过期</view>
+            <view class="auction-time" wx:else>
+              距开拍:
+              <text class="{{item.ShowTime[0] == '00'?'none':''}}">{{item.ShowTime[0]}}天</text>
+              <text>{{item.ShowTime[1]}}时</text>
+              <text>{{item.ShowTime[2]}}分</text>
+              <text>{{item.ShowTime[3]}}秒</text>
+            </view>
+            <view class="auction-address warp">竞拍地点:    {{item.address}}</view>
+          </view>
+        </navigator> 
+      </view>
+    </view>
+    <load-all wx:if="{{hidden && auctionCount <= auctions.length && pageNumAuction >= 2}}"></load-all>
+    <pull-up-loading wx:if="{{!selected && loading}}"></pull-up-loading>
+    <no-data wx:if="{{!auctions.length && hidden && !auctionCount}}" html="暂无拍卖会"></no-data>
+  </scroll-view>
+</view>
+

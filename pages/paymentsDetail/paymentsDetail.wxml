@@ -1,0 +1,30 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view class="tab-bar">
+  <view wx:for="{{tabBar}}" bindtap="switchTab" data-index="{{index}}" class="item-tab {{selectedTab == index ?'active':''}}" wx:for-index="index" wx:key="{{index}}">{{item}}</view>
+</view>
+<view style="height: 20rpx;background: #F3F3F3;width: 100%"></view>
+<view class="center-content">
+  <view wx:for="{{recordsList}}" wx:key="{{item.orderId}}" class="item-box">
+    <view class="item-public">
+      <text wx:if="{{selectedTab == 0 }}" class="bold">{{item.rechargeWay || ''}}</text>
+      <text wx:if="{{selectedTab == 0}}" class="bold">¥{{item.actualMoney}}</text>
+      <text wx:if="{{selectedTab == 1}}" class="bold">{{item.withdrawType}}</text>
+      <text wx:if="{{selectedTab == 1}}" class="bold">¥{{item.actualMoney}}</text>
+      <text wx:if="{{selectedTab == 2}}" class="bold order-no">{{item.orderId}}</text>
+      <text wx:if="{{selectedTab == 2}}" class="bold">¥{{item.actualMoney}}</text>
+    </view>
+    <view class="item-public item-money">
+      <text wx:if="{{selectedTab == 0}}" class="time">{{item.createTimeShow}}</text>
+      <text wx:if="{{selectedTab == 0}}" class="{{item.paymentStatus == '充值成功' ? 'green' : 'red'}}">{{item.paymentStatus}}</text>
+      <text wx:if="{{selectedTab == 1}}">{{item.createTimeShow}}</text>      
+      <text wx:if="{{selectedTab == 1}}" class="{{item.withdrawStatus == '成功' ? 'green' : 'red'}}">{{item.withdrawStatus}}</text>
+      <text wx:if="{{selectedTab == 2}}" class="time">{{item.paymentTimeShow}}</text>
+      <text wx:if="{{selectedTab == 2}}">{{item.payType}}</text>
+    </view>
+  </view>
+  <pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+  <load-all wx:if="{{pageNum >= 2 && recordsList.length >= totalCount}}"></load-all>
+  <no-data wx:if="{{ hidden && !recordsList.length && !totalCount}}"></no-data>
+</view>

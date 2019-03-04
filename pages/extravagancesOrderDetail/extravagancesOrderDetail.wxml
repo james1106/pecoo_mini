@@ -1,0 +1,59 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view style="overflow: hidden" wx:if="{{hidden}}">
+  <view style="border-top: 1rpx solid #E2E2E2;">
+    <process-btn processData="{{processData}}" currentIndex="{{currentProcess}}"></process-btn>
+  </view>
+  <view style="border-top: 1rpx solid #E2E2E2;margin: 0 30rpx;"></view>
+  <view class="address">
+    <view>
+      <image class="address-pic" src="{{baseImg}}common/address1.png"></image>
+    </view>
+    <view>
+      <view style="color: #333333">收件人:    {{curOrderDetail.receiveName}} <text style="padding-left: 20rpx;">{{curOrderDetail.receiveTel}}</text></view>
+      <view>地址:    {{curOrderDetail.receiveAddress}}</view>
+      <view>清关信息:    <text wx:if="{{curOrderDetail.idCardNum}}">{{curOrderDetail.realName}}({{curOrderDetail.idCardNum}})</text>
+        <text wx:else>暂无</text>
+      </view>
+    </view>
+  </view>
+  <view class="pro-order-info">
+    <view class="pic-box">
+      <image src="{{curOrderDetail.goodsThumbnailUrl}}" mode="aspectFit"></image>
+    </view>
+    <view class="pro-content" bindtap="goDetail">
+      <view class="line pro-name">{{curOrderDetail.goodsName}}</view>
+      <view style="color: #999999;font-size: 14px;margin-top: 18rpx;margin-bottom: 26rpx">{{curOrderDetail.goodsColor}}，{{curOrderDetail.goodsSize}}</view>
+      <view style="font-size: 15px;display: flex;justify-content: space-between">
+        <text style="color: #333333">{{curOrderDetail.priceUnit}}{{curOrderDetail.goodsPrice}}</text>
+        <text>X{{curOrderDetail.buyNum}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="freight">
+    <view>
+      <text style="font-family: 'PingFangSC-Regular'">运费</text>
+      <text>¥{{curOrderDetail.priceFreight}}</text>
+    </view>
+  </view>
+  <view class="order-info">
+    <view>订单状态：{{curOrderDetail.orderStateMc}}</view>
+    <view>订单编号：{{curOrderDetail.orderNo}}</view>
+    <view>下单时间：{{curOrderDetail.createTime}}</view>
+  </view>
+  <view class="time" wx:if="{{time && !hide}}">剩余支付时间:{{time}}</view>
+  <view class="total-price">
+    <view style="min-width: 30%;padding-left: 30rpx;">合计:  ￥{{curOrderDetail.priceTotal}}</view>
+    <view class="order-btn">
+      <view class="btn2" bindtap="pay" wx:if="{{curOrderDetail.orderState == '00' || curOrderDetail.orderState == '01'}}">支付</view>
+      <view class="btn2" wx:if="{{curOrderDetail.orderState == '10' && curOrderDetail.isUploadCard == 'Y'}}" bindtap="uploadIdCard">上传身份证</view>
+      <view class="btn1" wx:if="{{curOrderDetail.orderState == '10' && curOrderDetail.isUploadCard == 'N'}}" bindtap="remind">提醒发货</view>
+      <view class="btn2" wx:if="{{curOrderDetail.orderState == '15'}}" bindtap="confirmGoods">确认收货</view>
+      <view class="btn1" wx:if="{{curOrderDetail.orderState == '15'}}" bindtap="lookExpress">查看物流</view>
+      <view class="btn1" bindtap="cancel" wx:if="{{curOrderDetail.orderState == '00'}}">取消订单</view>
+      <view class="btn2" wx:if="{{curOrderDetail.orderState == '92' || curOrderDetail.orderState == '94'}}" bindtap="callMe">联系客服</view>
+      <view class="btn2" wx:if="{{curOrderDetail.orderState == '30'}}" bindtap="callMe">申请售后</view>
+    </view>
+  </view>
+</view>

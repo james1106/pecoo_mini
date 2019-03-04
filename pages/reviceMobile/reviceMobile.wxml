@@ -1,0 +1,11 @@
+<view style="background: #F6F8FA;height: 20rpx;width: 100%"></view>
+<view class="new-mobile">
+  <text class="title">新手机号</text>
+  <input placeholder='请输入新手机号' type="number" class="input-number" bindinput="setMobile"></input>
+</view>
+<view class="new-code">
+  <text class="title">短信验证码</text>
+  <input placeholder='请输入验证码' class="input-number" type="number" bindinput="setCode"></input>
+  <text bindtap="getCode" class="{{disabled ? 'computing' : 'code'}}">{{html}}</text>
+</view>
+<view class="confirm" bindtap="confirmReivce">确认修改</view>

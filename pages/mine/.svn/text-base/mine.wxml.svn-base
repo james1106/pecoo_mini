@@ -1,0 +1,119 @@
+<!--头像昵称-->
+<view>
+		<view class="nikeName rel">
+			<view>
+				<view class="clearfix">
+					<view class='nikeNameDt'>
+						<image src="{{wxHeadImage}}" mode="widthFix"/>
+					</view>
+					<view class='nikeNameDd'>
+           <view id="username">{{wxNickName}}</view>
+						<view id="realNameP">{{userName}}</view>
+						<!-- <view id="realNameP">
+							未认证
+							<image src="{{baseImg}}card/realNameNo.png" mode="widthFix"></image> 
+						</view> -->
+					</view>
+					 <view class='nikeNameDd'>
+						<!-- <image src="{{baseImg}}card/realNameRight.png" mode="widthFix"></image>  -->
+					</view> 
+				</view>
+			</view>
+			<image src="{{baseImg}}mine/xinxiIcon.png" class="setIcon abs" mode="widthFix" bindtap='letterHref'/>
+			<span class="letterSpan {{messagesStateCount>0?'':'none'}}" bindtap='letterHref'>{{messagesStateCount}}</span>
+			<!-- <view class="coinDiv">
+				<navigator url="share/coinDetail.html">
+					<image src="{{baseImg}}share/shareCoin.png" mode="widthFix"></image>   
+					<span id="coinCurrent">0</span>金币
+				</navigator>
+				<navigator url="share/exchangeProduct.html">
+					<image src="{{baseImg}}share/coinChange.png" mode="widthFix"></image>   
+					金币兑换
+				</navigator>
+			</view> -->
+		</view> 
+		
+		<!--拍单部分-->
+		<navigator url="/pages/myPaidan/myPaidan">
+			<view class="paidanP">
+				<image src="{{baseImg}}mine/paidanIcon.png" class="paidanIcon" mode="widthFix"/>我的拍单
+				<image src="{{baseImg}}mine/rightOpen.png" class="rightOpen" mode="widthFix"/>
+			</view>
+		</navigator>
+		<!-- <navigator url="myDingdan.html">
+			<view class="paidanP" style="border-bottom: none;">
+				<image src="{{baseImg}}mine/dingdanIcon.png" class="dingdanIcon" mode="widthFix"/>奢侈品订单
+				<image src="{{baseImg}}mine/rightOpen.png" class="rightOpen" mode="widthFix"/>
+			</view>
+		</navigator> -->
+		<view class="hengp"></view>
+		<!--钱包客服-->
+		<navigator url="/pages/myWallet/myWallet">
+			<view class="paidanP">	
+				<image src="{{baseImg}}mine/walletIcon.png" class="paidanIcon" mode="widthFix"/>我的钱包
+				<span class="yue">
+					余额：￥<span id="balanceMoney">{{BalanceMoney.accountMoney?BalanceMoney.accountMoney:'0'}}</span>
+					<image src="{{baseImg}}mine/rightOpen.png" mode="widthFix"></image> 
+				</span>
+			</view>
+		</navigator>
+		<!-- <navigator url="javascript:;" id="myBankCard">
+			<view class="paidanP">		
+				<image src="{{baseImg}}mine/cardIcon.png" class="paidanIcon" mode="widthFix"/>银行卡
+				<span class="yue">
+					<span id="bindCard">未绑定</span>
+					<image src="{{baseImg}}mine/rightOpen.png" mode="widthFix"></image> 
+				</span>
+			</view>
+		</navigator> -->
+		<navigator url="/pages/voucher/voucher">
+			<view class="paidanP">		
+				<image src="{{baseImg}}mine/voucherIcon.png" class="paidanIcon" mode="widthFix"/>代金券
+				<span class="yue">
+					<span id="VoucherCount">{{BalanceMoney.voucherCount?BalanceMoney.voucherCount:'0'}}张代金券可用</span>
+					<image src="{{baseImg}}mine/rightOpen.png" mode="widthFix"></image> 
+				</span>
+			</view>
+		</navigator>
+		<navigator url="/pages/myDeposit/myDeposit">
+			<view class="paidanP" style="border-bottom:0;">		
+				<image src="{{baseImg}}mine/voucherIcon.png" class="paidanIcon" mode="widthFix"/>保证金券
+				<span class="yue">
+					<span id="DepositCount">{{BalanceMoney.marginVoucherCount?BalanceMoney.marginVoucherCount:'0'}}张保证金券可用</span>
+					<image src="{{baseImg}}mine/rightOpen.png" mode="widthFix"></image> 
+				</span>
+			</view>
+		</navigator>
+		<view class="hengp"></view>
+		<navigator url="/pages/myCollect/myCollect">
+			<view class="paidanP">	
+				<image src="{{baseImg}}mine/collectIcon.png" class="paidanIcon" mode="widthFix"/>我的收藏
+				<image src="{{baseImg}}mine/rightOpen.png" class="rightOpen" mode="widthFix"/>	
+			</view>
+		</navigator>
+		<navigator url="/pages/myReferrer/myReferrer">
+			<view class="paidanP">	
+				<image src="{{baseImg}}mine/referrerIcon.png" class="paidanIcon" mode="widthFix"/>我的推荐
+				<image src="{{baseImg}}mine/rightOpen.png" class="rightOpen" mode="widthFix"/>	
+			</view>
+		</navigator>
+		<navigator url="/pages/myReferrerOrder/myReferrerOrder"  style="border-bottom:0;" class="myReferrerOrder {{isChannel=='N'?'hidden':''}}">
+			<view class="paidanP">	
+				<image src="{{baseImg}}mine/tuijianIcon.png" class="paidanIcon" mode="widthFix"/>推荐订单
+				<image src="{{baseImg}}mine/rightOpen.png" class="rightOpen" mode="widthFix"/>	
+			</view>
+		</navigator>
+		<view class="hengp"></view>
+		<navigator url="/pages/set/set" onclick="setHref()">
+			<view class="paidanP">
+				<image src="{{baseImg}}mine/shezhiIcon.png" class="paidanIcon" style="width: 17px;" mode="widthFix"/>设置
+				<image src="{{baseImg}}mine/rightOpen.png" class="rightOpen" mode="widthFix"/>
+			</view>
+		</navigator>
+		<navigator url='' style="display: block; margin-bottom: 70px;" bindtap='callme'>
+			<view class="paidanP" style="border-bottom:0;">
+				<image src="{{baseImg}}mine/kefuIcon.png" class="paidanIcon"  style="width: 18px;" mode="widthFix"/>联系客服
+				<image src="{{baseImg}}mine/rightOpen.png" class="rightOpen" mode="widthFix"/>
+			</view>
+		</navigator>
+</view>

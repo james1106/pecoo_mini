@@ -1,0 +1,84 @@
+page{
+  background: #f3f3f3;
+}
+.address{
+	margin-bottom: 50px;
+}
+.addressDiv{
+	padding:0 10px;
+	background: #FFFFFF;
+	margin-bottom: 10px;
+}
+.addressDivP1{
+	line-height: 30px;
+	font-size: 15px;
+}
+.addressDivP2{
+	font-size: 15px;
+	line-height: 25px;
+	border-bottom: 1px solid  #e4ecf3;
+	padding-bottom: 10px;
+}
+.addressDivP3{
+	font-size: 15px;
+	line-height: 50px;
+}
+.addressDivP3 input{
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+	margin-top: -2px;
+}
+.delete{
+	background: url(https://www.pecoo.com/pecooh5/img/mine/deteleIcon.png)no-repeat left center;
+	padding-left: 25px;
+	margin-left: 20px;
+	background-size: 17px;
+}
+.bianji{
+	background: url(https://www.pecoo.com/pecooh5/img/mine/bianjiIcon.png)no-repeat left center;
+	padding-left: 25px;
+	background-size: 18px;
+}
+.addAddress{
+	height: 44px;
+	position: fixed;
+	background: #24998B;
+	width: 100%;
+	bottom: 0;
+	text-align: center;
+	line-height: 44px;
+	color: #FFFFFF;
+	font-size: 16px;
+}
+.addAddress span{
+	border-radius: 50%;
+    display: inline-block;
+    height: 19px;
+    width: 18px;
+    text-align: center;
+    line-height: 15px;
+    font-size: 22px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background: #fff;
+    color: #24998B;
+}
+.addressNone{
+	font-size: 15px;
+	text-align: center;
+	color: #545454;
+	margin-top: 100px;
+}
+.addressDivP3Span{
+	background: url(https://www.pecoo.com/pecooh5/img/common/weixuanzhong.png)no-repeat 0 center;
+	background-size: 16px;
+  padding-left: 20px;
+	display: inline-block;
+}
+.address view.active .addressDivP3Span{
+	background: url(https://www.pecoo.com/pecooh5/img/common/xuanzhong.png)no-repeat 0 center;
+	background-size: 15px;
+	color: #E93B39;
+}

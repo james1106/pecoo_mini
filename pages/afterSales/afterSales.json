@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "填写售后申请",
+  "usingComponents": {
+    "auction-goods": "/components/auctionGoods/auctionGoods"
+  }
+}

@@ -1,0 +1,82 @@
+page{
+  background: #F3F3F3;
+  font-family: 'MicrosoftYaHei';
+}
+.pay-money-box{
+  margin-top: 20rpx;
+  background: #FFFFFF;
+  font-size: 14px;
+}
+.pay-money-box view{
+  height: 99rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.total-price{
+  margin: 0 30rpx;
+  font-size: 15px;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.balance{
+  border-bottom: 1rpx solid #E2E2E2;
+  padding: 0 30rpx;
+}
+.end-price{
+  padding: 0 30rpx;
+}
+/* 支付方式 */
+.payment{
+  margin-top: 20rpx;
+  background: #FFFFFF;
+  font-size: 14px;
+  overflow: hidden;
+}
+.payment>view{
+  display: flex;
+  height: 79rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #E2E2E2;
+  justify-content: space-between;
+}
+.wx-box{
+  display: flex;
+  height: 120rpx !important;
+  align-items: center;
+  padding-left: 30rpx;
+  border-bottom: none !important;
+  padding-right: 30rpx;
+}
+.transparency{
+  background: #dddddd;
+  opacity: .5;
+}
+.insure{
+  position: fixed;
+  bottom: 130rpx;
+  padding: 20rpx 30rpx 0;
+  font-family: 'PingFangSC-Regular';
+  font-size: 12px;
+  color: #333333;
+}
+/* 底部 */
+.order-bottom{
+  box-shadow:8px 0px 13px rgba(51,51,51,0.06);
+  height: 96rpx;
+  background: #FFFFFF;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.pay{
+  width: 30%;
+  height: 76rpx;
+  background: #1A191E;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 76rpx;
+}

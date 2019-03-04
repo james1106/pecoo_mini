@@ -1,0 +1,30 @@
+<view class="records-content">
+  <view>
+    <text class="label">优惠券号</text>
+    <text class="val">{{useRecordsObj.voucherCode}}</text>
+  </view>
+  <view>
+    <text class="label">使用订单号</text>
+    <text class="val">{{useRecordsObj.useOrderId}}</text>
+  </view>
+  <view>
+    <text class="label">优惠额度</text>
+    <text style="color: #D74A42;">{{useRecordsObj.useMoney}}<text style="font-size: 13px;">元</text></text>
+  </view>
+  <view>
+    <text class="label">使用日期</text>
+    <text class="val">{{useRecordsObj.useTimeShow}}</text>
+  </view>
+  <view style="border-bottom: none" bindtap="goAuctionDetail">
+    <text class="label">订单详情</text>
+    <image class="arrow" src="{{baseImg}}common/right_arrow.png"></image>
+  </view>
+</view>
+<view class="explain">
+  <view class="first">优惠券使用说明</view>
+  <view>1. 优惠券不退款、不找零;使用前请认真阅读</view>
+  <view>2. 每件拍品可使用一张优惠券，具体使用规则请详见优惠券</view>
+  <view>3. 优惠券应当在有效期内使用，过期则无法使用</view>
+  <view>4. 试拍订单不可使用优惠券</view>
+  <view>5. 优惠券适用的范围，拍库网有权根据不同时段进行调整和优化，相关疑问请致电拍库客服电话 : 400-111-2016</view>
+</view>

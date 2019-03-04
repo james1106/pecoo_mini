@@ -1,0 +1,45 @@
+<!--头部-->
+		<view class="walletUl1">
+			<view  class="{{selected?'active':''}}" bindtap='selected'>余额</view>
+			<view  class="{{selected1?'active':''}}" bindtap='selected1'>保证金</view>
+		</view>
+		<!--中间部分-->
+		<view class="walletMoney">
+			<view class="moneyDiv {{selected?'show':'hidden'}}">
+				<view class="moneyDivD">
+					<view>余额 (元)</view>
+					<image src="{{baseImg}}mine/moneyIcon.png" /> <span id="allYue">{{BalanceMoney.accountMoney}}</span>
+				</view>
+				<view class="moneyDivD">
+					<view style="padding-top: 20px;">可用余额 (元)</view>
+					<image src="{{baseImg}}mine/moneyIcon.png" /> <span id="userYue">{{BalanceMoney.usedMoney}}</span>
+				</view>
+			</view>
+			
+			<view class="moneyDiv {{selected1?'show':'hidden'}}">
+				<view class="moneyDivD">
+					<view>保证金 (元)</view>
+					<image src="{{baseImg}}mine/moneyIcon.png" /> <span id="allBao">{{BalanceMoney.marginBalence}}</span>
+				</view>
+				<view class="moneyDivD">
+					<view style="padding-top: 20px;">可用保证金 (元)</view>
+					<image src="{{baseImg}}mine/moneyIcon.png" /> <span id="userBao">{{BalanceMoney.trasferMarginBalence}}</span>
+				</view>
+			</view>
+		</view>
+		<navigator url="/pages/myWalletIncome/myWalletIncome" class="myWalletIncome">收支明细</navigator>
+		<!--底部操作-->
+		<view class="fixUl">
+				<view bindtap='tabMine'>
+					个人中心
+				</view>
+				<navigator url="/pages/transfer/transfer">
+					转账
+				</navigator>
+				<!-- <navigator url="javascript:;" >
+					提现
+				</navigator> -->
+				<navigator style="color: #24988b;" url="/pages/recharge/recharge">
+					充值
+				</navigator>
+		</view> 

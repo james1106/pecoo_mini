@@ -1,0 +1,42 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading>
+<view wx:if="{{hidden}}" style='overflow: hidden;background: #F6F8FA;'>
+  <view class="auction-item">
+    <view class="pic-big">
+      <image class="item-pic" src="{{curAuctionHouseObj.pic}}" mode="aspectFit"></image>
+    </view>
+    <view class="item-name warp">拍卖行:    {{curAuctionHouseObj.name}}</view>
+    <view class="item-content">
+      <text>近期<text class="num">{{curAuctionHouseObj.num}}</text>场拍卖会</text>
+      <text class="solid">|</text>
+      <text>共<text class="num">{{curAuctionHouseObj.total}}</text>件拍品</text>
+    </view>
+    <view class="item-address">竞拍地点:    {{curAuctionHouseObj.address}}</view>
+    <image class="collection" wx:if="{{curAuctionHouseObj.collectionStatus == '0'}}" bindtap="setCollection" src="{{baseImg}}detail/collection.png"></image>
+    <image class="collection" wx:if="{{curAuctionHouseObj.collectionStatus == '1'}}" bindtap="cancelCollection" src="{{baseImg}}detail/collection_selected.png"></image>
+  </view>
+  <scroll-view scroll-y="true" style="height: 100%;background: #F6F8FA;" bindscrolltolower="loadMore" bindscrolltoupper="refesh">
+    <navigator url="/pages/saleList/saleList?id={{item.id}}" wx:for="{{saleList}}" wx:key="{{item.id}}" hover-class="none" class='navigator'>
+      <view class="pic-box">
+        <image lazy-load='true' src="{{item.auctionThumPic}}" mode="aspectFit" lazy-load='true'></image>
+      </view>
+      <view class="auction-content">
+        <view class="auction-name warp">{{item.name}}</view>
+        <view class="auction-company warp">拍卖行:{{item.auctionCompany}}</view>
+        <view class="auction-time" wx:if="{{item.startTime[0] == '00' && item.startTime[1] == '00' && item.startTime[2] == '00' && item.startTime[3] == '00'}}">已结束</view>
+        <view class="auction-time" wx:else>
+          距开拍:  
+          <text class="{{item.ShowTime[0] == '00'?'none':''}}">{{item.ShowTime[0]}}天</text>
+          <text>{{item.ShowTime[1]}}时</text>
+          <text>{{item.ShowTime[2]}}分</text>
+          <text>{{item.ShowTime[3]}}秒</text>
+        </view>
+        <view class="auction-address warp">竞拍地点:  {{item.address}}</view>
+      </view>
+    </navigator> 
+    <pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+    <load-all wx:if="{{hidden && pageNum >= 2 && saleList.length >= totalCount}}"></load-all>
+    <no-data wx:if="{{hideen && !saleList.length && !totalCount}}"></no-data>
+  </scroll-view>
+</view>

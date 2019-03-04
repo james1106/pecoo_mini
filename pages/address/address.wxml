@@ -1,0 +1,28 @@
+<loading hidden="{{hidden}}">
+  加载中...
+</loading> 
+<view class="{{allAddress.length ? '' : 'bg-col'}}">
+  <scroll-view class="address" style="height: {{allAddress.length < 10 ? height : maxHeight}}px" scroll-y>
+    <view class="addressDiv {{item.isDefault == 'Y' ?'active':''}}"  wx:for="{{allAddress}}"  wx:key="{{item.id}}" wx:for-index="index">
+      <view class="user-info" bindtap="clickAddress" data-index="{{index}}">
+        <view class="user-name">{{item.recipientName}}<text style="padding-left: 39rpx;">{{item.phone}}</text></view>
+        <view class="user-address">{{item.province}}{{item.city}}{{item.area}}{{item.detailAddress}}</view>
+      </view>
+      <view class="user-action">
+        <text class="addressDivP3Span" bindtap='defaultAddress' data-status="{{item.isDefault}}" data-index="{{index}}" data-variable="{{item.id}}">设置默认地址</text>
+        <text class="delete fr" bindtap='deleteAddressCha' data-index="{{index}}" data-variable="{{item.id}}">删除</text>
+        <navigator class="bianji fr" url="/pages/addAddress/addAddress?recipientName={{item.recipientName}}&pkId={{item.id}}&phone={{item.phone}}&detailAddress={{item.detailAddress}}&isDefault={{item.isDefault}}&province={{item.province}}&city={{item.city}}&area={{item.area}}&zipCode={{item.zipCode}}">编辑</navigator>
+      </view>
+    </view>
+    <view class="not-address none" style="display: block; padding-top:80px;margin-top: -20rpx;" wx:if="{{allAddress.length == 0 && hidden}}">
+      <view class="not-address-pic">
+        <image src="{{baseImg}}common/big_address.png"></image>
+      </view>
+      <view style="margin: 39rpx 0 60rpx;color: #BBBBBB;">暂无收货地址</view>
+      <navigator url="/pages/addAddress/addAddress" class="add">添加收货地址</navigator>
+    </view>
+  </scroll-view>
+  <navigator url="/pages/addAddress/addAddress" class="add-address" wx:if="{{allAddress.length > 0 && allAddress.length < 10 && hidden}}">
+    <view>添加新地址</view>
+  </navigator>
+</view>

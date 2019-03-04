@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "拍品详情",
+  "usingComponents": {
+    "auction-list": "/components/auctionList/auctionList",
+    "is-open-app": "/components/isOpenApp/isOpenApp",
+    "go-home-btn": "/components/goHomeBtn/goHomeBtn"
+  }
+}

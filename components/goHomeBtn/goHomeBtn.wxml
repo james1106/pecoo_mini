@@ -1,0 +1,1 @@
+<image src="{{baseImg}}common/go_home.png" class="go-home" bindtap="goHome" style="bottom: {{bottom}}" mode="aspectFit"></image>

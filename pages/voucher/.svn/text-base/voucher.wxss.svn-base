@@ -1,0 +1,264 @@
+page{
+  background: #F3F3F3;
+}
+.scoll-h{height: 100%;}
+.tab-h{
+    height: 44px;
+    width: 100%; 
+    box-sizing: border-box;
+    overflow: hidden;
+    line-height: 44px;
+    background: #efefef; 
+    font-size: 14px; 
+    white-space: nowrap;
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    z-index: 99;
+    border-bottom: 1px solid #DDDDDD;
+}
+.tab-item{
+  width:33.33%;
+  text-align: center;
+  display: inline-block;
+}
+.tab-item.active{
+  color: #24988b;
+  position: relative;
+}
+.tab-item.active:after{ 
+  content: "";
+  display: block;
+  height: 8rpx;
+  width: 60%;
+  background: #24988b;
+  position: absolute; 
+  bottom: 0;
+  left: 20%;
+}
+.item-ans{ 
+  width: 100%;
+  display: flex; 
+  flex-grow: row no-wrap;
+  justify-content: space-between; 
+  padding: 30rpx;
+  box-sizing: border-box; 
+  height: 180rpx;
+  align-items: center;
+  border-bottom: 1px solid #F2F2F2;
+}
+.voucherUl1{
+	position: fixed;
+	background: #FFFFFF;
+	height: 44px;
+	width: 100%;
+	top: 0;
+	display: -webkit-box;	
+	z-index:500;
+	border-bottom: 1px solid #F3F3F3;
+}
+.voucherUl1>view{
+	-webkit-box-flex: 1.0;
+	font-size: 15px;
+	text-align: center;
+	line-height: 44px;
+	color: #666666;
+	margin: 0 15px;
+}
+.voucherUl1>view.active{
+	color: #24988b;
+	border-bottom: 3px solid #24988b;
+}
+/*����*/
+.voucherUl2{
+	width: 96%;
+	margin:0 auto;
+	margin-top: 55px;
+	margin-bottom: 55px;
+}
+.voucherUl2>view{
+	margin-bottom: 5px;
+}
+.voucherD{
+	display: -webkit-box;
+	height:100px;
+	margin-bottom: 8px;
+}
+.voucherD input{
+	-webkit-appearance: checkbox;
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+	margin-top: 35px;
+	margin-right:5px;
+}
+.voucherDiv{
+	background:#fd5d17;
+	-webkit-box-flex: 1;
+	color: #FFFFFF;
+	padding: 5px;
+}
+.voucherMoney span:first-child{
+	font-size:50px;
+	display: inline-block;
+	vertical-align: top;
+}
+.voucherMoney span:last-child{
+	font-size:16px;
+	vertical-align:top;
+	display: inline-block;
+	margin-top: 10px;
+}
+.voucherTime{
+	text-align: right;
+	padding-top: 10px;
+}
+.lookVoucher{
+	width: 90%;
+	margin:0 auto;
+	font-size: 14px;
+	line-height: 40px;
+}
+.lookVoucher span{
+	color: #999;
+}
+.lookVoucher a{
+	float: right;
+	color: #DB1014;
+}
+.voucherNone{
+	padding: 20px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 25px;
+}
+.voucherNone img{
+	width: 80px;
+}
+.voucherNone p{
+	color: #999999;
+}
+.voucherNone a{
+	color: #DB1014;
+}
+
+.voucherUl2Dl1{
+	background: url(https://www.pecoo.com/pecooh5/img/mine/voucherBg.png)no-repeat;
+	background-size: 100%;
+	padding: 5px 0;
+	height: 90px;
+}
+.voucherUl2Dl2{
+	background: url(https://www.pecoo.com/pecooh5/img/mine/voucherBgHui.png)no-repeat;
+	background-size: 100%;
+	padding: 5px 0;
+	height: 90px;
+}
+.voucherUl2Dl3{
+	background: url(https://www.pecoo.com/pecooh5/img/mine/voucherBgHui.png)no-repeat;
+	background-size: 100%;
+	padding: 5px 0;
+	height: 90px;
+}
+.voucherUl2Dl1 dt{
+	width: 32%;
+	color:#E93B39;
+	height:70px;
+	font-size: 20px;
+	float: left;
+	line-height: 70px;
+	text-align: center;
+	border-right: 1px dashed #DDDDDD;
+	margin-top: 10px;
+}
+.voucherUl2Dl1 dt span,.voucherUl2Dl2 dt span,.voucherUl2Dl3 dt span{
+	font-size: 28px;
+}
+.voucherUl2Dl2 dt{
+	width: 32%;
+	color:#CCCCCC;
+	height:70px;
+	font-size: 18px;
+	float: left;
+	line-height: 70px;
+	text-align: center;
+	border-right: 1px dashed #DDDDDD;
+	margin-top: 10px;
+}
+.voucherUl2Dl3 dt{
+	color: #ccc;
+	height: 20px;
+	padding-top: 20px;
+	line-height: 20px;
+	font-size: 16px;
+}
+.voucherUl2Dl2 view.voucherUl2Dl1DD1>view:first-child{
+	color: #2C2C2C;
+}
+.voucherUl2Dl3 view.voucherUl2Dl1DD1>view:first-child{
+	color: #CCCCCC;
+}
+.voucherUl2Dl1DD1{
+	width: 60%;
+	float: left;
+	color: #666666;
+	padding: 0 3%;
+	font-size: 12px;
+	line-height: 20px;
+	margin-top: 5px;
+}
+.voucherUl2Dl1DD1 view:first-child{
+	font-size: 15px;
+	color: #E93B39;
+}
+.voucherYes{
+	background: url(https://www.pecoo.com/pecooh5/img/mine/voucherN.png)no-repeat left 25px;
+	width: 10%;
+	height: 90px;
+	float: left;
+	background-size: 20px;
+	position: absolute;
+	right: 15px;
+}
+/***�һ����ȯ***/
+.changeVou{
+	height: 44px;
+	background: #24998B;
+	text-align: center;
+	line-height: 44px;
+	color: #FFFFFF;
+	font-size: 16px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index:100;
+}
+.duihuanVou{
+	background: #F0F0F0;
+	position: fixed;
+	z-index: 500;
+	bottom: 0;
+	width: 100%;
+	border-top: 1px solid #FFFFFF;
+	padding: 20px 0;
+}
+.duihuanVou input{
+	width: 90%;
+	margin: 0 auto;
+	height: 44px;
+	line-height: 44px;
+	font-size: 14px;
+	display: block;
+  background: #FFFFFF;
+	text-indent: 10px;
+}
+.duihuanVou>view{
+	width: 90%;
+	margin:0 auto;
+	background: #24998B;
+	text-align: center;
+	line-height: 44px;
+	color: #FFFFFF;
+	font-size: 15px;
+	margin-top: 20px;
+}

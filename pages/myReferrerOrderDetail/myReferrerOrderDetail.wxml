@@ -1,0 +1,41 @@
+<view class="step-style"></view>
+<view class="order-no">
+  <view>{{orderDetail.orderNo}}</view>
+  <view>{{orderDetail.orderStatusMc}}</view>
+</view>
+<view class="order-content" bindtap="goDetail">
+  <view class='order-pic'>
+    <image src="{{orderDetail.thumbnailUrl || baseImg + 'common/default_medium.png'}}" mode="aspectFit"></image>
+  </view>
+  <view class="order-detail">
+    <view class="warp">{{orderDetail.goodsName}}</view>
+    <view>我的报价: {{orderDetail.priceUnit}}{{orderDetail.clientPrice}}</view>
+    <view>开拍时间: {{orderDetail.startTime || '暂无'}}</view>
+    <view>开拍地点: {{orderDetail.address || '暂无'}}</view>
+  </view>
+</view>
+<view class="mobile">联系方式:{{orderDetail.mobile || '-'}}</view>
+<view class="step-style"></view>
+<view class="order-info">
+  <view>
+    <text>成交价</text>
+    <text>￥{{orderDetail.transPrice || '-'}}</text>
+  </view>
+  <view>
+     <text>货款金额<text wx:if="{{orderDetail.auctionStatusMc}}">({{orderDetail.auctionStatusMc}})</text></text>
+     <text>￥{{orderDetail.goodsAmountRmb || '0.00'}}</text>
+  </view>
+  <view>
+    <text>运费<text wx:if="{{orderDetail.freightStatusMc}}">({{orderDetail.freightStatusMc}})</text></text>
+    <text>￥{{orderDetail.totalFreightRmb || '0.00'}}</text>
+  </view>
+</view>
+<view class="total-price">
+  <text>总金额</text>
+  <text>￥{{orderDetail.sumAmount || '0.00'}}</text>
+</view>
+<view class="step-style"></view>
+<view class="time">
+  <view>货款支付时间:{{orderDetail.paySucTime || '-'}}</view>
+  <view>运费支付时间:{{orderDetail.freightSucTime || '-'}}</view>
+</view>

@@ -1,0 +1,31 @@
+<!-- <view class="brand-search">
+  <view class="search" bindtap="searchLike">搜索您喜欢的</view>
+  <input type="text" placeholder='搜索您喜欢的'></input>
+</view> -->
+<view class="brand-search">
+  <input type="text" placeholder='搜索品牌' class="{{searchFlag ? 'input2' : 'input1'}}" bindfocus="focus" bindinput="filterInput" value="{{searchVal}}"></input>
+  <view class="cancel" wx:if="{{searchFlag}}" bindtap="cancel">取消</view>
+</view>
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+ <view wx:if="{{searchFlag}}">
+  <navigator class="content" wx:for="{{filterList}}" wx:key="{{item}}" url="/pages/extravagancesSearch/extravagancesSearch?brand={{item}}">{{item}}</navigator>
+  <no-data class="no-data" wx:if="{{!filterList.length}}" html="暂无相关品牌"></no-data>
+</view> 
+<view class="overflow" wx:if="{{hidden && !searchFlag}}">
+  <view class="alpha" wx:if="{{showAlpha}}">{{alpha}}</view>
+  <scroll-view scroll-y scroll-with-animation scroll-top="{{scrollTop}}" scroll-into-view="{{alpha}}" style="height: {{windowHeight}}" bindscroll="scrollContent">
+    <view wx:for="{{brandData}}" wx:key="{{item.title}}" id="{{item.title}}" wx:for-index="index">
+      <view class="title">{{item.title}}</view>
+      <navigator class="content" wx:for="{{item.brand}}" wx:for-item="elem" wx:key="{{elem}}" url="/pages/extravagancesSearch/extravagancesSearch?brand={{elem.name}}">
+        {{elem.name}}
+      </navigator>
+    </view>
+  </scroll-view>
+  <view class="letters" bindtap="handlerAlphaTap" catchtouchmove="handlerMove">
+    <view wx:for="{{titleList}}" wx:key="{{item.title}}" data-ap="{{item.title}}">
+      <view class="letter {{selectedLetter == item.title ? 'selected' : ''}}" data-ap="{{item.title}}">{{item.title}}</view>
+    </view>
+  </view>
+</view>

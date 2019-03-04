@@ -1,0 +1,41 @@
+div p{
+  display: block;
+}
+view{
+  width: 92%;
+  padding: 0 4%;
+  margin:0 auto 0 auto;
+}
+.argeeContent{
+  font-size: 14px;
+  line-height: 30px;
+  text-indent: 2rem;
+  margin-bottom: 60px;
+}
+.title{
+  font-size: 16px;
+  color: #24988b;
+  line-height: 20px;
+  margin: 10px 0;
+  border-left: 5px solid #24988b;
+  text-indent: 5px;
+  font-weight: bold;
+}
+.argeeP{
+  height: 50px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: #FFFFFF;
+}
+.argeeP span{
+  display: block;
+  width: 60%;
+  height: 40px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 40px;
+  margin: 5px auto;
+  background: #24998B;
+  color: #FFFFFF;
+}

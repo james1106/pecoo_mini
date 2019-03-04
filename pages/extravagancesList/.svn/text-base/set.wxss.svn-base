@@ -1,0 +1,31 @@
+.personalData{
+	background:#ffffff;
+}
+.personalData navigator>view{
+	height: 35px;
+	padding: 5px;
+	background: #FFFFFF;
+	line-height: 35px;
+	border-bottom: 1px solid #F3F3F3;
+	font-size: 15px;
+	margin: 0 10px;
+}
+.personalData navigator image{
+  width: 10px;
+  height:15px;
+  float: right;
+  margin-top: 10px;
+}
+.exitLogin{
+	background: #24998B;
+    color: #FFFFFF;
+    margin: 30px auto 10px auto;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+    font-size: 17px;
+    width: 90%;
+}
+.RealNameRen,.RealYinRen{
+	color: #24988b;
+}

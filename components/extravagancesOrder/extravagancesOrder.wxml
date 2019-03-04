@@ -1,0 +1,13 @@
+<view class="product-info" bindtap="jump">
+  <view class="product-img">
+    <image src="{{pic}}" mode="aspectFit"></image>
+  </view>
+  <view class="product-cont">
+    <view class="product-name">{{goodsName}}</view>
+    <view class="product-color">颜色：{{color}}；尺码: {{size}}</view>
+    <view class="product-price">
+      <view style="font-size: 15px;color: #333333;">{{priceUnit}}{{price}}</view>
+      <view style="text-align: right">x{{num}}</view>
+    </view>
+  </view>
+</view>

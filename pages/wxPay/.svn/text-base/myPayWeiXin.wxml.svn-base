@@ -1,0 +1,13 @@
+<view>
+  <view class="payWei">
+    <view id="messId">{{messId}}</view>
+    <view id="moneyId">￥{{moneyId}}</view>
+  </view>
+  <!--收款方-->
+  <view class="payShou">
+    <span class="fl">收款方</span>
+    <span class="fr">拍库网</span>
+  </view>
+  <!--中间部分-->
+  <view  class="{{pay?'payNow':'payNow1'}}" id="payId" bindtap='wxPayment'>立即支付</view>
+</view>

@@ -1,0 +1,102 @@
+page{
+  font-size: 14px;
+  background: #F3F3F3;
+}
+.not{
+  height: 80rpx;
+  align-items: center;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 80rpx 0 30rpx;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.len{
+  height: 80rpx;
+  padding: 0 30rpx;
+  background: #FFFFFF;
+  line-height: 80rpx;
+  color: #999999;
+  font-size: 13px;
+}
+.check-pic{
+  width: 40rpx;
+  height: 40rpx;
+}
+.item-list{
+  margin: 20rpx;
+  height: 216rpx;
+  position: relative;
+}
+.pics{
+  position: absolute;
+  right: 60rpx;
+  top: 60rpx;
+}
+.item-top{
+  background: url(https://static.pecoo.com/images/common/coupon_top.png) no-repeat;
+  background-size: contain;
+  height: 153rpx;
+  display: flex;
+  align-items: center;
+}
+.item-top{
+  background: url(https://static.pecoo.com/images/common/coupon_top.png) no-repeat;
+  background-size: contain;
+  height: 153rpx;
+  display: flex;
+  align-items: center;
+}
+.actual-money{
+  font-size: 30px;
+  color: #D74A42;
+  margin-top: 10rpx;
+}
+.code{
+  font-size: 15px;
+  color: #D74A42;
+  margin: 36rpx 6rpx 0 39rpx;
+}
+.actual-detail{
+  min-width: 260rpx;
+  margin: 30rpx 0 20rpx 38rpx;
+  font-size: 15px;
+  color: #333333;
+  font-family: 'MicrosoftYaHei';
+}
+.private{
+  color: #999999;
+  font-size: 12px;
+}
+.item-bottom{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 60rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: url(https://static.pecoo.com/images/common/coupon_bottom.png) no-repeat;
+  background-size: contain;
+  padding-left: 39rpx;
+  font-family: 'MicrosoftYaHei';
+  font-size: 12px;
+  color: #999999;
+}
+.records{
+  width: 20%;
+  float: right;
+  color: #333333;
+  height: 70rpx;
+  background: url(https://static.pecoo.com/images/common/records.png) no-repeat right;
+  background-size: 24rpx;
+  line-height: 70rpx;
+}
+.exchange{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 130rpx;
+  display: flex;
+  z-index: 99;
+  align-items: center;
+  background: #FFFFFF;
+}

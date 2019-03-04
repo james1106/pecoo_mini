@@ -1,0 +1,36 @@
+<view>
+  <!--添加地址-->
+		<div class="addAddress">
+			<p>
+				<span>收货人</span>
+				<input id="recipientName" value="{{recipientName}}" name="recipientName" type="text" bindinput='recipientNameInput' placeholder="请输入收货人姓名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" maxlength="60"/>
+			</p>
+			<p>
+				<span>联系电话</span>
+				<input id="phone" type="number" value="{{phone}}" name="phone" bindinput='phoneInput' placeholder="请输入联系电话"  maxlength="15" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
+			</p>
+			<p>
+				<span>邮政编码</span>
+				<input id="zipCode" type="number" value="{{zipCode}}" name="zipCode" bindinput='zipCodeInput' placeholder="填写正确邮编，以免影响收货" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" maxlength="10"/>
+			</p>
+			<p id="addAddress rel" bindtap="translate">
+				<span>所在地区</span>
+				<import src="../../model/model.wxml"/>
+        <view class="infoText">{{province}} {{city}} {{county}}</view>
+        <template is="areaData" data="{{...item}}"/>
+				<view class="addressRight">请选择<image src="{{baseImg}}mine/rightOpen.png" /></view>
+			</p>
+			<p class="xiangxi">
+				<span>详细地址</span> 
+				<textarea id="detailAddress" name="detailAddress" value="{{detailAddress}}" bindinput='detailAddressInput' placeholder="请输入详细地址"  onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"></textarea>
+			</p>
+		</div>
+		<view class="setMoren">
+			设为默认
+			<view class="body-view">
+          <switch bindchange="switchChange" checked='{{switchTF}}' value='{{switchValue}}'/>
+      </view>
+		</view>
+		<!--保存--> 
+		<view class="submitOrder" bindtap='saveClick'>{{saveHtml}}</view>
+</view>

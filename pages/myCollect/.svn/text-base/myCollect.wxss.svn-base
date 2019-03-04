@@ -1,0 +1,259 @@
+page{
+  background: #f0f0f0;
+}
+header{
+	height: 35px;
+	border-bottom: 1px solid #DDDDDD;
+	text-align: center;
+	line-height: 35px;
+	display: -webkit-box;
+	font-size: 15px;
+	background: #FFFFFF;
+	position: fixed;
+	top:0;
+	width: 100%;
+	z-index: 300;
+}
+.hengp{
+	height: 8px;
+	border-top: 1px solid #DDDDDD;
+	background: #EEEEEE;
+	border-bottom: 1px solid #DDDDDD;
+}
+header p{
+	-webkit-box-flex: 1;
+}
+.loveP{
+	height: 50px;
+	background: #F0F0F0;
+	text-align: center;
+	line-height: 50px;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+.loveP img{
+	width: 25px;
+	vertical-align: middle;
+	margin-right: 5px;	
+}
+.collectUl{
+	height: 44px;
+	display:-webkit-box;
+	position: fixed;
+	top: 0;
+	border-bottom: 1px solid #e4ecf3;
+	width: 100%;
+	z-index: 200;
+	background: #efeff4;
+}
+.collectUl>view{
+	-webkit-box-flex: 1.0;
+	font-size: 16px;
+	text-align: center;
+	line-height: 44px;
+	margin: 0 20px;
+}
+.collectUl>view.active{
+	color:#24988b;
+	border-bottom:3px solid #24988b;
+}
+
+/**鎷嶅崠浼�*/
+.saleList{
+	margin-top:45px;
+	display: none;
+}
+
+
+/**鎷嶅搧**/
+
+.saleListUl  li{
+	width: 50%;
+	height: 250px;
+	overflow: hidden;
+	margin-left: -5px;
+	background:#ffffff;
+  	border-left: 5px solid #EEF1F8;
+  	border-bottom: 5px solid #EEF1F8;
+  	float: left;
+}
+.saleListUl li div>a {
+	height:185px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width: 500px;
+}
+.saleListUl li div>a img{
+	max-width:100%;
+	max-height:185px;
+}
+.saleListUl li p{
+	padding: 3.5px 5px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+}
+.saleListUl li p span{
+	color: #24988b;
+}
+.voucherNone,.voucherNone2,.voucherNone3{
+	text-align: center;
+	font-size: 14px;
+	line-height: 25px;
+	background: #f0f0f0;
+}
+.voucherNone img,.voucherNone2 img,.voucherNone3 img{
+	margin-top: 50px;
+	width: 80px;
+}
+.voucherNone p,.voucherNone2 p,.voucherNone3 p{
+	color: #999999;
+}
+.voucherNone a,.voucherNone2 a,.voucherNone3 a{
+	color: #DB1014;
+}
+.collectDelete{
+	width:25px;
+  height: 25px;
+}
+.havaChance{
+	left: 0;
+	top:0;
+	width:35%;
+}
+.listFix{
+	display: -webkit-box;
+	position: fixed;
+	width: 100%;
+	top:45px;
+	height: 45px;
+	border-bottom: 1px solid #DDDDDD;
+	line-height: 45px;
+	font-size:14px;
+	background: #F3F3F3;
+	z-index: 100;
+}
+.listFixUl{
+	display: -webkit-box;
+	width: 100%;
+}
+.listFixUl>view{
+	-webkit-box-flex:0.8;
+	text-align: center;
+	color: #545454;
+	font-size: 14px;
+}
+.listFixUl>view.active{
+	color:#24988b;
+}
+.listFixUl>view image{
+  width: 10px;
+  height: 16px;
+  vertical-align: middle;
+}
+.listFixUl>view.listDiqu image{
+  height: 7px;
+}
+/*下拉菜单*/
+.listTwo{
+	width: 30%;
+	position: fixed;
+	top:90px;
+	left: 0;
+	z-index: 200;
+	background: #EFEFF4;
+	height: 225px;
+	line-height: 44px;
+	color: #666;
+	text-align:center;
+	font-size:14px;
+}
+.listTwo li.active{
+	background: #FFFFFF;
+	color: #333333;
+	border-left: 3px solid #24988b;
+}
+.listThree li{
+	width: 70%;
+	position: fixed;
+	top:90px;
+	z-index: 200;
+	background: #ffffff;
+	height: 225px;
+	left: 30%;
+	line-height: 44px;
+	color: #666;
+	text-indent: 20px;
+	display: none;
+	font-size:14px;
+}
+.listThree li span{
+	display: block;
+}
+.listMenu{
+	background: #FFFFFF;
+	position: fixed;
+	top:86px;
+	width: 100%;
+	z-index: 100;
+	border-bottom: 1px solid #F3F3F3;
+}
+.listMenuUl1{
+	width: 98%;
+	margin: 10px auto;
+	max-height: 140px;
+	overflow: auto;
+	margin-bottom: 15px;
+}
+.listMenuUl1 li{
+	width: 16%;
+	margin: 5px 1%;
+	text-align: center;
+	height: 30px;
+	background: #F3F3F3;
+	color: #666666;
+	line-height: 30px;
+	font-size: 13px;
+	float: left;
+	overflow: hidden;
+	padding: 0 1%;
+}
+.listMenuUl1 li.active{
+	background: #24998B;
+	color: #FFFFFF;
+}
+.saleListUl  li{
+	width: 50%;
+	height: 240px;
+	overflow: hidden;
+	margin-left: -5px;
+	background:#ffffff;
+  border-left: 5px solid #EEF1F8;
+  border-bottom: 5px solid #EEF1F8;
+  float: left;
+}
+.saleListUl li view>navigator {
+	height:185px;
+	vertical-align: middle;
+	text-align: center;
+	width: 100%;
+}
+.saleListUl li view>navigator image{
+	max-width:100%;
+	max-height:185px;
+}
+.loveDdP1,.loveDdP2{
+	padding: 3.5px 5px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+   font-size: 15px;
+}
+.loveDdP2{
+ font-size: 12px;
+}
+.loveDdP2 span{
+	color: #24988b;
+}

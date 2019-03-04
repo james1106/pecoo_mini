@@ -1,0 +1,144 @@
+const app = getApp()
+const api = require('../../utils/api.js')
+let auctionId;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    tokenId:'',
+    shareCode: '',
+    auction:[],
+    startAdd:'',
+    startTime:'',
+    startName:'',
+    pageNo: 1,
+    hidden: false, 
+    hasMore: true,
+    hasRefesh: false,
+    auctionId:'',
+    isCol:'',
+    baseImg: 'https://www.pecoo.com/pecooh5/img/',
+    collectBg:'https://www.pecoo.com/pecooh5/img/common/collectRed.png'
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId'),
+      shareCode: options.shareCode ? options.shareCode : wx.getStorageSync('shareCode')
+    })
+    if (options.shareCode){
+      wx.setStorageSync('shareCode', options.shareCode);
+    }
+    //console.log(options);
+    auctionId = options.auctionId;
+    let requestAuctionGoods = api.queryAuctionGoodsUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+      auctionId: options.auctionId
+    }); 
+    requestAuctionGoods.then((res) => {
+      this.setData({
+        startAdd: res.address,
+        startName:res.name,
+        startTime: res.startTime,
+        auction: res.goods,
+        auctionId: options.auctionId,
+        isCol: res.isCol
+      })
+      //console.log(res.isCol)
+      if (res.isCol == "Y"){
+        this.setData({
+          collectBg: 'https://www.pecoo.com/pecooh5/img/common/collectHui.png'
+        })
+      }else{
+        this.setData({
+          collectBg: 'https://www.pecoo.com/pecooh5/img/common/collectRed.png'
+        })
+      }
+    }).catch((error) => { 
+      console.log(error)
+    })
+  },
+  collectWay: function(){
+    app.isLoginGo();
+    if (this.data.isCol == "Y"){
+      this.delCollect();
+    }else{
+      this.collect();
+    }
+    
+  },
+  delCollect:function(){
+    let that  = this;
+    let delUserCollection = api.delUserCollectionUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: that.data.tokenId,
+      colleType: '01',
+      goodsId: that.data.auctionId
+    });
+    delUserCollection.then((res) => {
+      that.setData({
+        isCol: "N",
+        collectBg: 'https://www.pecoo.com/pecooh5/img/common/collectRed.png'
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  collect: function () {
+    let that = this;
+    let addUserCollection = api.addUserCollectionUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: that.data.tokenId,
+      colleType: '01',
+      goodsId: that.data.auctionId
+    }); 
+    addUserCollection.then((res) => {
+      that.setData({
+        isCol: "Y",
+        collectBg:'https://www.pecoo.com/pecooh5/img/common/collectHui.png'
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  onReachBottom: function () {
+    this.setData({
+      hasRefesh: true,
+    });
+   // console.log(this.data.pageNo)
+    if (!this.data.hasMore) return;
+    let requestAuctionGoods = api.queryAuctionGoodsUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+      pageNo: ++this.data.pageNo,
+      auctionId: auctionId
+    });
+    requestAuctionGoods.then((res) => {
+      this.setData({
+        auction: this.data.auction.concat(res.goods),
+        hidden: true,
+        hasRefesh: false,
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  onShow: function () {
+    
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return{
+      title: this.data.startName,
+      path: `/pages/saleList/saleList?auctionId=${this.data.auctionId}&shareCode=${this.data.shareCode}`
+    }
+  }
+})

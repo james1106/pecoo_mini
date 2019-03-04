@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "品牌A-Z",
+  "usingComponents": {
+    "no-data": "/components/noData/noData"
+  }
+}

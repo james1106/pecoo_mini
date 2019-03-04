@@ -1,0 +1,25 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view wx:if="{{!searchFlag}}">
+  <search-input width="85%" isTake="{{take}}" bindmyevent="getWords">
+    <view class="cancel" bindtap="cancel">取消</view>
+  </search-input>
+  <view style="width: 100%;border-top: 1rpx solid #E2E2E2;"></view>
+  <search-history historyData="{{history}}" binddelHistory="handleHistory" recommendData="{{recommend}}" bindchangeSearchContent="handleSearchContent"></search-history>
+</view>
+<view class="love-list" wx:else>
+  <view wx:for="{{listData}}" wx:key="{{item.id}}" data-id="{{item.id}}" for-index="index" class="item-list {{(index+1) % 2 == 0 ? 'right' : 'left'}}" bindtap="clickHandle">
+    <view class="image-box">
+      <image src="{{item.thumbnailUrl}}" mode="aspectFit"></image>
+    </view>
+    <view class="name">{{item.goodsName}}</view>
+    <view class="price">
+      <text wx:if="{{item.isDiscount == 'Y'}}" class="discount">{{item.priceDiscount}}折</text>
+      {{item.priceUnit}}{{item.price}}
+    </view>
+  </view>
+</view>
+<pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+<no-data wx:if="{{!listData.length && !totalCount}}"></no-data>
+<load-all wx:if="{{pageNum >=2 && listData.length >= totalCount}}"></load-all>

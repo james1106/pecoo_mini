@@ -1,0 +1,130 @@
+.page{
+  background: #F6F8FA;
+}
+.letter{
+  padding: 0 30rpx;
+  background: #F6F8FA;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+.auction-item{
+  width: 100%;
+  height:480rpx;
+  background: #FFFFFF;
+  z-index: 100;
+  margin-top: 20rpx;
+}
+.pic-big{
+  border: 1rpx solid #E2E2E2;
+  height: 240rpx;
+  text-align: center;
+  border-radius: 6rpx;
+  position: relative;
+  top: 30rpx;
+  margin: 0 30rpx;
+}
+.item-pic{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto; 
+}
+.item-name{
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  font-size: 15px;
+  padding: 60rpx 100rpx 18rpx 30rpx;
+}
+.item-content{
+  font-family: 'PingFang SC';
+  color:#666666;
+  font-size: 13px;
+  margin-bottom: 6rpx;
+  padding: 0 30rpx;
+}
+.num{
+  color: red;
+}
+.solid{
+  color: #DDDDDD;
+  margin: 0 30rpx;
+}
+.item-address{
+  font-family: 'PingFang SC';
+  font-size: 12px;
+  color: #999999;
+  padding-left: 60rpx;
+  background: url(https://static.pecoo.com/images/common/address.png) no-repeat 30rpx;
+  background-size: 24rpx;
+}
+.collection{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  right: 30rpx;
+  top: 320rpx;
+}
+.letters{
+  position: fixed;
+  right: 0;
+  top: 155rpx;
+  width: 81rpx;
+  height: 835rpx;
+}
+.pic-box{
+  width:200rpx;
+  height:200rpx;
+  margin:35rpx 34rpx;
+  border-radius:6rpx;
+  border:1rpx solid #DDDDDD;
+}
+.pic-box image{
+  max-width: 100%;
+  max-height: 100%;
+  margin:0 auto;
+  border-radius: 6rpx;
+}
+.auction-content{
+  flex: 1;
+}
+.auction-name{
+  color: #333333;
+  font-family: 'ArialMT';
+  width: 460rpx;
+  font-size: 16px;
+  margin-top: 46rpx;
+}
+.auction-company{
+  width: 460rpx;
+  font-family: 'PingFang SC';
+  color: #666666;
+  font-size: 13px;
+}
+.auction-time{
+  padding-left: 30rpx;
+  color: #999999;
+  font-family: 'PingFang SC';
+  font-size: 12px;
+  margin-top: 40rpx;
+  background: url(https://static.pecoo.com/images/common/time.png) no-repeat 0 6rpx;
+  background-size: 24rpx;
+}
+.auction-time text{
+  color: #E83E3E;
+}
+.auction-address{
+  width: 460rpx;
+  margin-top: 5rpx;
+  color: #999999;
+  font-family: 'PingFang SC';
+  font-size: 12px;
+  padding-left: 30rpx;
+  background: url(https://static.pecoo.com/images/common/address.png) no-repeat 0 6rpx;
+  background-size: 24rpx;
+}
+.navigator{
+	display: -webkit-box;
+	font-size: 14px;
+	color: #666666;
+  margin-bottom:  20rpx;
+  background: #FFFFFF;
+}

@@ -1,0 +1,19 @@
+page{
+  background: #FFFFFF;
+  font-family: 'MicrosoftYaHei';
+  font-size: 15px;
+  height: 100%;
+  color: #333333;
+}
+.msg-box{
+  background: #FFFFFF;
+  padding: 0 30rpx;
+}
+.msg-title{
+  padding: 50rpx 0 40rpx;
+  display: flex;
+  justify-content: space-between;
+}
+msg-content{
+  font-size: 14px;
+}

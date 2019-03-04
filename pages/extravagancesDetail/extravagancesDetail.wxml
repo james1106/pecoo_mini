@@ -1,0 +1,154 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<audio id="myAudio" src="{{voiceUrl}}"></audio>  
+<view class="overflow" wx:if="{{hidden}}">
+  <is-open-app wx:if="{{isShare == 'IOS' || isShare == 'android'}}" appParams="{{appParams}}"></is-open-app>
+  <go-home-btn wx:if="{{isShare == 'IOS' || isShare == 'android'}}"></go-home-btn>
+  <swiper class="swiper {{isShare == 'IOS' || isShare == 'android' ? 'open-app' : ''}}" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-active-color="#FFFFFF" style='height: 650rpx' circular="true">    
+    <block wx:for="{{banners}}" wx:for-index="index" wx:key="{{item.bigPic}}">    
+      <swiper-item>    
+        <view>  
+          <image src="{{item.bigPic}}" data-index="{{index}}" bindtap="lookBig" class="slide-image" mode="aspectFit"/>  
+        </view> 
+      </swiper-item>    
+    </block>    
+  </swiper>
+  <!-- 商品价格级名称 -->
+  <view class="pro-content">
+    <view class="pro-price">
+      <view class="pro-money">
+        <text style="font-size: 16px">{{luxuryGood.priceUnit}}</text>
+        <text class="pro-num">{{maxPrice}}</text>
+        <!-- <text style="padding:0 5rpx;">-</text> -->
+        <text class="primary-price" wx:if="{{isDiscount == 'Y'}}">{{luxuryGood.priceUnit}}{{luxuryGood.primaryPrice}}</text>
+      </view>
+      <image class="collection" wx:if="{{isCollection == 'N'}}" bindtap="setCollection" data-id="{{luxuryGood.id}}" src="{{baseImg}}detail/collection.png" mode="aspectFit"></image>
+      <image class="collection" wx:if="{{isCollection == 'Y'}}" bindtap="cancelCollection" data-id="{{luxuryGood.id}}" src="{{baseImg}}detail/collection_selected.png" mode="aspectFit"></image>
+    </view>
+    <view class="pro-words" wx:if="{{isDiscount == 'Y'}}">{{luxuryGood.priceDiscount}}折</view>
+    <view class="pro-today">
+      <text>约合人民币:<text style="color: #333333">¥{{maxPriceRMB}}</text></text>
+      <text class="pro-currencies">今日汇率:{{priceRate}}</text>
+    </view>
+    <view class="pro-name line">{{isTranslate ? luxuryGood.goodsName : luxuryGood.goodsNameCh}}</view>
+    <!-- <view class="pro-from">来自:<text>{{luxuryGood.goodsSource}}</text></view> -->
+    <view class="pro-from">预计15-20个工作日送达</view>
+    <view class="pro-tips">温馨提示:该商品不支持退换货</view>
+  </view>
+  <!-- 商品颜色尺寸数量 -->
+  <view class="pro-appearance" bindtap="showMask">
+    <view wx:if="{{curColor || curSize}}">
+      <text class="already-selected">已选</text>
+      <text>{{curColor}}    {{curSize}}</text>
+    </view>
+    <view wx:else>选择<text style="padding-left: 30rpx;">颜色尺码</text></view>
+    <image src="{{baseImg}}common/right_arrow.png" style="width: 12rpx; height: 22rpx;"></image>
+  </view>
+  <!-- 尺码对照表 -->
+  <!-- <view class="pro-appearance">
+    <view>尺码对照表</view>
+    <image src="{{baseImg}}common/right_arrow.png" style="width: 12rpx; height: 22rpx;"></image>
+  </view> -->
+  <!-- 发货流程 -->
+  <view class="pro-process">
+    <view class="item-process">
+      <image class="process-pic" src="{{baseImg}}detail/website.png"></image>
+      <view>官方直邮</view>
+    </view>
+    <image class="arrow" src="{{baseImg}}detail/arrow.png"></image>
+    <view class="item-process">
+      <image class="process-pic" src="{{baseImg}}detail/customs.png"></image>
+      <view>海外清关</view>
+    </view>
+    <image class="arrow" src="{{baseImg}}detail/arrow.png"></image>
+    <view class="item-process">
+      <image class="process-pic" src="{{baseImg}}detail/express.png"></image>
+      <view>国内快递</view>
+    </view>
+  </view>
+  <!-- 商品信息 -->
+  <view class="pro-info">
+    <view class="info-title">商品信息</view>
+    <view class="info-content">{{isTranslate ? luxuryGood.goodsDesc : luxuryGood.goodsDescCh}}</view>
+    <view class="info-images" wx:if="{{detailPics.lengths}}">
+      <view wx:for="{{detailPics}}" class="info-pic" wx:key="{{item.bigPicUrl}}">
+        <image src="{{item.bigPicUrl}}" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 服务保障 -->
+  <view class="pro-services">
+    <view class="services-title">服务保障</view>
+    <view class="services-name">正品保障</view>
+    <view class="services-cont">官网正品直邮，100%正品保证</view>
+    <view class="services-name" style="margin-top: 38rpx;">无忧物流保障</view>
+    <view class="services-cont" style="font-family: 'PingFang SC'">省心官网国际物流，从海外直发，入境清关后直接完成境内配送，全程直邮，速度快捷稳定，安心放心</view>
+    <view class="services-name" style="margin-top: 38rpx;">提供贴心售后服务</view>
+    <view class="services-cont" style="font-family: 'PingFang-SC-Regular'">出现售后问题，有热心客服帮您联系官网处理（处理规则以官网为准）</view>
+  </view>
+  <!-- 猜你喜欢 -->
+  <view class="pro-like">
+    <view class="like-title">猜你喜欢</view>
+    <extravagances-list extravagancesList="{{likeList}}" bindclickEvent="goDetail"></extravagances-list>
+  </view>
+  <view class="mask" bindtap="hideMask" wx:if="{{maskFlag}}"></view>
+  <view class="mask-content bottom-pos" animation="{{animationData}}" wx:if="{{maskFlag}}">
+    <view class="pro-title">
+      <view class="pro-default-img">
+        <image style="max-width: 200rpx;max-height: 200rpx" src="{{banners[0].bigPic}}" mode="aspectFit"></image>
+      </view>
+      <view class="pro-num-price">
+        <view class="goods-name">
+          <text>{{luxuryGood.goodsName}}</text>
+          <image src="{{baseImg}}detail/close.png" class="close" bindtap="hideMask"></image>
+        </view>
+        <view>一口价: {{luxuryGood.priceUnit}}<text style="font-size: 18px">{{curPrice}}</text></view>
+      </view> 
+    </view>
+    <view class="scroll">
+      <view class="colors">
+        <view style="font-size:15px;padding: 20rpx 0;">颜色</view>
+        <view wx:for="{{colorList}}" wx:for-index="index" class="item-color {{item.color == curColor ? 'selected' : ''}}" data-colorStock="{{item.colorStock}}" bindtap="changeSelectedColor" data-index="{{index}}" data-color="{{item.color}}" wx:key="{{item.color}}">
+          <text wx:if="{{item.colorStock <= 0}}" class="left-triangle"></text>
+          <text wx:if="{{item.colorStock <= 0}}" class="right-triangle"></text>
+          <text class="triangle" wx:if="{{item.color == curColor}}"></text>{{item.color}}
+        </view>
+      </view>
+      <view class="sizes">
+        <view style="font-size:15px;padding: 20rpx 0;">尺码</view>
+        <view wx:for="{{sizeList}}" bindtap="changeSelectedSize" wx:for-index="index" class="item-size {{item.goodsSize == curSize ? 'selected' : ''}}" data-size="{{item.goodsSize}}" data-goodsExtendPrice="{{item.goodsExtendPrice}}" data-goodsExtendStock="{{item.goodsExtendStock}}" wx:key="{{item.goodsSize}}">
+          <text class="triangle" wx:if="{{item.goodsSize == curSize}}"></text>
+          <text wx:if="{{curColor && item.goodsExtendStock <= 0}}" class="left-triangle"></text>
+          <text wx:if="{{curColor && item.goodsExtendStock <= 0}}" class="right-triangle"></text>
+          {{item.goodsSize}}
+        </view>
+      </view>
+      <view class="pro-number">数量</view>
+      <view class="pro-btn-box">
+        <text class="reduce btns {{num > 1 ? 'borders' : ''}}" bindtap="reduceNumber">-</text>
+        <input type="number" value="{{num}}" type="number" bindinput="setNumber" class="digital"></input>
+        <text class="add btns" data-num="1" bindtap="addNumber">+</text>
+      </view>
+    </view>
+    <view class="shop" bindtap="goConfirmOrder">立即购买</view>
+  </view>
+  <!-- 底部立即购买 -->
+  <view class="pro-bottom">
+    <view class="function" bindtap="call">
+      <image class="services-pic" src="{{baseImg}}common/service.png"></image>
+      <view>客服</view>
+    </view>
+    <view class="function" bindtap="translate">
+      <image class="translate-pic" wx:if="{{!isTranslate}}" src="{{baseImg}}detail/chinese.png"></image>
+      <image class="translate-pic" wx:else src="{{baseImg}}detail/translate.png"></image>
+      <view>翻译</view>
+    </view>
+    <view class="function" bindtap="voicePlay">
+      <image class="voice-pic" wx:if="{{!voiceFlag}}" src="{{baseImg}}detail/voice_selected.png"></image>
+      <image class="voice-pic" wx:else src="{{baseImg}}detail/close_voice.png"></image>
+      <view>语音</view>
+    </view>
+    <view class="buy {{luxuryGood.inventoryNum > 0 ? 'stock' : 'no-stock'}}" bindtap="showMask" >立即购买</view>
+  </view>
+</view>

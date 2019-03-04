@@ -1,0 +1,45 @@
+page{
+  background: #FFFFFF;
+  font-size: 14px;
+  font-family: 'PingFang-SC-Medium';
+}
+.phone{
+  height: 246rpx;
+  padding-top: 60rpx;
+  text-align: center;
+  color: #999999;
+}
+.code{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'PingFang-SC-Medium';
+  margin: 0 30rpx;
+  height: 100rpx;
+  font-size: 15px;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.input-code{
+  max-width: 300rpx;
+  padding-left: 20rpx;
+}
+.get-code{
+  width: 180rpx;
+  height: 60rpx;
+  background: #1B1B1B;
+  text-align: center;
+  color: white;
+  line-height: 60rpx;
+}
+.not-revice{
+  margin: 30rpx 30rpx 0;
+  text-align: right;
+  color: #999999;
+}
+.next{
+  margin: 66rpx 30rpx 0;
+  background: #1B1B1B;
+  text-align: center;
+  line-height: 90rpx;
+  color: white;
+}

@@ -1,0 +1,147 @@
+<!-- 轮播图-->
+<view style="overflow: hidden" wx:if="{{hidden}}">
+  <is-open-app wx:if="{{isShare == 'IOS' || isShare == 'android'}}" appParams="{{appParams}}"></is-open-app>
+  <go-home-btn wx:if="{{isShare == 'IOS' || isShare == 'android'}}"></go-home-btn>
+  <swiper class="swiper {{isShare == 'IOS' || isShare == 'android' ? 'open-app' : ''}}" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-active-color="#666" style='height:650rpx' circular="true">    
+    <block wx:for="{{banner}}" wx:for-index="index" wx:key="banners">    
+      <swiper-item wx:if="{{item.bigPicUrl}}">    
+        <view>  
+          <image src="{{item.bigPicUrl || baseImg+'common/default_big.png'}}" data-index="{{index}}" bindtap="lookBig" lazy-load='true' class="slide-image" mode="aspectFit" /> 
+        </view> 
+      </swiper-item>    
+    </block>    
+  </swiper> 
+  <!--价格-->
+  <view class="product-detail">
+    <view class="pro-price-box">
+      <view class="pro-price">
+        <text class="{{deletedata?'priceDel':'proPriceUnit'}}">{{priceUnit}}</text>
+        <text class="price-number">{{nowStartPrice ? nowStartPrice : startPrice}}</text>
+        <text class="original-price" wx:if="{{nowStartPrice}}">{{priceUnit}}{{startPrice}}</text>
+      </view>
+      <image wx:if="{{isCollection == 'N'}}" src="{{baseImg}}detail/collection.png" bindtap='setCollection' class="pro-collect"/>
+      <image wx:if="{{isCollection == 'Y'}}" src="{{baseImg}}detail/collection_selected.png" bindtap='cancelCollection' class="pro-collect"/>
+    </view>
+    <view class="start-price">起拍价</view>
+    <view class="estimate">
+      <text>预估报价:<text class="estimate-offer">{{estimateOffer}}</text></text>
+      <text style="color: #999999;" wx:if="{{bidNo}}">{{bidNo ? bidNo : 0}}人参与竞拍</text>
+    </view>
+    <view class="pro-name">Lot{{lotNum}}:{{translate ? goodsNameCh : goodsName}}</view>
+    <view class="pro-public">
+      <image src="{{baseImg}}detail/time.png" class="time-icon"/>
+      <view>竞拍时间：{{startTime}}</view> 
+    </view>
+    <view class="pro-public">
+      <image src="{{baseImg}}detail/address.png" class="time-icon"/>
+      <view style="flex: 1" class="warp">竞拍地点：{{address ? address : '暂无'}}</view> 
+    </view>
+    <view class="pro-auction" wx:if="{{auctionName}}">
+      <image src="{{baseImg}}detail/auction.png" class="time-icon"/>
+      <navigator url="/pages/saleList/saleList?id={{auctionId}}" style="color:#1B1B1B;display:inline;">所属拍会：{{auctionName}}</navigator>
+    </view>
+  </view>
+  <!--横条-->    
+  <view class="step-style"></view>
+  <!-- 拍品详情 -->
+  <view class="pro-detail-box">
+    <view class="pro-detail-name">拍品详情</view>
+    <view class="pro-detail-desc" wx:if="{{goodsDesc}}">{{translate ? (goodsDescCh ? goodsDescCh : '暂无详情信息') : goodsDesc}}</view>
+    <view class="pro-detail-images" wx:for="{{goodsDetailImages}}" wx:key="{{item.imageUrl}}">
+      <image src="{{item.imageUrl}}" mode="aspectFit"></image>
+    </view>
+  </view>
+  <view>
+    <view class="pro-detail-notice">注意事项</view>
+    <view class="pro-detail-cont">注：根据《拍卖法》的规定：买方应按照约定支付拍卖标的价款，未按照约定支付价款的，应当承担违约责任。通过竞买取得的拍品为特殊属性之商品，属于2014年3月15日起施行的《中华人民共和国消费者权益保护法》规定的“其他根据商品性质并经消费者在购买时确认不宜退货的商品，不适用无理由退货”。为了维护买卖双方的利益，规范网络拍卖市场的行为，如果因实物与描述明显不符，客户对拍品有退货的诉求，请在提货之日起7个工作日之内、物流发货请在签收之日起7个工作日内提出，逾期不予受理。不便之处，敬请谅解。</view>
+    <view class="pro-detail-cont">因拍卖公司为买卖双方的委托方，仅提供居间服务并提供现场及网络预展，如有需要，建议竞拍开始前7个工作日前联系客服经理确认拍品详图，拍卖行在拍品竞拍前给出竞拍人时间决定是否参与竞拍，竞拍人决定是否参与竞拍的结果由竞拍人承担。拍库网仅作为拍卖行与竞拍人之间的网络服务平台，竞拍人对所竞拍物品做出明确判断后的参拍属于竞拍人的自主竞拍行为，拍库网无权干涉。因各类字画、中外纸币、票证邮品、影像制品等均为仿制品多发品类，建议竞拍人充分确定后慎拍，对竞拍人未能判断准确的结果拍卖行及拍库网无责。</view>
+  </view>
+  <view class="pro-detail-rule">
+    <view class="rule-name">保证金规则</view>
+    <image src="{{baseImg}}detail/rule.png" class="rule-pic"></image>
+  </view>
+  <view class="pro-detail-rule">
+    <view class="rule-name">出价规则</view>
+    <image src="{{baseImg}}detail/bid_price.png" class="bid-price-pic"></image>
+  </view>
+  <!--横条-->    
+  <view class="step-style"></view>
+  <!-- 猜你喜欢 -->
+  <view class="like-list-box">
+    <view class="like-title">猜你喜欢</view>
+    <view class="like-content">
+      <view class="item-like" wx:for="{{likeList}}" wx:key="{{item.gotoId}}" wx:for-index="index" data-id="{{item.gotoId}}" bindtap="goLike">
+        <view class="like-pics {{(index + 1) % 2 ? 'left-margin' : 'right-margin'}}">
+          <image src="{{item.picUrl}}" mode="aspectFit" lazy-load='true'></image>
+        </view>
+        <view class="like-name warp">Lot{{item.lotNum}}:{{item.name}}</view>
+        <view class="like-start-time">{{item.startTime}}</view>
+        <view class="like-price"><text style="font-size: 14px;padding-right: 4rpx">起拍价:</text>{{item.startPrice}}</view>
+      </view>
+    </view>
+  </view>
+  <view style='height:60rpx;'></view>
+  <!--底部Fix  ok-->
+  <view class="detailFix">
+    <view class="detail-btn" bindtap='callMe'>
+      <image src="{{baseImg}}detail/service.png" ></image>客服
+    </view>
+    <view class="detail-btn" bindtap='translate'>
+      <image wx:if="{{translate}}" src="{{baseImg}}detail/chinese.png" ></image>
+      <image wx:if="{{!translate}}" src="{{baseImg}}detail/translate.png" ></image>
+      {{translate ? '已翻译': '翻译'}}
+    </view>
+    <view class="detail-btn" bindtap='voicePlay'>
+      <image wx:if="{{!voiceFlag}}" src="{{baseImg}}detail/voice_selected.png" style="width:21px;"></image>
+      <image wx:else src="{{baseImg}}detail/close_voice.png" style="width:21px;"></image>语音
+    </view>
+    <button bindgetuserinfo='goBids' open-type='getUserInfo'>我要出价</button>
+  </view>
+  <!--出价弹框-->
+  <view wx:if="{{bidsBox}}" class="bids-box bottom-pos" animation="{{animationData}}">
+    <view class="bids-detail">
+      <view class="first-pic">
+        <image src="{{firstPicUrl}}" mode="aspectFit"></image>
+      </view>
+      <view class="bids-name">
+        <view class="bids-title warp">Lot:{{lotNum}}{{goodsName}}</view>
+        <view class='bids-price'>起拍价：
+          <text class="{{deletedata?'priceDel':'proPriceUnit'}}" style="font-family: 'Avenir'">{{priceUnit}}<text class="start-price2">{{startPrice}}</text></text>            
+        </view>
+      </view>
+      <image src="{{baseImg}}detail/close.png" class="close-icon"  bindtap='shadeHide'></image>
+    </view>
+    <view class="bids-money">
+      <view>出价金额</view>
+      <view class="bids-number">
+        <view class="min {{reduceColor ? 'colour' : ''}}" bindtap='priceMin'></view>
+        <input class="input-price" value="{{priceValue}}" type="number" pattern="^1\d{10}$" bindinput='priceInput'/>
+        <view class="add" bindtap='priceAdd'></view> 
+      </view>
+    </view>
+    <view class="bids-total">
+      <text>总金额</text>
+      <text class="unit total-price">{{priceUnit}}{{totalPrice}}<text style="font-size:14px;padding-left: 16rpx;">(≈¥{{totalMoney}})</text></text>
+      <text class="cont">注：拍卖行佣金30%，平台服务费10%</text>
+    </view>
+    <view class="tips" wx:if="{{careful == 'Y'}}">提示：因各类字画、中外纸币、票证邮品、影像制品中价格差异较大者多为仿制品多发品类，建议您充分确定后慎拍。</view>
+    <view class="yes" bindtap='isHaveMoney'>确认</view>
+  </view>
+  <!--推荐报价三个选项-->
+  <view class='sug-box' wx:if="{{sugBox}}" animation="{{animationData}}">
+    <view>您的报价不符合出价规则，请从以下报价中选择一个正确报价</view>
+    <view>
+      <view hover-class="item-suggest-price" wx:for="{{suggestPrice}}" wx:key="{{item}}" bindtap="setPrice" data-variable="{{item}}" class="item-price">{{item}}</view> 
+    </view>
+    <view bindtap='setPriceNone'>
+      <view class="cancel">取消</view>
+    </view>
+  </view>
+  <!--遮罩-->
+  <view wx:if="{{bidsBox || sugBox}}" class="shade-black" bindtap='shadeHide'></view>
+</view>
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<!--语音播报-->
+<audio id="myAudio" src="{{voiceUrl}}" bindended="audioEnd"></audio>

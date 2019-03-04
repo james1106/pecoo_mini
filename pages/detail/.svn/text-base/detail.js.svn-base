@@ -1,0 +1,808 @@
+const app = getApp()
+const api = require('../../utils/api.js')
+const util = require('../../utils/util.js')
+var orderType;//试拍01
+var ucontrol;//修改出价01
+var fanyiB = true;
+var zhText;
+var yuyinB = true;
+var bidB = true;
+var addressIdPkId;
+let addressIdPkId0;
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    voicebbUrl: '',
+    fanyiHtml: '翻译',
+    tokenId: '',
+    banners: [],
+    bannersOne: '',
+    auctionGoods: [],
+    priceUnit: '',
+    estimateMin: '',
+    estimateMax: '',
+    estimateMinMax: '',
+    priceRate: '',
+    paName: '',
+    priceUnit: '',
+    nowStartPrice: '',
+    bidNo: '',
+    isCol: '',
+    priceUnit: '',
+    lotNum: '',
+    goodsName: '',
+    goodsNameCh: '',
+    goodsDescCh: '',
+    goodsDesc: '',
+    selected: true,
+    selected1: false,
+    selected2: false,
+    selected3: false,
+    sugViewShow: false,
+    deletedata: '',
+    deletedataNo: '',
+    shadeBlack: false,
+    bidDivHide: true,
+    addresses: [],
+    addressId: '',
+    goodId: '',
+    addressesLength: true,
+    hidden: false,
+    addressTanHide: true,
+    priceValue: '',
+    priceValueStart: '',
+    priceValueRmb: '',
+    priceValueRmb: '',
+    addressActive: '',
+    SuggestPrice: [323, 2323, 3232], // 建议报价
+    baseImg: 'https://www.pecoo.com/pecooh5/img/',
+    collectBg: 'https://www.pecoo.com/pecooh5/img/detail/blackXin.png',
+    yuyinIcon: 'https://www.pecoo.com/pecooh5/img/detail/yuyinIcon.png',
+    shareCode:''
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options){
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId'),
+      shareCode: options.shareCode ? options.shareCode : wx.getStorageSync('shareCode')
+    })
+    if (options.shareCode){
+      wx.setStorageSync('shareCode', options.shareCode);
+    }
+    let requestGoods = api.queryGoodsMessUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+      goodId: options.goodId
+    });
+    requestGoods.then((res) => {
+      this.setData({
+        goodId: options.goodId,
+        banners: res.auctionGoods.auctionGoodsPics,
+        bannersOne: res.auctionGoods.auctionGoodsPics[0].bigPicUrl,
+        auctionGoods: res.auctionGoods,
+        priceUnit: res.auctionGoods.priceUnit,
+        estimateMin: res.auctionGoods.estimateMin,
+        priceValueStart: res.auctionGoods.nowStartPrice ? res.auctionGoods.nowStartPrice : res.auctionGoods.startPrice,
+        priceValue: (res.auctionGoods.estimateMin ? res.auctionGoods.estimateMin : res.auctionGoods.nowStartPrice) ? res.auctionGoods.estimateMin : res.auctionGoods.startPrice,
+        estimateMax: res.auctionGoods.estimateMax,
+        estimateMinMax: res.auctionGoods.estimateMin ? res.auctionGoods.priceUnit + res.auctionGoods.estimateMin + '-' + res.auctionGoods.priceUnit + res.auctionGoods.estimateMax:'暂无',
+        priceRate: res.auctionGoods.priceRate,
+        paName: res.auctionGoods.paName,
+        nowStartPrice: res.auctionGoods.nowStartPrice,
+        bidNo: res.auctionGoods.bidNo,
+        isCol: res.auctionGoods.isCollection,
+        lotNum: res.auctionGoods.lotNum,
+        goodsName: res.auctionGoods. goodsName,
+        goodsNameCh: res.auctionGoods.goodsNameCh,
+        goodsDesc: res.auctionGoods.goodsDesc,
+        goodsDescCh: res.auctionGoods.goodsDescCh,
+        deletedata: res.auctionGoods.nowStartPrice?true:false,
+        deletedataNo: res.auctionGoods.bidNo > 0 ? true : false,
+        priceValueAll: (((res.auctionGoods.estimateMin ? res.auctionGoods.estimateMin : res.auctionGoods.nowStartPrice) ? res.auctionGoods.estimateMin : res.auctionGoods.startPrice) * 1.4).toFixed(0),
+        priceValueRmb: (((res.auctionGoods.estimateMin ? res.auctionGoods.estimateMin : res.auctionGoods.nowStartPrice) ? res.auctionGoods.estimateMin : res.auctionGoods.startPrice)* 1.4 * res.auctionGoods.priceRate).toFixed(2),
+        hidden:true
+      })
+      if (res.auctionGoods.isCollection == "Y") {
+        this.setData({
+          collectBg: 'https://www.pecoo.com/pecooh5/img/detail/redXin.png'
+        })
+      } else {
+        this.setData({
+          collectBg: 'https://www.pecoo.com/pecooh5/img/detail/blackXin.png'
+        })
+      }
+
+      //如果是修改报价 
+      if (options.clientPrice){  
+        this.setData({
+          priceValue: options.clientPrice,
+          priceValueAll: (options.clientPrice * 1.4).toFixed(0),
+          priceValueRmb: (options.clientPrice * 1.4 * this.data.priceRate).toFixed(2),
+        })
+      }
+    }).catch((error) => {
+      //console.log(error)
+    })
+  },
+  callMe(){
+    wx.makePhoneCall({
+      phoneNumber: '4001112016',
+    })
+  },
+  //翻译
+  fanyiDiv(){
+    var that = this;
+    if (fanyiB){
+      if (!that.data.goodsDescCh){
+        this.setData({
+          hidden:false
+        })
+        let transGoodsMess = api.transGoodsMessUrl({
+          sourceMode: app.globalData.sourceMode,
+          tokenId: that.data.tokenId,
+          goodId: that.data.goodId
+        });
+        transGoodsMess.then((res) => {
+          if (res.code == "0000") {
+            that.setData({
+              goodsDesc: res.transMess.goodsDescCh,
+              goodsDescCh: that.data.goodsDesc,
+              goodsName: res.transMess.goodsNameCh,
+              goodsNameCh: that.data.goodsName,
+              fanyiHtml: '已翻译',
+              hidden: true
+            })
+          }
+        }).catch((error) => {
+          //console.log(error)
+        })
+      }else{
+        that.setData({
+          goodsDesc: that.data.goodsDescCh,
+          goodsDescCh: that.data.goodsDesc,
+          goodsName: that.data.goodsNameCh,
+          goodsNameCh: that.data.goodsName,
+          fanyiHtml: '已翻译'
+        })
+      }
+      fanyiB = false;
+    }else{
+      that.setData({
+        goodsDesc: that.data.goodsDescCh,
+        goodsDescCh: that.data.goodsDesc,
+        goodsName: that.data.goodsNameCh,
+        goodsNameCh: that.data.goodsName,
+        fanyiHtml: '翻译'
+      })
+      fanyiB = true;
+    }
+  },
+  priceInput:function(e){
+    this.setData({
+      priceValue: e.detail.value,
+      priceValueAll: (e.detail.value * 1.4).toFixed(0),
+      priceValueRmb: (e.detail.value * 1.4 * this.data.priceRate).toFixed(2),
+    })
+  },
+  shadeHide(){
+    this.setData({
+      bidDivHide: true,
+      shadeBlack: false,
+      addressTanHide: true,
+    })
+  },
+  //语音播报
+  yuyinCH(){
+    var that = this;
+    if (!that.data.goodsDescCh) {
+      let transGoodsMess = api.transGoodsMessUrl({
+        sourceMode: app.globalData.sourceMode,
+        tokenId: that.data.tokenId,
+        goodId: that.data.goodId
+      });
+      transGoodsMess.then((res) => {
+        if (res.code == "0000") {
+          zhText = res.transMess.goodsDescCh
+        }
+      }).catch((error) => {
+        //console.log(error)
+      })
+    } else {
+      zhText = that.data.goodsDescCh
+    }
+    zhText = encodeURI(encodeURI(zhText));
+    var voicebbUrl = "https://tsn.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=5&text=" + zhText;
+    that.setData({
+      voicebbUrl: voicebbUrl
+    })
+    if (yuyinB){
+      this.audioCtx.play();
+      that.setData({
+        yuyinIcon: 'https://www.pecoo.com/pecooh5/img/detail/yuyinNoIcon.png'
+      })
+      yuyinB = false
+    }else{
+      this.audioCtx.pause();
+      that.setData({
+        yuyinIcon: 'https://www.pecoo.com/pecooh5/img/detail/yuyinIcon.png'
+      })
+      yuyinB = true
+    }
+  },
+  //减价
+  priceMin:function(){
+    let priceT =parseInt(this.data.priceValue);
+    let proPrice = parseInt(this.data.priceValueStart);
+    let price_Value;
+    if (100000 < priceT) {
+      priceT % 10000 == 0 ? price_Value = priceT - 10000 : price_Value = (priceT - priceT % 10000)
+    } else if (50000 < priceT && priceT <= 100000) {
+      priceT % 5000 == 0 ? price_Value = priceT - 5000 : price_Value = (priceT - priceT % 5000)
+    } else if (20000 < priceT && priceT <= 50000) {
+      priceT % 2000 == 0 ? price_Value = priceT - 2000 : price_Value = (priceT - priceT % 2000)
+    } else if (10000 < priceT && priceT <= 20000) {
+      priceT % 1000 == 0 ? price_Value = priceT - 1000 : price_Value = (priceT - priceT % 1000)
+    } else if (5000 < priceT && priceT <= 10000) {
+      priceT % 500 == 0 ? price_Value = priceT - 500 : price_Value = (priceT - priceT % 500)
+    } else if (2000 < priceT && priceT <= 5000) {
+      priceT % 250 == 0 ? price_Value = priceT - 250 : price_Value = (priceT - priceT % 250)
+    } else if (1000 < priceT && priceT <= 2000) {
+      priceT % 200 == 0 ? price_Value = priceT - 200 : price_Value = (priceT - priceT % 200)
+    }else if (500 < priceT && priceT <= 1000) {
+      priceT % 100 == 0 ? price_Value = priceT - 100 : price_Value = (priceT - priceT % 100)
+    } else if (100 < priceT && priceT <= 500) {
+      priceT % 50 == 0 ? price_Value = priceT - 50 : price_Value = (priceT - priceT % 50)
+    } else if (10 < priceT && priceT <= 100) {
+      priceT % 10 == 0 ? price_Value = priceT - 10 : price_Value = (priceT - priceT % 10)
+    }else{
+      price_Value = priceT - priceT % 10
+    }
+    if (priceT <= proPrice) {
+      price_Value = proPrice
+    }
+    this.setData({
+      priceValue: price_Value,
+      priceValueAll: (price_Value * 1.4).toFixed(0),      
+      priceValueRmb: (price_Value * 1.4 * this.data.priceRate).toFixed(2)
+    })
+  },
+  //加价
+  priceAdd:function(){
+    let priceT = parseInt(this.data.priceValue);
+    let proPrice = parseInt(this.data.priceValueStart);
+    let price_Value;
+    if (!priceT) {
+      priceT = 0;
+    }
+    if (0 <= priceT && priceT < 100) {
+      priceT % 10 == 0 ? price_Value = priceT + 10 : price_Value = (priceT+10 - priceT % 10)
+    } else if (100 <= priceT && priceT < 500) {
+      priceT % 50 == 0 ? price_Value = priceT + 50 : price_Value = (priceT + 50 - priceT % 50)
+    } else if (500 <= priceT && priceT < 1000) {
+      priceT % 100 == 0 ? price_Value = priceT + 100 : price_Value = (priceT + 100 - priceT % 100)
+    }else if (1000 <= priceT && priceT < 2000) {
+      priceT % 200 == 0 ? price_Value = priceT + 200 : price_Value = (priceT + 200 - priceT % 200)
+    }else if (2000 <= priceT && priceT < 5000) {
+      priceT % 250 == 0 ? price_Value = priceT + 250 : price_Value = (priceT + 250 - priceT % 250)
+    }else if (5000 <= priceT && priceT < 10000) {
+      priceT % 500 == 0 ? price_Value = priceT + 500 : price_Value = (priceT + 500 - priceT % 500)
+    }else if (10000 <= priceT && priceT < 20000) {
+      priceT % 1000 == 0 ? price_Value = priceT + 1000 : price_Value = (priceT + 1000 - priceT % 1000)
+    } else if (20000 <= priceT && priceT < 50000) {
+      priceT % 2000 == 0 ? price_Value = priceT + 2000 : price_Value = (priceT + 2000 - priceT % 2000)
+    }else if (50000 <= priceT && priceT < 100000) {
+      priceT % 5000 == 0 ? price_Value = priceT + 5000 : price_Value = (priceT + 5000 - priceT % 5000)
+    }else {
+      priceT % 10000 == 0 ? price_Value = priceT + 10000 : price_Value = (priceT + 10000 - priceT % 10000)
+    }
+    this.setData({
+      priceValue: price_Value,
+      priceValueAll: (price_Value * 1.4).toFixed(0),      
+      priceValueRmb: (price_Value * 1.4 * this.data.priceRate).toFixed(2)
+    })
+  },
+  //我要出价
+  detailBid:function(){
+    app.isLoginGo();
+    this.setData({
+      shadeBlack: true,
+      bidDivHide: false
+    })
+  },
+  detailBidNone: function () {
+    this.setData({
+      shadeBlack: false,
+      bidDivHide: true
+    })
+  },
+  addressTan:function(){
+    this.getAddress();
+    this.setData({
+      shadeBlack: true,
+      addressTanHide: false
+    })
+  },
+  addressTanHide: function () {
+    this.setData({
+      shadeBlack: false,
+      addressTanHide: true
+    })
+  },
+  setClass: function (event) {
+    var pkId = event.currentTarget.dataset.variable;
+    addressIdPkId = pkId;
+    var text = event.currentTarget.dataset.text;
+    this.setData({
+      addressId: pkId,
+      addressActive:text,
+      shadeBlack: false,
+      addressTanHide: true
+    })
+  },
+  selected:function(e){
+    this.setData({
+      selected: true,
+      selected1: false,
+      selected2: false,
+      selected3: false
+    })
+  },
+  selected1: function (e) {
+    this.setData({
+      selected: false,
+      selected1: true,
+      selected2: false,
+      selected3: false
+    })
+  },
+  selected2: function (e) {
+    this.setData({
+      selected: false,
+      selected1: false,
+      selected2: true,
+      selected3: false
+    })
+  },
+  selected3: function (e) {
+    this.setData({
+      selected: false,
+      selected1: false,
+      selected2: false,
+      selected3: true
+    })
+  },
+  collectWay: function () {
+    app.isLoginGo();
+    if (this.data.isCol == "Y") {
+      this.delCollect();
+    } else {
+      this.collect();
+    }
+
+  },
+  delCollect: function () {
+    var that = this;
+    let delUserCollection = api.delUserCollectionUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: that.data.tokenId,
+      colleType: '02',
+      goodsId: that.data.goodId
+    });
+    delUserCollection.then((res) => {
+      that.setData({
+        isCol: "N",
+        collectBg: 'https://www.pecoo.com/pecooh5/img/detail/blackXin.png'
+      })
+    }).catch((error) => {
+     // console.log(error)
+    })
+  },
+  collect: function () {
+    var that = this;
+    let addUserCollection = api.addUserCollectionUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: that.data.tokenId,
+      colleType: '02',
+      goodsId: that.data.goodId
+    });
+    addUserCollection.then((res) => {
+      that.setData({
+        isCol: "Y",
+        collectBg: 'https://www.pecoo.com/pecooh5/img/detail/redXin.png'
+      })
+    }).catch((error) => {
+      //console.log(error)
+    })
+  },
+  preventTouchMoveAdd:function(e){
+
+  },
+  preventTouchMoveBid:function(e){
+
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    this.audioCtx = wx.createAudioContext('myAudio')
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    if (this.data.tokenId){
+      this.getAddress();
+    }
+  },
+  
+  //获取地址列表
+  getAddress(){
+    let getAddressList = api.getAddressListUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId
+    });
+    getAddressList.then((res) => {
+      if (res.code == "0000") {
+        if (res.addresses.length >10) {
+          this.setData({
+            addresses: res.addresses,
+            addressesLength:false
+          })
+        } else {
+          this.setData({
+            addresses: res.addresses,
+            addressesLength:true
+          })
+          if (res.addresses.length >= 1) {
+            if (this.data.addressActive){
+              this.setData({
+                addressId: addressIdPkId,
+                addressActive: this.data.addressActive
+              })
+            }else{
+              this.setData({
+                addressId: res.addresses[0].pkId,
+                addressActive: res.addresses[0].province + res.addresses[0].city + res.addresses[0].area + res.addresses[0].detailAddress
+              })
+            }
+            addressIdPkId0 = res.addresses[0].pkId;
+          }
+        }
+      } else if (res.code == "1111") {
+        this.setData({
+          addresses: []
+        })
+      }
+
+    }).catch((error) => {
+      //console.log(error)
+    })
+  },
+  //我要出价
+  isHaveMoney(){
+    var that = this;
+    app.isLoginGo();
+    if (!this.data.addressId) {
+      this.setData({
+        shadeBlack: true,
+        addressTanHide: false
+      })
+    } else {
+
+      var oldPrice = this.data.priceValueStart;		//目前最高价
+      oldPrice = parseFloat(oldPrice);
+      var money = this.data.priceValue;		//输入的价格	
+      if (money == "") {
+        return app.showErrorModal('请输入价格！');
+      }
+      var r = /^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
+      if (r.test(money) == false) {
+        return app.showErrorModal('请输入正确的数字！');
+      };
+      money = parseFloat(money);
+      if (oldPrice == "") {
+        oldPrice = 0;
+      }
+      if (money <= oldPrice) {
+        return app.showErrorModal('您的出价金额必须高于起拍价！');
+      }
+      //给出推荐价格数组
+      if (money != 0) {
+        var list = new Array();
+        var maxlist = new Array();
+        list = this.recommend(money);
+        for (var i = 0; i < list.length; i++) {
+          if (money == list[i]) {
+            break;
+          } else if (money < list[i]) {
+            maxlist.push(list[i]);
+          }
+        }
+        if (maxlist.length > 0) {
+          if (maxlist.length > 3) {
+            for (var i = 0; i < 3; i++) { 
+              maxlist = maxlist.slice(0, 3)
+            }
+          } else {
+            for (var i = 0; i < maxlist.length; i++) {
+              maxlist = maxlist.slice(0, maxlist.length+1)
+            }
+          }
+          that.setData({
+            SuggestPrice: maxlist,
+            sugViewShow:true,
+            shadeBlack:true
+          })
+          return false; 
+        }
+      }
+      //下单
+      if (bidB){
+        bidB = false;
+        let vcreateOrder = api.vcreateOrderUrl({
+          sourceMode: app.globalData.sourceMode,
+          tokenId: that.data.tokenId,
+          goodId: that.data.goodId,
+          price: that.data.priceValue,
+          orderType: orderType,
+          ucontrol: ucontrol,
+          addressId: that.data.addressId,
+        });
+        vcreateOrder.then((res) => {
+          bidB = true;          
+          if (res.code == "0000") {
+            wx.showModal({
+              title: '提示',
+              content: '下单成功', 
+              success: function (res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: `/pages/myPaidan/myPaidan?tabValue=0`
+                  });
+                } else if (res.cancel) {
+
+                }
+              }
+            }) 
+          } else if (res.code == "600001") {//试拍单子
+            wx.showModal({
+              title: '提示',
+              content: '您有一单免费试拍的机会，试拍需要您先交纳货款，您也可以选择充值保证金，保证金使用规则为充值2000元可以拍买3件拍品，保证金的具体使用规则你可以咨询在线客服，或者拨打拍库热线400-111-2016，如果您选择充值保证金，则视为您自动放弃免费试拍资格。',
+              success: function (res) {
+                if (res.confirm) {
+                  orderType = '01'
+                  that.isHaveMoney()
+                } else if (res.cancel) {
+
+                }
+              }
+            }) 
+          } else if (res.code == "600002") {//去充值
+            wx.showModal({
+              title: '提示',
+              content: res.message,
+              confirmText:'去充值',
+              success: function (res) {
+                if (res.confirm) {
+                  wx.navigateTo({
+                    url: `/pages/recharge/recharge`
+                  });
+                } else if (res.cancel) {
+
+                }
+              }
+            }) 
+          } else if (res.code == "600005") {
+            wx.showModal({
+              title: '提示',
+              content: '地址信息不存在',
+              success: function (res) {
+                if (res.confirm) {
+                  app.isLoginGo();
+                  that.setData({
+                    shadeBlack: true,
+                    addressTanHide: false
+                  })
+                } else if (res.cancel) {
+
+                }
+              }
+            })
+              
+          } else if (res.code == "600008") {
+            ucontrol = "01";
+            that.isHaveMoney();
+            wx.navigateTo({
+              url: `/pages/myPaidan/myPaidan`
+            });
+          } else {
+            return app.showErrorModal(res.message);
+          }
+
+        }).catch((error) => {
+          //console.log(error)
+        })
+      }
+    }
+  }, 
+  recommend(price) {
+	
+    var list = new Array();
+    // 生成价格
+    if(price < 100) {
+      // 100生成 0-100价格区间50
+      var i = 0;
+      for (var j = 0; j < 10; j++) {
+        i = i + 10;
+        if (i <= 100) {
+          list.push(i);
+
+        }
+      }
+      return list;
+    } else if (price > 100 && price < 500) {
+      // 500生成 100-500价格区间50
+      var i = 100;
+      for (var j = 0; j < 8; j++) {
+        i = i + 50;
+        if (i <= 500) {
+          list.push(i);
+
+        }
+      }
+      return list;
+
+    } else if (price > 500 && price < 1000) {
+      var i = 500;
+      for (var j = 0; j < 5; j++) {
+        i = i + 100;
+        if (i <= 1000) {
+          list.push(i);
+
+        }
+      }
+      return list;
+
+    } else if (price > 1000 && price < 2000) {
+
+      var i = 1000;
+      for (var j = 0; j < 5; j++) {
+        i = i + 200;
+        if (i <= 2000) {
+          list.push(i);
+
+        }
+      }
+      return list;
+
+    } else if (price > 2000 && price < 5000) {
+
+      var i = 2000;
+      for (var j = 0; j < 12; j++) {
+        i = i + 250;
+        if (i <= 5000) {
+          list.push(i);
+
+        }
+      }
+      return list;
+
+    } else if (price > 5000 && price < 10000) {
+
+      var i = 5000;
+      for (var j = 0; j < 10; j++) {
+        i = i + 500;
+        if (i <= 10000) {
+          list.push(i);
+
+        }
+      }
+      return list;
+
+    } else if (price > 10000 && price < 20000) {
+      var i = 10000;
+      for (var j = 0; j < 10; j++) {
+        i = i + 1000;
+        if (i <= 20000) {
+          list.push(i);
+
+        }
+      }
+      return list;
+
+    } else if (price > 20000 && price < 50000) {
+      var i = 20000;
+      for (var j = 0; j < 15; j++) {
+        i = i + 2000;
+        if (i <= 50000) {
+          list.push(i);
+
+        }
+      }
+      return list;
+
+    } else if (price > 50000 && price < 100000) {
+
+      var i = 50000;
+      for (var j = 0; j < 15; j++) {
+        i = i + 5000;
+        if (i <= 100000) {
+          list.push(i);
+
+        }
+      }
+      return list;
+    } else if ( price > 100000) {
+
+      var i = 100000;
+      for (var j = 0; j < 15; j++) {
+        i = i + 100000;
+          list.push(i);
+      }
+      return list;
+    }
+	return list;
+  },
+  //选择推荐报价
+  setPrice(event){
+    var SuggestPrice = event.currentTarget.dataset.variable;
+    this.setData({
+      priceValue: SuggestPrice,
+      sugViewShow: false,
+      shadeBlack: false
+    })
+  },
+  setPriceNone(){
+    this.setData({
+      sugViewShow: false,
+      shadeBlack: false
+    })
+  },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    fanyiB = true;
+    this.setData({
+      addressActive:''
+    })
+    addressIdPkId = addressIdPkId0;
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: this.data.goodsName,
+      path: `/pages/detail/detail?goodId=${this.data.goodId}&shareCode=${this.data.shareCode}`
+    }
+  }
+})

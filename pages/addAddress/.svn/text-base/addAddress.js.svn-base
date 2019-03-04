@@ -1,0 +1,187 @@
+var app = getApp();
+const api = require('../../utils/api.js')
+var model = require('../../model/model.js')
+var show = false;
+var item = {};
+Page({
+  data: {
+    item: {
+      show: show
+    },
+    tokenId:'',
+    baseImg: 'https://www.pecoo.com/pecooh5/img/',
+    recipientName: '',
+    phone: '',
+    zipCode: '',
+    province:'',
+    city:'',
+    county:'',
+    detailAddress:'',
+    switchValue:'N',
+    pkId:'',
+    switchTF:'',
+    saveHtml:'确认添加'
+  },
+  //生命周期函数--监听页面初次渲染完成
+  onReady: function (e) {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId'),
+    })
+    var that = this;
+    //请求数据
+    model.updateAreaData(that, 0, e);
+  },
+  onShow:function(){
+    app.isLoginGo();
+  },
+  recipientNameInput: function (e) {
+    this.data.recipientName = e.detail.value;
+  },
+  phoneInput: function (e) {
+    this.data.phone = e.detail.value;
+  },
+  zipCodeInput: function (e) {
+    this.data.zipCode = e.detail.value;
+  },
+  detailAddressInput: function (e) {
+    this.data.detailAddress = e.detail.value;
+  },
+  switchChange: function (e) {
+    if (e.detail.value == true){
+      this.setData({
+        switchValue:'Y'
+      })
+    }else{
+      this.setData({
+        switchValue:'N'
+      })
+    }
+  },
+  //点击选择城市按钮显示picker-view
+  translate: function (e) {
+    model.animationEvents(this, 0, true, 400);
+  },
+  //隐藏picker-view
+  hiddenFloatView: function (e) {
+    model.animationEvents(this, 200, false, 400);
+    if (!this.data.province){
+      this.setData({
+        province: '北京市',
+        city: '市辖区',
+        county:'东城区'
+      });
+    }
+  },
+  //滑动事件
+  bindChange: function (e) {
+    model.updateAreaData(this, 1, e);
+    item = this.data.item;
+    this.setData({
+      province: item.provinces[item.value[0]].name,
+      city: item.citys[item.value[1]].name,
+      county: item.countys[item.value[2]].name
+    });
+  },
+  saveClick(){
+    var reg = /^[a-zA-Z0-9]+$/;
+    if (!this.data.recipientName) {
+      return app.showErrorModal('收货人不能为空');
+    }
+    if (!this.data.phone) {
+      return app.showErrorModal('手机号码不能为空');
+    }
+    if (!this.data.zipCode || !reg.test(this.data.zipCode)) {
+      return app.showErrorModal('请输入正确的邮政编码');
+    }
+    if (!this.data.county) {
+      return app.showErrorModal('地区必须精确到所在区');
+    }
+    if (!this.data.detailAddress) {
+      return app.showErrorModal('详细地址不能为空');
+    }
+    if (this.data.pkId){
+      let updateAddress = api.updateAddressUrl({
+        sourceMode: app.globalData.sourceMode,
+        tokenId: this.data.tokenId,
+        recipientName: this.data.recipientName,
+        province: this.data.province,
+        city: this.data.city,
+        area: this.data.county,
+        detailAddress: this.data.detailAddress,
+        zipCode: this.data.zipCode,
+        phone: this.data.phone,
+        isDefault: this.data.switchValue,
+        pkId: this.data.pkId
+      });
+      updateAddress.then((res) => {
+        if (res.code == "0000") {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          return app.showErrorModal(res.message);
+        }
+
+      }).catch((error) => {
+        console.log(error)
+      })
+    }else{
+      let addAddress = api.addAddressUrl({
+        sourceMode: app.globalData.sourceMode,
+        tokenId: this.data.tokenId,
+        recipientName: this.data.recipientName,
+        province: this.data.province,
+        city: this.data.city,
+        area: this.data.county,
+        detailAddress: this.data.detailAddress,
+        zipCode: this.data.zipCode,
+        phone: this.data.phone,
+        isDefault: this.data.switchValue,
+      });
+      addAddress.then((res) => {
+        if (res.code == "0000") {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          return app.showErrorModal(res.message);
+        }
+
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+    
+  },
+  onShow: function () {
+    
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(options.recipientName);
+    if (options.recipientName){
+      this.setData({
+        recipientName: options.recipientName,
+        phone: options.phone,
+        zipCode: options.zipCode,
+        pkId: options.pkId,
+        province: options.province,
+        city: options.city,
+        county: options.area,
+        detailAddress: options.detailAddress,
+        switchValue: options.isDefault,
+        saveHtml:'确认修改'
+      });
+    }
+    if (options.isDefault == "Y"){
+      this.setData({
+        switchTF:true
+      })
+    }
+  },
+  onReachBottom: function () {
+  },
+  nono: function () { }
+})

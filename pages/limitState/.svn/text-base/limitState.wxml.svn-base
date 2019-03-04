@@ -1,0 +1,7 @@
+<view class="limitDiv">
+  <view>付款金额可能会超限，各支付限额如下</view>
+  <view>微信/支付宝支付限额</view>
+  <image src="https://www.pecoo.com/pecooh5/img/card/weiLimit.png" mode="widthFix"/>
+  <view>快捷支付银行限额</view>
+  <image src="https://www.pecoo.com/pecooh5/img/card/cardLimit.png" mode="widthFix"/>
+</view>

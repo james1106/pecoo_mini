@@ -1,0 +1,23 @@
+.box{
+  width: 100%;
+  position: fixed;
+}
+.loadmore{
+  float: left;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 14px;
+  color: #BBBBBB;
+  margin-top: 40rpx;
+  font-family: 'PingFang-SC-Medium';
+}
+.pics{
+  width: 100%;
+  margin-top: 200rpx;
+  text-align: center;
+}
+.pic{
+  width: 100px;
+  height: 100px;
+}

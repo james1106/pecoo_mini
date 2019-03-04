@@ -1,0 +1,33 @@
+.search-content{
+  margin-top: 44rpx;
+  padding: 0 30rpx;
+}
+.title{
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.history-box{
+  margin: 26rpx 0 26rpx;
+}
+.trash{
+  width: 30rpx;
+  height: 34rpx;
+}  
+.recommend-name{
+  padding-top: 44rpx;
+}
+.recommend-box{
+  margin-top: 26rpx;
+}
+.public{
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  border: 1rpx solid #DDDDDD;
+  font-family: 'PingFang-SC-Regular';
+  font-size: 13px;
+  margin:0 20rpx 20rpx 0;
+}

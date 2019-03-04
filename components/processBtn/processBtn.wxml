@@ -1,0 +1,10 @@
+<view class="process-box">
+  <view wx:for="{{processData}}" wx:key="{{item.name}}" wx:for-index="index" class="item-process">
+    <view class="item-status {{currentIndex == index ? processData.length == 2 ? 'cur-fail' : 'cur-process' : ''}}">{{item.name}}</view>
+    <view class="flow-line">
+      <text class="{{currentIndex == index ? processData.length == 2 ? 'cur-col-fail' : 'cur-col' : ''}}">●</text>
+      <text wx:if="{{index+1 != processData.length}}" class="dash"></text>
+    </view>
+  </view>
+  <view wx:if="{{currentIndex == 99}}" class="in-way">在途</view>
+</view>

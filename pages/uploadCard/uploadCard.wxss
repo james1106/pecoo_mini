@@ -1,0 +1,93 @@
+page{
+  background: #F3F3F3;
+  width: 100%;
+  height: 100%;
+  font-family: 'MicrosoftYaHei';
+}
+input::-webkit-input-placeholder { /* WebKit browsers */ 
+  color: rgb(241, 148, 148);
+} 
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+  color: #CCCCCC; 
+} 
+input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+  color: #CCCCCC; 
+} 
+input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+  color: #CCCCCC; 
+} 
+.cards{
+  margin-top: 20rpx;
+  height: 100%;
+  background: #FFFFFF;  
+}
+.user-info{
+  margin-left: 20rpx;
+  display: flex;
+  height: 100rpx;
+  color: #333333;
+  align-items: center;
+}
+.user-info text{
+  width: 200rpx;
+}
+/* 上传身份证 */
+.card-content{
+  margin-top: 20rpx;
+  background: #FFFFFF;  
+}
+.card-upload{
+  display: flex;
+  justify-content: space-around;
+}
+.card-upload view{
+  width: 325rpx;
+  height: 200rpx;
+  margin: 30rpx 0;
+}
+.card-upload view image{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.words{
+  font-size: 12px;
+  margin-left: 40rpx;
+  color: #666666;
+  margin-bottom: 19rpx;
+}
+.reference{
+  margin: 0 20rpx 20rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.reference view{
+  width: 160rpx;
+  height: 112rpx;
+}
+.reference view image{
+  width: 100%;
+  height: 100%;
+}
+.why{
+  margin: 0 30rpx;
+  font-size: 13px;
+  color: #999999;
+}
+.doubt{
+  text-align: center;
+  font-size: 15px;
+  color: #666666;
+  margin: 30rpx 0 28rpx;
+}
+.save{
+  position: fixed;
+  bottom: 20px;
+  width: 90%;
+  left: 5%;
+  height: 40px;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 40px;
+  background: #1A191E;
+}

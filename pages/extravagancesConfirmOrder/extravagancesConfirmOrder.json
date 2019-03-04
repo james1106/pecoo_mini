@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "user-address": "/components/userAddress/userAddress",
+    "extravagances-order": "/components/extravagancesOrder/extravagancesOrder"
+  }
+}

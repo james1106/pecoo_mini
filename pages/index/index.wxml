@@ -1,0 +1,79 @@
+<view class="home-head {{scrollShow ? 'add-bg-color' : ''}}">
+  <image class="search-icon" src="{{baseImg}}/home/search.png"></image>
+  <view class="search-words {{scrollShow? 'colors' : ''}}" bindtap="searchFocusHander">搜索您喜欢的</view>
+  <image class="head-icon" src="{{scrollShow? baseImg + 'home/msg.png' : baseImg + 'mine/msg.png'}}" bindtap="goMessage"></image>
+  <view class="spot" wx:if="{{messageCount > 0}}"></view>
+</view>
+<!-- 轮播 -->
+<swiper class="swiper" circular="true" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-active-color="#FFFFFF" style='height: 420rpx'> 
+  <block wx:for="{{bannerData}}" wx:for-index="index" wx:key="{{item.picUrl}}">    
+    <swiper-item>    
+        <image lazy-load="true" data-gotoUrl="{{item.gotoUrl}}" data-gotoId="{{item.gotoId}}" data-gotoType="{{item.gotoType}}" data-gotoKind="{{item.gotoKind}}" bindtap="jump" src="{{item.picUrl}}" class="slide-image"/>  
+    </swiper-item>    
+  </block>    
+</swiper>
+<view class="auction-area">
+  <view class="public">
+    <view class="public-name">
+      <text class="public-title">拍卖区</text>
+    </view>
+    <view class="auction-content">
+      <view wx:for="{{sixContent}}" wx:for-index="index" data-gotoUrl="{{item.gotoUrl}}" data-gotoId="{{item.gotoId}}" data-gotoType="{{item.gotoType}}" data-gotoKind="{{item.gotoKind}}" bindtap="jump" class="{{index >= 3 ? '' : 'step'}}" wx:key="{{item.name}}"  >
+        <view class="pic-img" style="background: url({{item.picUrl}}) center center;background-size: 100%;"></view>
+        <view class="mask"></view>
+        <view class="item-area warp">{{item.name}}
+          <!-- <view></view> -->
+          <!-- <view class="warp" style="font-size: 10px">{{item.desp}}</view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="new-pro">
+  <view style="width: 100%;">
+    <view class="public-name" style="padding-left: 30rpx;">
+      <text>精选专场</text>
+    </view>
+    <scroll-view scroll-x="true" class="new-pro-box">
+      <view style="display: inline-block;padding: 10rpx 0;" class="new-pro-cont" wx:for="{{newAuction}}" wx:key="{{item.gotoId}}">
+        <navigator class="item-new-pro" hover-class="none" url="/pages/saleList/saleList?id={{item.gotoId}}">
+          <view class="new-pro-pic">
+            <image src="{{item.picUrl == 'null' ? baseImg+'common/default_medium.png' : item.picUrl}}" lazy-load="true" mode="aspectFit"></image>
+          </view>
+          <view class="new-pro-cont">
+            <view class="new-pro-name line">{{item.name}}</view>
+            <view class="warp new-pro-address">{{item.desp}}</view>
+            <view class="new-pro-time">
+              <image src="{{baseImg}}common/signal.png"></image>
+              <text>{{item.startTime}}</text>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<view class="today-content">
+  <view class="public" style="padding-right: 30rpx;">
+    <view class="public-name">
+      <text>今日推荐</text>
+    </view>
+  </view>
+  <waterfall-flow listData="{{recommend}}"></waterfall-flow>
+</view>
+<view style="width: 100%;">
+  <view class="public" style="padding-right: 30rpx;">
+    <view class="public-name">猜你喜欢</view>
+  </view>
+  <scroll-view scroll-x="true" style="width:95%" scroll-with-animation="true" class="like-list-box">
+    <navigator wx:for="{{loveList}}" url="/pages/detail/detail?id={{item.gotoId}}" wx:key="{{item.gotoId}}" class="item-like-list">
+      <view class="item-like-list-pic">
+        <image lazy-load="true" src="{{item.picUrl}}" mode="aspectFit"></image> 
+      </view>
+      <view class="warp item-like-list-name">Lot{{item.lotNum}}：{{item.name}}</view>
+      <view class="warp item-like-list-price">
+        起拍价:<text class="start-price" style="padding-left: 8rpx;">{{item.startPrice}}</text>
+      </view>
+    </navigator>
+  </scroll-view>
+</view>

@@ -1,0 +1,121 @@
+page{
+  background: #F6F8FA;
+}
+.open-app{
+  margin-top: 80rpx;
+}
+.default{
+  margin-top: 20rpx;
+}
+.none{
+  display: none;
+}
+/* 头部 */
+.meetingplace{
+  width: 100%;
+  background: #ffffff;
+  height: 490rpx;
+}
+.pic-box{
+  border-radius:6rpx;
+  border:1rpx solid #DDDDDD;
+  margin: 0 30rpx;
+  position: relative;
+  top: 30rpx;
+  height: 240rpx;
+}
+.item-pic{
+  width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+.item-name{
+  padding: 60rpx 30rpx 20rpx;
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+  width: 80%;
+}
+.start-time{
+  background: url(https://static.pecoo.com/images/common/time.png) no-repeat 30rpx 4rpx;
+  background-size: 24rpx;
+}
+.address{
+  background: url(https://static.pecoo.com/images/common/address.png) no-repeat 30rpx 4rpx;
+  background-size: 24rpx;
+}
+.auction-house{
+  background: url(https://static.pecoo.com/images/common/auction.png) no-repeat 30rpx 4rpx;
+  background-size: 24rpx;
+  text-decoration: underline;
+}
+.public{
+  padding: 0 30rpx 6rpx 64rpx;
+  color: #666666;
+  font-size: 12px;
+}
+.collection{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 30rpx;
+}
+.top2 {
+  top: 322rpx;
+}
+.top1{
+  top: 402rpx;
+}
+/* 会场内容 */
+.all-auction-house{
+  width: 100%;
+  background: white;
+  padding-top: 20rpx;
+}
+.list-box{
+  width: 50%;
+  float: left;
+}
+.item-list{
+  background: #FFFFFF;
+  box-shadow: 0 1px 5px #DDDDDD;
+  border-radius: 10rpx;
+}
+.left-list{
+  margin: 20rpx 10rpx 10rpx 30rpx;
+}
+.right-list{
+  margin: 20rpx 30rpx 10rpx 10rpx;
+}
+.list-cont{
+  box-shadow: 0 1px 5px #DDDDDD;
+  border-radius: 10rpx;
+  background: white;
+  font-family: 'PingFang-SC-Regular';
+}
+.list-pic{
+  width: 100%;
+  height: 300rpx;
+}
+.list-pic>image{
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+.auction-name{
+  padding: 10rpx 26rpx 0 26rpx;
+  color: #333333;
+  font-size: 14px;
+}
+.start-time-str{
+  padding: 6rpx 0 0 26rpx;
+  color: #666666;
+  font-size: 11px;
+}
+.start-price{
+  padding: 15rpx 0 20rpx 26rpx;
+  font-family: 'Arial';
+  font-size: 18px;
+  color: #333333;
+}

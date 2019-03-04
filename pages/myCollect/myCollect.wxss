@@ -1,0 +1,211 @@
+page{
+  background: #FFFFFF;
+  font-family: 'MicrosoftYaHei'
+}
+/* 拍卖会/拍卖行/奢侈品 */
+.cate-top{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #666666;
+  font-size: 14px;
+  height: 119rpx;
+  background: #FFFFFF;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.cate-top view{
+  height: 40px;
+  line-height: 40px;
+}
+.active{
+  color: #D74A42;
+  border-bottom: 2px solid #D74A42;
+}
+/* 筛选的条件 */
+.filter{
+  display: flex;
+  height: 80rpx;
+  align-items: center;
+  justify-content: space-around;
+  background: #FFFFFF;
+  font-size: 13px;
+  color: #666666;
+}
+.price{
+  position: relative;
+}
+.arrow{
+  position: absolute;
+  width:0px;
+  height:0px;
+}
+.top_arrow{
+  left: 66rpx;
+  top: 24rpx;
+  border:4px solid transparent;
+  border-top-color:#666;
+}
+.bottom_arrow{
+  top:0px;
+  left: 66rpx;
+  border:4px solid transparent;
+  border-bottom-color:#666;
+}
+.unit{
+  position: relative;
+}
+.top_col{
+  border-top-color: #D74A42 !important;
+}
+.bottom_col{
+  border-bottom-color: #D74A42 !important;
+}
+.rotate{
+  transition: transform .2s ease-in;
+  transform: rotate(180deg);
+  transform-origin: 50% 25%;
+  border-top-color: #D74A42 !important;
+}
+.open{
+  left: 120rpx;
+  top: 16rpx;
+  border:4px solid transparent;
+  border-top-color:#666;
+}
+.left{
+  left: 65rpx;
+  top: 16rpx;
+  border:4px solid transparent;
+  border-top-color:#666;
+}
+.bg-col{
+  background: #D74A42 !important;
+}
+.selected{
+  color: #D74A42;
+}
+/* 货币单位 */
+.unit-list-box{
+  width: 100%;
+  position: fixed;
+  top: 200rpx;
+  background: #FFFFFF;
+}
+.unit-list-box view{
+  float: left;
+  width: 18%;
+  margin: 10rpx 1%;
+  background: #999;
+  color: #FFFFFF;
+  text-align: center;
+  height: 60rpx;
+  font-size: 12px;
+  line-height: 60rpx;
+}
+/* 编辑 */
+.action{
+  display: flex;
+  background: #F3F3F3;
+  justify-content: space-between;
+  padding: 20rpx;
+  height: 40rpx;
+  font-size: 14px;
+}
+.edit, .complete{
+  color: #D74A42;
+}
+.num{
+  color: #D74A42;
+  padding:0 8rpx;
+}
+/* 列表 */
+.all-list-box{
+  overflow-y:auto;
+  -webkit-overflow-scrolling : touch;
+}
+.item-list-box{
+  height: 199rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+  font-family: 'Microsoft YaHei';
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+.item-pic-box{
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #F3F3F3;
+  float: left;
+  margin: 30rpx 20rpx 29rpx 30rpx;
+}
+.item-pic-box image{
+  width: 100%;
+  height: 100%;
+}
+.item-content{
+  flex: 1;
+  height: 140rpx;
+  padding-right: 29rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pro-name{
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  min-height: 86rpx;
+  max-height: 86rpx;
+  -webkit-line-clamp:2; 
+}
+.goodsname{
+  max-width: 500rpx;
+}
+.pro-time{
+  color: #999999;
+  font-size: 12px;
+}
+.overdue{
+  font-size: 12px;
+}
+.checked-box{
+  margin-left: 24rpx;
+  width: 36rpx;
+  height: 36rpx;
+}
+.pic{
+  width: 100%;
+  height: 100%;
+}
+/* 底部删除和全选 */
+.del-bottom{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+}
+.all-checked{
+  width: 36rpx;
+  height: 36rpx;
+}
+.all{
+  display: flex;
+  height: 100rpx;
+  align-items: center;
+  padding-left: 30rpx;
+  font-size: 13px;
+}
+.del{
+  width: 320rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #1A191E;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+}

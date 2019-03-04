@@ -1,0 +1,125 @@
+page{
+  background: #FFFFFF;
+}
+.brand-search{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background: url(https://static.pecoo.com/images/common/search.png) no-repeat 40rpx 20rpx;
+  background-size: 40rpx;
+}
+.input1{
+  width: 100%;
+  margin: 0 30rpx;
+}
+.input2{
+  width: 80%;
+  margin-left: 30rpx;
+}
+.brand-search input {
+  font-size: 14px;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1rpx solid #EEEEEE;
+  border-radius: 6rpx;
+  padding-left: 60rpx;
+}
+.cancel{
+  width: 15%;
+  text-align: center;
+  font-size: 15px;
+  font-family: 'PingFang-SC-Regular'
+}
+.search{
+  margin: 10rpx 30rpx 0;
+  border: 1rpx solid #EEEEEE;
+  background: #EEEEEE;
+  opacity: .5;
+  padding-left: 55rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+}
+.selected{
+  background:#111111;
+  color: #FFFFFF;
+}
+.search::-webkit-input-placeholder{
+  color: #999999;
+}
+.search::-moz-placeholder{
+  color: #999999;
+}
+.search:-moz-placeholder{
+  color: #999999;
+}
+.search:-ms-input-placeholder{ 
+  color: #999999;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.title{
+  width: 100%;
+  height: 80rpx;
+  background: #F6F8FA;
+  line-height: 80rpx;
+  padding-left: 30rpx;
+}
+.letters>view{
+  text-align: center;
+}
+.letter{
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.content{
+  width: 100%;
+  font-size: 15px;
+  color: #333333;
+  font-family: 'PingFang-SC-Regular';
+}
+navigator{
+  height: 100rpx;
+  padding-left: 30rpx;
+  line-height: 100rpx;
+}
+.navigator-hover{
+  background:#F4F4F4;
+}
+.letters{
+  font-family: 'PingFang-SC-Medium';
+  font-size: 10px;
+  color: #333333;
+  position: fixed;
+  top: 180rpx;
+  right: 0px;
+  width: 10%;
+  padding: 30rpx 0;
+  text-align: center;
+  z-index: 99;
+}
+.alpha{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+  position: fixed;
+  background: #CCCCCC;
+  z-index: 100;
+  color: #FFFFFF;
+  top: 50%;
+  left: 50%;
+  margin-top: -75rpx;
+  margin-left: -75rpx;
+  text-align: center;
+  line-height: 150rpx;
+  font-size: 30px;
+}
+.no-data{
+  width: 100%;
+  margin: 0 auto;
+}

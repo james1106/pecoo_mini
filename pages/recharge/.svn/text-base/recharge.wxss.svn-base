@@ -1,0 +1,196 @@
+page{
+	background: #F3F3F3;
+}
+.rechargediv1{
+	background: #FFFFFF;
+	margin-bottom: 10px;
+	padding: 0 10px;
+}
+.rechargediv1>view{
+	height: 44px;
+	line-height: 44px;
+	color: #333333;
+	font-size: 14px;
+	border-bottom: 1px solid #F3F3F3;
+}
+.rechargediv1 radio{
+	float: right;
+	width: 16px;
+	height: 16px;
+}
+.rechargediv1>view:last-child{
+	border: none;
+}
+.rechargeMon{
+	height: 44px;
+	line-height: 44px; 
+	background: #FFFFFF;
+	padding: 0 10px;
+	font-size: 14px;
+  display: -webkit-box;
+}
+.rechargeMon input{
+  display: block;
+  -webkit-box-flex: 1;
+  margin-top: 10px;
+}
+.rechargeMon span{
+  display: block;
+  width: 80px;
+}
+.rechargediv2{
+	margin-top: 10px;
+	background: #FFFFFF;
+	padding: 0 10px;
+	line-height: 44px;
+	font-size: 14px;
+}
+.rechargediv2>view{ 
+	height: 44px;
+	border-bottom: 1px solid #F3F3F3;
+}
+.rechargediv2 li image{
+	width: 30px;
+  height: 30px;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.rechargediv2 radio{
+	width: 18px;
+	height: 18px;
+  display: inline-block;
+  float: right;
+}
+.submitOrder{
+	width: 90%;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	color: #FFFFFF;
+	font-size: 16px;
+	background: #24998B;
+	margin: 20px auto;
+	margin-top: 60px;
+}
+.rechargeCard{
+	height: 44px;
+    line-height: 44px;
+    background: #FFFFFF;
+    padding: 0 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #F3F3F3;
+}
+#rechargeSelect{
+	margin-left: 16px;
+	color: #666666;
+	display: inline-block;
+}
+#rechargeSelect img{
+	width: 16px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+/**银行卡展示部分**/
+.cardShow{
+	background: #F9F9F9;
+}
+.cardShow ul li{
+	height: 44px;
+	line-height: 44px;
+	font-size: 13px;
+	color: #333333;
+	padding: 0 10px 0 15px;
+	border-bottom: 1px solid #F3F3F3;
+}
+.cardShow ul li.active{
+	background: #DDDDDD;
+}
+.cardShow ul li.active b{
+	background: url(../img/card/changeCardIcon.png)no-repeat;
+	background-size: 25px;
+	float: right;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	margin-top: 12px;
+}
+.cardShow ul li img{
+	width: 20px;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+.cardShow>p{
+	height: 44px;
+	line-height: 44px;
+	font-size: 13px;
+	padding: 0 20px 0 45px;
+}
+.cardShow>p a{
+	color: #999999;
+	display: block;
+}
+
+/**短信验证码**/
+.messageDiv{
+	position: fixed;
+	bottom: 0;
+	background: #F3F3F3;
+	z-index: 3000;
+	width: 100%;
+}
+.messageTitle{
+	height: 48px;
+	text-align: center;
+	line-height: 48px;
+	border-bottom: 1px solid #DDDDDD;
+	font-size: 15px;
+	color: #333333;
+}
+.messageTitle span{
+	float: left;
+	margin-left: 10px;
+	font-size: 20px;
+	color: #999999;
+}
+.messageMes{
+	margin: 10px;
+	display: -webkit-box;
+}
+.messageMes input{
+	-webkit-box-flex: 1;
+	height: 55px;
+	background: #FFFFFF;
+	text-indent: 10px;
+	color: #666666;
+	display: block;
+	font-size: 14px;
+}
+.messageMes button{
+	width: 120px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 55px;
+	height: 55px;
+	color: #666666;
+	background: #DDDDDD;
+}
+.messageBtn{
+	margin: 10px;
+	display: -webkit-box;
+}
+.messageBtn button{
+	-webkit-box-flex: 1;
+	display: block;
+	height: 48px;
+	font-size: 15px;
+	color: #FFFFFF;
+	line-height: 48px;
+	text-align: center;
+	background: #2C2C2C;
+	margin: 10px 0 20px 0;
+}
+.limitSateIcon{
+	width: 16px!important; 
+	vertical-align: middle; 
+	margin-top: 0!important;
+}

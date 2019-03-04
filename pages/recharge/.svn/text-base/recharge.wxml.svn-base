@@ -1,0 +1,25 @@
+<view>
+<!--充值-->
+  <view>
+    <radio-group class="radio-group rechargediv1" bindchange="radioChange">
+      <view type="1">余额<radio name="rechargeType" checked="checked" value="01"/></view>
+      <view type="2">保证金<radio name="rechargeType" value="02"/></view>
+    </radio-group>
+  </view>
+  <view class="rechargeMon">
+    <span>充值金额：</span>
+    <input type="digit" id="rechargeMoney" bindinput='rechargeInput' placeholder="充值金额不高于500,000" />  
+  </view>
+  <view class="rechargediv2">
+    <view>
+      支付方式
+    </view>
+    <ul> 
+      <li>
+        <image src="{{baseImg}}common/weixinIcon.png"/>微信支付
+        <radio name="rechargeWay" checked="checked" id="payWei" value="03"/>
+      </li>
+    </ul>
+  </view>
+  <view class='submitOrder' bindtap='submitOrder'>确定</view>
+</view> 

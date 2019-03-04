@@ -1,0 +1,8 @@
+<view class="step-style"></view>
+<view class="set-box">
+  <view wx:for="{{setData}}" wx:key="{{item.name}}" class="item-set" data-url="{{item.url}}" data-isLogin="{{item.isLogin}}" bindtap="goPages">
+    <view>{{item.name}}</view>
+    <image class="arrow" src="{{baseImg}}common/right_arrow.png"></image>
+  </view>
+</view>
+<view class="sign-out" wx:if="{{userId}}" bindtap='logout'>退出登录</view>

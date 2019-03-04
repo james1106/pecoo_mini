@@ -1,0 +1,52 @@
+<!-- 头部 -->
+<view class="luxuries-head">
+  <navigator url="/pages/brand/brand" hover-class="none" class="head-left">A-Z</navigator>
+  <view class="head-right" bindtap="searchProduct">
+    <view class="head-search search-view">搜索您喜欢的</view>    
+  </view>
+  <image class="search head-icon" src="{{baseImg}}common/search.png"></image>
+  <!-- <image class="camera head-icon" src="{{baseImg}}home/camera.png" bindtap="takePhoto"></image> -->
+</view>
+<!-- 轮播图 -->
+<view class="banner">
+  <swiper class="swiper-block" circular='true' autoplay="true" previous-margin="90rpx" next-margin="90rpx" current="0" bindchange="swiperChange">
+    <block wx:for="{{luxuryBanner}}" wx:for-index="index" wx:key="{{index}}">
+      <swiper-item class="swiper-item">
+        <image mode="widthFix" data-gotourl="{{item.gotoUrl}}" data-gotoId="{{item.gotoId}}" data-gotoType="{{item.gotoType}}" data-gotoKind="{{item.gotoKind}}" bindtap="jump" src="{{item.picUrl}}" class="slide-image {{swiperIndex == index ? 'active' : ''}}"/>
+      </swiper-item>
+    </block>
+</swiper>
+</view>
+<!-- 新品来袭 -->
+<view class="new-pro">
+  <view class="public">
+    <text>新品来袭</text>
+    <!-- <image class="arrow" src="{{baseImg}}common/right_arrow.png"></image> -->
+  </view>
+  <scroll-view scroll-x="true" class="new-scroll">
+    <view style="display: inline-block;" wx:for="{{luxuryGoodsNew}}" wx:key="{{item.id}}">
+      <navigator class="item-new" hover-class="none" url="/pages/extravagancesDetail/extravagancesDetail?id={{item.id}}">
+        <view class="pro-img">
+          <image src="{{item.thumbnailUrl}}" mode="aspectFit"></image>
+        </view>
+        <view class="pro-content">
+          <view class="pro-name warp">{{item.goodsBrand}}</view>
+          <view class="pro-notes line">{{item.goodsName}}</view>
+          <view class="pro-time">{{item.priceUnit}}{{item.price}}<text wx:if="{{item.isDiscount == 'Y'}}" class="discount">{{item.priceDiscount ? item.priceDiscount : 0}}折</text></view>
+        </view>
+      </navigator>
+    </view>
+  </scroll-view>
+</view>
+<!-- 拍库故事 -->
+<view>
+  <view class="public" style="margin-bottom: 40rpx">
+    <text>时尚精选专区</text>
+    <!-- <image class="arrow" src="{{baseImg}}common/right_arrow.png"></image> -->
+  </view>
+  <view wx:for="{{luxuryStory}}" wx:key="{{item.picUrl}}" class="item-story">
+    <image src="{{item.picUrl}}" data-gotoId="{{item.gotoId}}" data-gotoType="{{item.gotoType}}" data-gotoKind="{{item.gotoKind}}" bindtap="jump" class="pic-image" mode="widthFix"></image>
+  </view>
+</view>
+<pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+<load-all wx:if="{{hidden && luxuryStory.length && luxuryStory.length >= totalCount}}"></load-all>

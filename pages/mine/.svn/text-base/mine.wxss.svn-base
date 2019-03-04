@@ -1,0 +1,163 @@
+.set{
+	right: 10px;
+	font-size: 16px;
+	width: 20px;
+}
+.hengp{
+	height:10px!important;
+}
+/*澶村儚鏄电О閮ㄥ垎*/
+.nikeName{
+	background:#FFFFFF;
+	width: 100%;
+	padding:15px 0 15px 0;
+	background-size: 100%;
+	border-bottom: 10px solid #F3F3F3;
+  font-size: 14px;
+}
+.nikeName a{
+	text-align: center;
+	color: #333;
+	font-size: 14px;
+	display: block;
+}
+.nikeNameDt image{
+	width: 65px;
+	height: 65px;
+	display: inline-block;
+	float: left;
+	margin-left: 16px;
+}
+.nikeNameDd{
+	float: left;
+	text-align: left;
+	padding-left: 15px;
+}
+.nikeNameDd:last-child{
+	float: right;
+	margin-right: 40px;
+}
+#realNameP image{
+	width: 18px;
+	vertical-align: middle;
+	margin-left: 5px;
+  height: 18px;
+}
+.nikeNameDd> image{
+	width: 12px;
+	margin-top: 22px;
+	margin-right: 25px;
+}
+.nikeNameDd>view:first-child{
+	font-size: 15px;
+	line-height: 32px;
+}
+.setIcon{
+	right: 15px;
+	top:10px;
+	width: 25px;
+}
+.letterSpan{
+	position: absolute;
+    right: 5px;
+    top: 5px;
+    background: #E93B39;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-size: 11px;
+    text-align: center;
+    color: #fff;
+    line-height: 15px;
+}
+.messageIcon{
+	right: 5px;
+	top:10px;
+	width: 25px;
+}
+/*璁㈠崟鐘舵�閮ㄥ垎*/
+.hengp{
+	height: 5px;
+	background: #EEEEEE;
+}
+.mineP1{
+	height: 40px;
+	line-height: 40px;
+	padding: 0 10px;
+	font-size: 15px;
+	border-bottom: 1px solid #e4ecf3;
+}
+#bindCard{
+	color: #E93B39;
+}
+.mineP1 image{
+	float: right;
+	width: 10px;
+	margin-top: 10px;
+}
+.mineDiv{
+	padding: 12px 10px;
+	font-size: 14px;
+	display: -webkit-box;
+	color: #545454;
+}
+.mineDiv dl{
+	-webkit-box-flex: 1;
+	text-align: center;
+}
+.mineDiv dl dt{
+	position: relative;
+}
+.mineDiv dl dt span{
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #DB1014;
+	display: inline-block;
+	text-align: center;
+	line-height: 15px;
+	color: #FFFFFF;
+	right:35%;
+	top:-5px;
+}
+.mineDiv dl dt image{
+	width: 20px;
+}
+.paidanP{
+	height: 44px;
+	border-bottom: 1px solid #F3F3F3;
+	line-height: 44px;
+	padding: 0 15px;
+	font-size: 14px;
+	background: #FFFFFF;
+}
+.paidanP a{
+	color: #545454;
+}
+.rightOpen{
+	float: right;
+	width: 8px;
+	margin-top: 12px;
+}
+.paidanIcon{
+	width: 16px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.dingdanIcon{
+	width: 14px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.yue{
+	float: right;
+	font-size: 12px;
+	color: #666666;
+}
+.yue image{
+	width: 8px;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+

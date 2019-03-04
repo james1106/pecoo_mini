@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "补全账号信息",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "go-home-btn": "/components/goHomeBtn/goHomeBtn"
+  }
+}

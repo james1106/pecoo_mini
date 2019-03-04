@@ -1,0 +1,6 @@
+<view class="box" style="width:{{width}}">
+  <view class="pics">
+    <image class="pic" src="{{baseImg}}common/notOrder.png" mode="aspectFit"></image>
+  </view>
+  <view class="loadmore">{{html}}</view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "auction-order": "/components/auctionOrder/auctionOrder",
+    "user-address": "/components/userAddress/userAddress"
+  }
+}

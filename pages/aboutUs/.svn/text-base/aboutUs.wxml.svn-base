@@ -1,0 +1,2 @@
+<!--pages/aboutUs/aboutUs.wxml-->
+<web-view src="https://www.pecoo.com/pecooh5/aboutUs/index.html"></web-view>

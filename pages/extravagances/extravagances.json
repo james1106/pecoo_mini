@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "奢侈品",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "pull-up-loading": "/components/pullUpLoading/pullUpLoading",
+    "load-all": "/components/loadAll/loadAll"
+  }
+}

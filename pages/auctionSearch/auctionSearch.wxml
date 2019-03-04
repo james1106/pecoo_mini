@@ -1,0 +1,14 @@
+<loading hidden="{{hidden}}">
+    加载中...
+</loading>
+<view wx:if="{{!searchFlag}}">
+  <search-input width="85%" isTake="{{take}}" bindmyevent="getWords">
+    <view class="cancel" bindtap="cancel">取消</view>
+  </search-input>
+  <view style="width: 100%;border-top: 1rpx solid #E2E2E2;"></view>
+  <search-history historyData="{{history}}" binddelHistory="handleHistory" recommendData="{{recommend}}" bindchangeSearchContent="handleSearchContent"></search-history>
+</view>
+<auction-list wx:else auctionList="{{listData}}"></auction-list>
+<pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+<no-data wx:if="{{searchFlag && !listData.length && !totalCount}}"></no-data>
+<load-all wx:if="{{pageNum >=2 && listData.length >= totalCount}}"></load-all>

@@ -1,0 +1,39 @@
+.codeDiv{
+    width: 180px;
+    height: 180px;
+    padding: 10px;
+    border: 1px solid #F3F3F3;
+    margin: 0 auto;
+    margin-top: 100px;
+}   
+.codeP1{
+	font-size: 14px;
+	text-align: center;
+	line-height: 60px;
+}
+.codeShare{
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 30px;
+	height: 44px;
+	text-align: center;
+	color: #FFFFFF;
+	background: #24998B;
+	font-size: 15px;
+	line-height: 44px;
+}
+.tuijianP{
+	font-size: 15px;
+	text-align: center;
+}
+.tuijianP navigator{
+	color: #24988b;
+	line-height: 60px;
+}
+.shadeBlack>p{
+  color: yellow;
+  margin-top: 30px;
+  font-size: 26px;
+  text-align: center;
+  display: block;
+}

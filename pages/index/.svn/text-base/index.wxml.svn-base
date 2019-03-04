@@ -1,0 +1,126 @@
+<loading hidden="{{hidden}}">
+    加载中...
+</loading> 
+<view class="index">
+  <view class='header'>
+    Pecoo
+    <navigator url="/pages/search/search">
+     <image class="searchIcon" src="{{baseImg}}index/searchIcon.png" ></image>
+     </navigator>
+  </view>	
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-active-color="#666" style='height:{{Hei}}'> 
+    <block wx:for="{{banners}}" wx:for-index="index" wx:key="banners">    
+      <swiper-item>    
+        <navigator url="{{item.webUrl}}" hover-class="navigator-hover">  
+          <image src="{{item.picUrl}}" class="slide-image"  mode="widthFix" bindload='imgH'/>  
+          </navigator>  
+      </swiper-item>    
+    </block>    
+  </swiper>  
+  <!-- 精选拍卖会 -->
+	<view class="auctionBanner"> 
+		<view class="selectGoodP">精品拍卖会</view>
+      <scroll-view class="recommend_scroll_x_box" scroll-x="true">
+      <view class="recommend_hot_box" wx:for="{{auctions}}" wx:key="auctions">
+      <navigator hover-class="navigator-hover" url="/pages/saleList/saleList?auctionId={{item.pkId}}">  
+              
+              <view class='auctionDl'>
+                <view class='auctionDt'>
+                  <image src="{{item.auctionThumPic}}" class="recommend_hot_image"  mode="aspectFit"></image>
+                </view>
+                <view class='auctionDd'>
+                  <view>{{item.name}}</view>
+                  <view wx:if="{{item.startTime[0] == '00' && item.startTime[1] == '00' && item.startTime[2] == '00' && item.startTime[3] == '00'}}">已结束</view>
+              <view wx:else>
+                距开拍:
+                <span class="{{item.ShowTime[0] == '00'?'none':''}}">{{item.ShowTime[0]}}天</span>
+                <span>{{item.ShowTime[1]}}时</span>
+                <span>{{item.ShowTime[2]}}分</span>
+                <span>{{item.ShowTime[3]}}秒</span>
+              </view>
+                  <view>拍卖行：{{item.auctionCompany}}</view>
+                  <view><image src="{{baseImg}}index/auctionAddresIcon.png" class='auctionAddresIcon'></image>{{item.address}}</view>
+                </view>
+              </view> 
+            </navigator> 
+       
+      </view>
+    </scroll-view>   
+	</view>
+  <!-- 今日推荐 -->
+	<view class="auctionBanner">
+		<view class="selectGoodP">今日推荐</view>
+        <!-- <scroll-view 
+      scroll-y="true"
+      bindscrolltolower="lower"
+      lower-threshold="100"
+      style="height:100%;">
+      <view class="waterfall">
+          <view class="view">
+              <view wx:for="{{Arr1}}" wx:key="imgid">
+              <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+                  <image src="{{item.thumbnailUrl}}" mode="widthFix" style="width:{{item.imgWidth>320?'100%':'item.imgWidth'}}"></image>
+   <view class="list-box-title">Lot{{item.lotNum}}：{{item.goodsName}}</view>
+                      <view class="list-box-title">起拍价：{{item.priceUnit}}{{item.startPrice}}</view>
+                      <view class="list-box-title">{{item.startTime}}</view>
+                      </navigator>
+              </view>
+          </view>
+          <view class="view">
+              <view wx:for="{{Arr2}}" wx:key="imgid">
+              <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+                  <image src="{{item.thumbnailUrl}}" mode="widthFix" style="width:{{item.imgWidth>320?'100%':'item.imgWidth'}}"></image>
+    <view class="list-box-title">Lot{{item.lotNum}}：{{item.goodsName}}</view>
+                      <view class="list-box-title">起拍价：{{item.priceUnit}}{{item.startPrice}}</view>
+                      <view class="list-box-title">{{item.startTime}}</view>
+                      </navigator>
+              </view>
+          </view>
+      </view>
+    </scroll-view> -->
+        <!-- <view class="hot-box-main waterfall" >
+          <block>
+              <view class="img_box" wx:for="{{list}}"  wx:key="list">
+                  <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}"  style="top:{{item.top}}px;left:{{item.left}}px">
+                      <image class="WxMasonryImage"  src="{{item.thumbnailUrl}}" mode="widthFix" bindload="loadImage" data-index="{{index}}"/>
+                      <view class="list-box-title">Lot{{item.lotNum}}：{{item.goodsName}}</view>
+                      <view class="list-box-title">起拍价：{{item.priceUnit}}{{item.startPrice}}</view>
+                      <view class="list-box-title">{{item.startTime}}</view>
+                  </navigator>
+              </view>
+          </block>
+      </view>   -->
+      <view class='water_fall {{dataListShow?"":"none"}}'>
+        <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}" wx:for="{{dataList}}" wx:key="dataList">
+          <view class="img_box" style="top:{{item.top}}px;left:{{item.left}}px">
+            <view>
+              <image src="{{item.thumbnailUrl}}" mode="widthFix" bindload="loadImage" data-index="{{index}}"></image>
+              <view class="list-box-title">Lot{{item.lotNum}}：{{item.goodsName}}</view>
+              <view class="list-box-title">起拍价：{{item.priceUnit}}{{item.startPrice}}</view>
+              <view class="list-box-title">{{item.startTime}}</view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+	</view>
+  <!--猜你喜欢-->
+  <view class='loveView abs' style="top:{{(leftHeight>rightHeight?leftHeight:rightHeight)}}px">
+    <view class="selectGoodP">猜你喜欢</view>
+    <scroll-view class="recommend_scroll_x_box" scroll-x="true">
+      <view class="recommend_hot_box2" wx:for="{{loveList}}" wx:key="loveList">
+        <view class="processDl">
+          <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+          <view class='processDt'>
+            <image src="{{item.thumbnailUrl}}"  mode="aspectFit"></image>
+          </view>
+          <view class='processDd'>
+            <view class="processSwiperDdP2">Lot{{item.lotNum}}：{{item.goodsName}}</view>
+            <view class="processSwiperDdP3">起拍价:{{item.priceUnit}}{{item.startPrice}}</view>
+          </view>
+          </navigator>
+        </view> 
+      </view>
+    </scroll-view>  
+  </view> 
+
+</view>

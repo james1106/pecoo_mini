@@ -1,0 +1,47 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<loading hidden="{{submitBtn}}" bindchange="loadingChange">
+  提交数据...
+</loading>
+<view class="overflow" wx:if="{{hidden}}">
+  <view class="address">
+    <user-address wx:if="{{addressAndIdCard.addressId}}" userName="{{addressAndIdCard.recipientName}}" mobile="{{addressAndIdCard.phone}}" address="{{addressAndIdCard.province}}{{addressAndIdCard.area}}{{addressAndIdCard.city}}{{addressAndIdCard.detailAddress}}" bindeventHandle="goAddress"></user-address>
+    <view class="not-address" wx:else bindtap="goAddress">
+      <image class='add-address' src="{{baseImg}}common/add_address.png" mode="aspectFit"></image>
+      请先添加收货地址
+    </view>
+  </view>
+  <view class="card" bindtap="goCard">
+    <view class="info">证件信息</view>
+    <view style="color: #cccccc;font-size: 14px;" wx:if="{{!addressAndIdCard.realName && !addressAndIdCard.idCardNum}}">添加收件人身份证号以便清关</view>
+    <view wx:else><text style="margin-right: 20rpx;">{{addressAndIdCard.realName}}</text>{{addressAndIdCard.idCardNum}}</view>
+    <image src="{{baseImg}}/common/right_arrow.png" style="width: 16rpx;height: 30rpx;"></image>
+    <!-- <view class="order-bg"></view> -->
+  </view>
+  <view class="pro-detail">
+    <extravagances-order pic="{{curProInfo.curImage}}" goodsName="{{curProInfo.goodsName}}" price="{{curProInfo.price}}" color="{{curProInfo.curColor}}" size="{{curProInfo.curSize}}" priceUnit="{{curProInfo.priceUnit}}" num="{{curProInfo.num}}" isGo="{{false}}"></extravagances-order>
+  </view>
+  <view class="computed">
+    <view class="shop-num">
+      <view>购买数量</view>
+      <view class="handle">
+        <view class="{{curProInfo.num <= 1 ? 'borders' : ''}}" style="border-right: none" bindtap="reduce">-</view>
+        <input type="number" value="{{curProInfo.num}}"></input>
+        <view class="add" bindtap="add">+</view>
+      </view>  
+    </view>
+    <view class="today">
+      <view>今日汇率</view>
+      <view>{{goodsRate}}</view>
+    </view>
+    <view class="freight">
+      <view>运费</view>
+      <view>{{unit}} {{totalFreightRmb}}</view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="total">合计:{{unit}}{{sumAmount}}</view>
+    <view class="submit" bindtap="submit">提交订单</view>
+  </view>
+</view>

@@ -1,0 +1,122 @@
+const request = require('../utils/request.js');
+//const baseUrl = '/pecooservice/api';
+const baseUrl = '/API/api';
+const baseImg = 'https://www.pecoo.com/pecooh5/img/';
+/**
+ * 获取首页接口
+ */
+
+const queryBannerUrl = data => request(baseUrl+'/indexPage/queryBanner.htm', data)/*首页banner部分*/
+const queryQualityGoodsUrl = data => request(baseUrl+'/indexPage/queryQualityGoods',data)/*首页今日推荐部分*/
+const queryQualityAuctionUrl = data => request(baseUrl+'/indexPage/queryQualityAuction.htm', data)/*首页拍卖会部分*/
+const queryPopularGoods = data => request(baseUrl+'/indexPage/queryPopularGoods.htm', data)/*猜你喜欢接口*/
+
+/**
+ * 获取登录注册接口
+ */
+const loginUrl = data => request(baseUrl+'/login/loginIn.htm', data,'POST') /*登录*/
+const verificationUserIsRegisterUrl = data => request(baseUrl + '/login/verificationUserIsRegister.htm', data, 'POST') /*查询手机号是否已经注册*/
+const registerUrl = data => request(baseUrl + '/login/userRegister.htm', data, 'POST') /*注册*/
+const verificationCodeTempUrl = data => request(baseUrl + '/login/getVerificationCodeTemp.htm', data, 'POST')//图片验证码上的验证码
+const validateImgUrl = data => request(baseUrl + '/login/getValidateImgCodeMini.htm', data, 'POST')/*获取图形验证码*/
+const verificationCodeUrl = data => request(baseUrl + '/login/getVerificationCode.htm', data, 'POST')/*获取短信验证码*/
+/**
+ * 获取拍卖会接口
+ */
+const pageAuctionUrl = data => request(baseUrl+'/auction/pageAuctionPc.htm', data)//全球拍卖会
+const queryAuctionGoodsUrl = data => request(baseUrl+'/auction/queryAuctionGoods.htm', data)//拍卖会详情
+const addUserCollectionUrl = data => request(baseUrl + '/verify/collection/addUserCollection',data,'POST')//收藏
+const delUserCollectionUrl = data => request(baseUrl + '/verify/collection/delUserCollection', data, 'POST')//取消收藏
+/**
+ * 获取分类接口
+ */
+const queryMobileKindsUrl = data => request(baseUrl+'/indexPage/queryMobileKinds', data)//全球拍卖会
+/**
+ * 获取闪购接口
+ */
+const getSubSaleKindsUrl = data => request(baseUrl+'/indexPage/getSubSaleKinds', data)//奢侈品首页分类
+
+/**获取拍品详情**/
+const queryGoodsMessUrl = data => request(baseUrl+'/goods/queryGoodsMess', data)//获取详情页面
+const queryKindsUrl = data => request(baseUrl + '/goods/queryKinds.htm', data)/*二级三级名称*/
+const querySecondGooodsUrl = data => request(baseUrl + '/goods/querySecondGooods', data)/*分类下的拍品列表*/
+const vcreateOrderUrl = data => request(baseUrl + '/verify/createOrder', data, 'POST')//判断是否有保证金出价
+//个人中心
+const queryMyCollectionUrl = data => request(baseUrl + '/verify/collection/queryMyCollection',data)//查个人中心收藏
+const queryMyPecooUrl = data => request(baseUrl + '/verify/account/queryMyPecoo.htm',data,'POST')//我的钱包
+const queryMyRechargeUrl = data => request(baseUrl + '/verify/rechargelog.htm', data, 'POST')//充值记录
+const queryMyWithdrawUrl = data => request(baseUrl + '/verify/withdrawlog.htm', data, 'POST')//提现记录
+const queryMyDebitUrl = data => request(baseUrl + '/verify/orderpaylog.htm', data, 'POST')//消费记录
+const queryMyMessagesStateCountUrl = data => request(baseUrl + '/verify/pecooMessage/queryMyMessagesStateCount.htm',data,'POST')//查找我的站内信未读数量
+const transferAccountsUrl = data => request(baseUrl + '/verify/account/transferAccounts.htm', data, 'POST')//保证金与余额互转
+const creatRechargeOrderUrl = data => request(baseUrl + '/verify/creatRechargeOrder', data, 'POST')//充值生成订单
+//收货地址接口 
+const getAddressListUrl = data => request(baseUrl + '/verify/address/getAddressList.htm', data)/*用户收货地址列表*/
+const addAddressUrl = data => request(baseUrl + '/verify/address/addAddress.htm', data, 'POST')/*添加收货地址*/
+const queryDefaultAddress = data => request(baseUrl + '/verify/address/queryDefaultAddress', data, 'POST')/*查询默认收货地址*/
+const updateAddressUrl = data => request(baseUrl + '/verify/address/updateAddress.htm', data, 'POST')/*编辑收货地址*/
+const deleteAddress = data => request(baseUrl + '/verify/address/deleteAddress', data, 'POST')/*删除收货地址*/
+const setDefaultAddressUrl = data => request(baseUrl + '/verify/address/setDefaultAddress.htm', data, 'POST')//设置默认收货地址
+//我的拍单
+const queryHaveBidGoodsUrl = data => request(baseUrl + '/verify/order/queryHaveBidGoods.htm', data)//已出价
+const querySuccBidGoodsUrl = data => request(baseUrl + '/verify/order/querySuccBidGoods.htm', data)//竞拍成功
+const queryPaidBidGoodsUrl = data => request(baseUrl + '/verify/order/queryPaidBidGoods.htm', data)//已付款
+const queryDeliverBidGoodsUrl = data => request(baseUrl + '/verify/order/queryDeliverBidGoods.htm', data)//已发货
+const queryCompleteBidGoodsUrl = data => request(baseUrl + '/verify/order/queryCompleteBidGoods.htm', data)//已买到
+const queryFailedBidGoodsUrl = data => request(baseUrl + '/verify/order/queryFailedBidGoods.htm', data)//竞拍失败
+const cancelBidOrderUrl = data => request(baseUrl + '/verify/order/cancelBidOrder.htm', data, 'POST')//取消订单
+const receiptBidOrderUrl = data => request(baseUrl + '/verify/order/receiptBidOrder.htm', data, 'POST')//确认收货
+
+//微信支付
+const rechargeAppUrl = data => request(baseUrl + '/verify/rechargeApp.htm', data, 'POST')//充值
+
+
+module.exports={
+  queryHaveBidGoodsUrl,
+  querySuccBidGoodsUrl,
+  queryPaidBidGoodsUrl,
+  queryDeliverBidGoodsUrl,
+  queryCompleteBidGoodsUrl,
+  queryFailedBidGoodsUrl,
+  cancelBidOrderUrl,
+  receiptBidOrderUrl,
+  queryBannerUrl,
+  queryQualityGoodsUrl,
+  queryQualityAuctionUrl,
+  queryPopularGoods,
+  loginUrl,
+  pageAuctionUrl,
+  queryMobileKindsUrl,
+  getSubSaleKindsUrl,
+  queryAuctionGoodsUrl,
+  queryGoodsMessUrl,
+  queryKindsUrl,
+  querySecondGooodsUrl,
+  verificationUserIsRegisterUrl,
+  verificationCodeUrl,
+  validateImgUrl,
+  verificationCodeTempUrl,
+  registerUrl,
+  addUserCollectionUrl,
+  delUserCollectionUrl,
+  queryMyCollectionUrl,
+  queryMyPecooUrl,
+  queryMyMessagesStateCountUrl,
+  transferAccountsUrl,
+  queryMyRechargeUrl,
+  queryMyWithdrawUrl,
+  queryMyDebitUrl,
+  creatRechargeOrderUrl,
+  getAddressListUrl,
+  addAddressUrl,
+  queryDefaultAddress,
+  updateAddressUrl,
+  deleteAddress,
+<<<<<<< .mine
+  setDefaultAddressUrl,
+  vcreateOrderUrl
+=======
+  setDefaultAddressUrl,
+  rechargeAppUrl
+>>>>>>> .r2845
+}

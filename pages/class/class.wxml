@@ -1,0 +1,8 @@
+<view class="father">
+  <view wx:for="{{classData}}" wx:key="{{item.name}}" wx:for-index="index" class="item-class" data-name="{{item.name}}" data-code="{{item.code}}" bindtap="goList">
+    <view class="pic {{index % 2 ? 'right-margin' : 'left-margin'}}">
+      <image src="{{item.pic || baseImg + 'common/default_medium.png'}}" mode="aspectFit"></image>
+    </view>   
+    <view class="title {{index % 2 ? 'right-margin' : 'left-margin'}}">{{item.name}}</view>
+  </view>
+</view>

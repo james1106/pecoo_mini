@@ -1,0 +1,48 @@
+.search-box{
+  width: 100%;
+  height: 80rpx;
+  background: #FFFFFF;
+  display: flex;
+}
+.search-content{
+  position: relative;
+}
+.search-input{
+  font-size: 14px;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1rpx solid #EEEEEE;
+  background: #F8F8F8;
+  margin-left: 30rpx;
+  padding-left: 76rpx;
+  background-size: 38rpx;
+  box-sizing: border-box;
+  border-radius: 4rpx;
+}
+.search-pic{
+  z-index: 99;
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  left: 45rpx;
+  top: 9rpx;
+}
+.public{
+  width: 80rpx;
+  height: 60rpx;
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  text-align: center;
+}
+.del-pic{
+  width: 36rpx;
+  height: 36rpx;
+  margin-top: 12rpx;
+}
+.camera-pic{
+  width: 44rpx;
+  height: 44rpx;
+  margin-top: 9rpx;
+}

@@ -1,0 +1,32 @@
+page{
+  background: #F3F3F3;
+}
+.pay-title{
+  padding: 40rpx;
+  text-align: center;
+}
+.money{
+  font-size: 30px;
+  font-weight: bold;
+}
+.receivables{
+  padding: 0 30rpx;
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+  font-size: 14px;
+}
+.pay{
+  margin:30px 30rpx 0;
+  background:#1AAD19;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+.disable{
+  background:#999999;
+}

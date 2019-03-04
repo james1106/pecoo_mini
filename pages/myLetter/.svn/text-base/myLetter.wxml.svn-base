@@ -1,0 +1,20 @@
+<view>
+<!--站内信-->
+  <ul class="letterUl">
+    <li class="rel" wx:for="{{messagesList}}" wx:key="">
+      <navigator url="/pages/myLetterDetail/myLetterDetail?title={{item.title}}&content={{item.content}}&pkId={{item.pkId}}">
+        <span class="{{item.state == '01'?'':'hidden'}}"></span>
+        <p>{{item.sendTime}}</p>
+        <div>
+          <p>{{item.title}}</p>
+          <p>{{item.content}}</p>
+        </div>
+      </navigator>
+      <image src="{{baseImg}}mine/collectDelete.png" class="abs" bindtap='deleteLetter' data-variable="{{item.pkId}}"/>
+    </li>
+    <div class="voucherNone none" style="display: block;" wx:if="{{messagesList.length == 0}}">
+      <image src="{{baseImg}}mine/voucherOutdate.png"></image>
+      <p>没有更多站内信~</p>
+    </div>
+  </ul>
+</view>

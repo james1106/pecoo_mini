@@ -1,0 +1,37 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading>
+<view class="box">
+  <view class="list-menu">
+    <view wx:for="{{condition}}" class="{{selected == item.id ? 'active' : ''}}" wx:key="{{item.id}}" data-id="{{item.id}}" data-sort="{{item.sort}}" bindtap="changeCondition">{{item.title}}</view>
+    <navigator class="screen" url="/pages/screen/screen?priceUnit={{priceUnit}}&priceStart={{priceStart}}&priceEnd={{priceEnd}}&startTime={{startTime}}&currentType={{currentType}}&kindCode={{kindCode}}&brandCateCode={{brandCateCode}}&money={{money}}&cate={{cate}}&picker={{picker}}&brand={{brandName}}&sexName={{sexName}}">筛选</navigator>
+  </view>
+  <view class="content">
+    <navigator wx:for="{{listData}}" class="list-item" wx:key="{{item.id}}" wx:for-index="index" url="{{(currentType == '12' || currentType == '15') ? '/pages/extravagancesDetail/extravagancesDetail?id='+item.id : '/pages/detail/detail?id='+ item.id}}" hover-class="none">
+      <view class="pic-box">
+        <image class="item-image" mode="aspectFit" lazy-load='true' src="{{item.thumbnailUrl || baseImg+'common/default_medium.png'}}"></image> 
+      </view>
+      <view class="item-detail" wx:if="{{currentType != '12' && currentType != '15'}}">
+        <view class="item-goods-name">Lot{{item.lotNum}}: {{item.goodsName}}</view>
+        <view class="item-time">{{item.startTimeStr}}</view>
+        <view class="item-price">
+          起拍价:<text class="start-price" style="padding-left: 8rpx;">{{item.priceUnit}}{{item.startPrice}}</text>
+        </view>
+      </view>
+      <view wx:else class="item-detail">
+        <view class="item-goods-brand wrap">{{item.goodsBrand}}</view>
+        <view class="item-goods-name wrap">{{item.goodsName}}</view>
+        <view class="item-price">
+          <text wx:if="{{item.isDiscount == 'Y'}}" class="discount">{{item.priceDiscount}}折</text>
+          {{item.priceUnit}}{{item.price}}
+        </view>
+      </view>
+    </navigator>
+    <pull-up-loading wx:if="{{upLoading}}"></pull-up-loading>
+    <load-all wx:if="{{listData.length >=10 && hidden && listData.length >= totalCount}}"></load-all>
+    <no-data wx:if="{{!listData.length && !totalCount && hidden}}"></no-data>
+  </view>
+  <view class="pagination" wx:if="{{show}}">
+    <view class="back-top" bindtap='backTop'></view>
+  </view>
+</view>

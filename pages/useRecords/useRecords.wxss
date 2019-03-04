@@ -1,0 +1,42 @@
+page{
+  background: #dddddd;
+  font-family: 'MicrosoftYaHei';
+}
+.records-content{
+  width: 100%;
+  background: #FFFFFF;
+  margin-top: 20rpx;
+}
+.records-content view{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin:0 39rpx;
+  height: 99rpx;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.label{
+  color: #333333;
+  font-size: 15px;
+}
+.val{
+  color: #666666;
+  font-size: 15px;
+  max-width: 300rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.explain{
+  margin: 39rpx 39rpx 0;
+  font-size: 14px;
+  color: #999999;
+}
+.first{
+  margin-bottom: 10rpx;
+  color: #666666;
+}
+.arrow{
+  width: 12rpx;
+  height: 24rpx;
+}

@@ -1,0 +1,14 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<search-input placeholder="搜索拍品、奢侈品" width="80%" bindmyevent="onMyEvent" bindclearContent="clearContent" class="search-box">
+  <view class="cancel" bindtap="cancel">取消</view>
+</search-input>
+<extravagances-list id="list" bindclickEvent="goDetail" wx:if="{{!mask}}" extravagancesList="{{listData}}" marginValue="80rpx 0 0 0"></extravagances-list>
+<pull-up-loading wx></pull-up-loading>
+<view wx:if="{{mask}}" class="list">
+  <search-history wx:if="{{!searchContent || searchContent == undefined}}" binddelHistory="delHistory" historyData="{{historyData}}" recommendData="{{recommendData}}"></search-history>
+  <view wx:else>
+    <view wx:for="{{screenData}}" wx:key="{{item}}" wx:for-index="index" data-index="{{index}}" class="search-item" bindtap="changeSearchContent">{{item}}</view>  
+  </view>
+</view>

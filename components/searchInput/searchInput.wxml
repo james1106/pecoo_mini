@@ -1,0 +1,13 @@
+<view class="search-box">
+  <view class="search-content" style="width: {{width}}">
+    <image src="{{baseImg}}common/search.png" mode='aspectFit' class="search-pic"></image>
+    <view class="public" wx:if="{{delFlag}}" bindtap="clearContent">
+      <image src="{{baseImg}}common/del.png" mode='aspectFit' class="del-pic"></image>
+    </view>
+    <view class="public" wx:if="{{isTake && !delFlag && !searchContent}}" bindtap="takePhoto">
+      <image src="{{baseImg}}home/camera.png" mode='aspectFit' class="camera-pic"></image>
+    </view>
+    <input class="search-input" type="text" placeholder-style="color:#999999" bindfocus="handleFocus" confirm-type="search" focus="{{focus}}" bindconfirm="handleBtn" bindinput="handleInput" bindblur="handleBlur" placeholder="{{placeholder}}" value="{{searchContent}}"></input>
+  </view>
+  <slot></slot>
+</view>

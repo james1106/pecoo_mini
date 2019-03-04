@@ -1,0 +1,33 @@
+page{
+	background:#FFFFFF;
+  height: 100%;
+  position: relative;
+  font-family: 'MicrosoftYaHei';
+  font-size: 15px;
+  color: #333333;
+}
+.item-set{
+  height: 98rpx;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30rpx;
+  line-height: 98rpx;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.arrow{
+  width: 12rpx;
+  height:22rpx;
+  margin-right: 30rpx;
+}
+.sign-out{
+  width: 90%;
+  height: 90rpx;
+  background: #1A191E;
+  color: #FFFFFF;
+  position: absolute;
+  bottom: 70rpx;
+  left: 5%;
+  text-align: center;
+  line-height: 90rpx;
+}

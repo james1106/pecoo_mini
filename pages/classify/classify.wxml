@@ -1,0 +1,54 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view class="class-box">
+  <navigator class="search-box" hover-class="none" url="/pages/auctionSearch/auctionSearch">
+    <image class="search-icon search-icon-pic" src="{{baseImg}}/common/search.png"></image>
+    <text class="search-words search-view">搜索您喜欢的</text>  
+  </navigator>
+  <view class="class-content">
+    <scroll-view scroll-y scroll-with-animation class="content-left" style="height: {{windowHeight}}">
+      <view wx:for="{{classData}}" wx:key="{{item.code}}" wx:for-index="index" data-index="{{index}}" class="left-item {{selectedName === item.name ? 'selected' : ''}}" data-code="{{item.code}}" data-type="{{item.type}}" data-name="{{item.name}}" bindtap="changeFirstCate">{{item.name}}</view>
+    </scroll-view>
+    <scroll-view class="content-right" style="height: {{windowHeight}}" scroll-top="{{scrollTop}}" scroll-y scroll-with-animation wx:if="{{!show}}">
+      <view wx:if="{{cateBanner.children.length}}" class="right-image">
+        <view style="margin: 10rpx 30rpx 0;height: 100%">
+          <image src="{{cateBanner.children[0].picUrl}}" bindload="load" lazy-load="true" mode="aspectFit"></image> 
+        </view>
+      </view>
+      <view style="height: 100%;padding: 0 30rpx;">
+        <view wx:for="{{listData}}" wx:key="{{item.code}}" class="list-item">
+          <navigator class="right-title" wx:if="{{item.type == 11}}" hover-class='none' url="/pages/list/list?code={{item.code}}&title={{item.name}}">
+            <text>{{item.name}}</text>
+            <image class="right-arrow" lazy-load="true" mode="aspectFit" src="{{baseImg}}/common/right_arrow.png"></image>
+          </navigator>
+          <view wx:else class="right-title">{{item.name}}</view>
+          <navigator wx:for="{{item.children}}" url="/pages/list/list?code={{elem.code}}&title={{elem.name}}&type={{item.type}}" wx:for-item="elem" wx:key="{{elem.code}}" class="elem-box warp">
+            <view class="elem-pic">
+              <image src="{{elem.pic || baseImg + 'common/default_medium.png'}}" lazy-load="true" mode="aspectFit"></image>
+            </view>
+            <text wx:if="{{elem.name}}" class="elem-name warp">{{elem.name}}</text>
+          </navigator>
+        </view>
+      </view>
+    </scroll-view>
+    <scroll-view class="content-right" scroll-y scroll-with-animation wx:else scroll-top="{{scrollTop}}" bindscrolltolower="loadmore" style="height: {{windowHeight}}">
+      <navigator wx:for="{{lettersData}}" url="{{selectedType == 13 ? '/pages/auctionHouseDetail/auctionHouseDetail?id='+item.id : '/pages/saleList/saleList?id='+item.id}}" wx:key="{{item.name}}" wx:for-index="index" class="letters-content warp">
+        {{item.name}}
+      </navigator>
+      <pull-up-loading class="loading" wx:if="{{loading}}"></pull-up-loading>
+      <no-data width="80%" wx:if="{{(hidden && !lettersData.length && !houseTotalCount) || (hidden && !lettersData.length && !auctionTotalCount)}}"></no-data>
+      <load-all wx:if="{{selectedType == 13 && lettersData.length && lettersData.length >= houseTotalCount && hidden}}"></load-all>
+      <load-all wx:if="{{selectedType == 14 && lettersData.length && lettersData.length >= auctionTotalCount && hidden}}"></load-all>
+        <!-- <view class="letters-title">{{item.name}}</view> -->
+        <!-- <view wx:for="{{item.houses}}" wx:for-item="ele" wx:key="{{ele.id}}" class="ele-name">
+          <navigator class="go-back">
+            {{ele.name}}
+          </navigator>
+        </view> -->
+    </scroll-view>
+    <!-- <view wx:if="{{!show}}" class="right-scroll" catchtouchstart="handlerAlphaTap" catchtouchmove="handlerMove" >
+      <view wx:for="{{lettersData}}" data-ap="{{item.title}}" wx:key="item.title">{{item.title}}</view>
+    </view> -->
+  </view>
+</view>

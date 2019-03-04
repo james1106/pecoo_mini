@@ -1,0 +1,88 @@
+page{
+	background: #F3F3F3;
+  font-family: 'MicrosoftYaHei'
+}
+.header{
+  margin-top: 20rpx;
+  width: 100%;
+  font-size: 15px;
+}
+.pay-cate{
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #F3F3F3;
+  height: 99rpx;
+}
+.is-checked{
+  width: 40rpx;
+  height: 40rpx;
+}
+.recharge-money{
+	height: 100rpx;
+	line-height: 100rpx; 
+	background: #FFFFFF;
+	padding: 0 40rpx;
+	font-size: 14px;
+  display: -webkit-box;
+}
+.recharge-money input{
+  display: block;
+  -webkit-box-flex: 1;
+  margin-top: 10px;
+  text-align: right;
+}
+.recharge-money text{
+  display: inline-block;
+  width: 80px;
+}
+.pay{
+	margin-top: 10px;
+	background: #FFFFFF;
+	line-height: 44px;
+	font-size: 14px;
+}
+.pay>view{ 
+  padding: 0 40rpx;
+	height: 44px;
+	border-bottom: 1px solid #F3F3F3;
+}
+.payment{
+  display: flex;
+}
+.wx-pay{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wx-box image{
+	width: 30px;
+  height: 30px;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.confirm{
+	width: 90%;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	color: #FFFFFF;
+	font-size: 16px;
+	background: #1A191E;
+	margin: 20px auto;
+	margin-top: 60px;
+}
+.pay-type{
+  display: flex;
+  justify-content: space-between;
+}
+.limit{
+  background: url('https://static.pecoo.com/images/common/explain.png') no-repeat right;
+  background-size: 24rpx;
+  padding-right: 30rpx;
+  color: #999999;
+  font-size: 12px;
+  font-family: 'MicrosoftYaHei';
+}

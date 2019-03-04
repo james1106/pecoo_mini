@@ -1,0 +1,26 @@
+<view class='fall-container'>
+  <view class='fall-left'>
+    <navigator wx:for="{{leftList}}" url="/pages/detail/detail?id={{item.gotoId}}" wx:key="{{item.gotoId}}"  class="item-box" style="margin: 0 10rpx 20rpx 30rpx;">
+      <view class="item-content">
+        <image src="{{item.picUrl}}" mode="widthFix" lazy-load="true"></image>
+        <view class="warp goods-name">Lot{{item.lotNum}}:{{item.name}}</view>
+        <view class="warp start-time">{{item.startTime}}</view>
+        <view class="goods-price">
+          起拍价:<text class='start-price'>{{item.startPrice}}</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <view class='fall-right'>
+    <navigator wx:for="{{rightList}}" url="/pages/detail/detail?id={{item.gotoId}}" wx:key="{{item.gotoId}}" class="item-box" style="margin: 0 30rpx 20rpx 10rpx;">
+      <view class="item-content">
+        <image src="{{item.picUrl}}" mode="widthFix" lazy-load="true"></image>
+        <view class='warp goods-name'>Lot{{item.lotNum}}:{{item.name}}</view>
+        <view class="warp start-time">{{item.startTime}}</view>
+        <view class="goods-price">
+          起拍价:<text class='start-price'>{{item.startPrice}}</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>

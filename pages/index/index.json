@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "拍库",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "waterfall-flow": "/components/waterfallFlow/waterfallFlow"
+  }
+}

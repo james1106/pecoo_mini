@@ -1,0 +1,227 @@
+div,ul,li,p{
+  display: block;
+}
+page{
+	background: #F4F4F4;
+}
+.tab-h{
+    height: 46px;
+    width: 100%; 
+    box-sizing: border-box;
+    overflow: hidden;
+    line-height: 46px;
+    background: #efeff4; 
+    font-size: 14px; 
+    white-space: nowrap;
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    z-index: 99;
+}
+.scoll-h{height: 100%;}
+.tab-item{
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+}
+.tab-item.active{
+  color: #24988b;
+  position: relative;
+}
+.tab-item.active:after{ 
+  content: "";
+  display: block;
+  height: 8rpx;
+  width: 50%;
+  background: #24988b;
+  position: absolute; 
+  bottom: 0;
+  left: 25%;
+  text-align: center;
+}
+.item-ans{ 
+  width: 100%;
+  display: flex; 
+  flex-grow: row no-wrap;
+  justify-content: space-between; 
+  padding: 30rpx;
+  box-sizing: border-box; 
+  height: 180rpx;
+  align-items: center;
+  border-bottom: 1px solid #F2F2F2;
+}
+.listFix{
+	display: -webkit-box;
+	position: fixed;
+	width: 100%;
+	top:45px;
+	height: 45px;
+	border-bottom: 1px solid #DDDDDD;
+	line-height: 45px;
+	font-size:14px;
+	background: #F3F3F3;
+	z-index: 100;
+}
+.listFix ul{
+	display: -webkit-box;
+	width: 100%;
+}
+.listFix ul li{
+	-webkit-box-flex:0.8;
+	text-align: center;
+	color: #545454;
+	font-size: 14px;
+}
+.listFix ul li.active{
+	color:#24988b;
+}
+.listFix ul li.active span{
+	background: url(../img/mine/sanActive.png) no-repeat center center;
+	width: 20px;
+	height: 45px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 12px;
+}
+.listPrice span,.listCreated span{
+	background: url(../img/list/san.png) no-repeat center center;
+	width: 20px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 10px;
+}
+.listDiqu span{
+	background: url(../img/list/san1.png) no-repeat center center;
+	width: 20px;
+	height: 45px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 10px;
+}
+.listZhTai span{
+	background: url(../img/mine/san.png) no-repeat center center;
+	width: 20px;
+	height: 45px;
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 10px;
+}
+.listChange{
+	background: url(../img/list/listSmall.png) no-repeat center center;
+	width: 40px;
+	background-size: 16px;
+}
+/*下拉菜单*/
+.listTwo{
+	width: 30%;
+	position: fixed;
+	top:90px;
+	left: 0;
+	z-index: 200;
+	background: #EFEFF4;
+	height: 225px;
+	line-height: 44px;
+	color: #666;
+	text-align:center;
+	font-size:14px;
+}
+.listTwo li.active{
+	background: #FFFFFF;
+	color: #333333;
+	border-left: 3px solid #24988b;
+}
+.listThree li{
+	width: 70%;
+	position: fixed;
+	top:90px;
+	z-index: 200;
+	background: #ffffff;
+	height: 225px;
+	left: 30%;
+	line-height: 44px;
+	color: #666;
+	text-indent: 20px;
+	display: none;
+	font-size:14px;
+}
+.listThree li span{
+	display: block;
+}
+/*列表部分*/
+#listProduct{
+  margin-top: 90px;
+}
+#listProduct>li{
+	width: 50%;
+	height: 245px;
+	overflow: hidden;
+	background: #FFFFFF;
+	margin-left: -5px;
+  border-left: 5px solid #EEF1F8;
+  border-bottom: 5px solid #EEF1F8;
+  float: left;
+}
+#listProduct>li>a {
+	height:185px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width: 500px;
+}
+#listProduct>li image{
+	max-width:100%;
+	max-height:185px;
+}
+#listProduct>li p{
+	padding: 3.5px 5px;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+#listProduct p.loveDdP2 view{
+	color: #24988b;
+  display: inline-block
+}
+.listMenu{
+	background: #FFFFFF;
+	position: fixed;
+	top:86px;
+	width: 100%;
+	z-index: 100;
+	border-bottom: 1px solid #F3F3F3;
+}
+.listMenuUl1{
+	width: 98%;
+	margin: 10px auto;
+	max-height: 140px;
+	overflow: auto;
+	margin-bottom: 15px;
+}
+.listMenuUl1 li{
+	width: 16%;
+	margin: 5px 1%;
+	text-align: center;
+	height: 30px;
+	background: #F3F3F3;
+	color: #666666;
+	line-height: 30px;
+	font-size: 13px;
+	float: left;
+	overflow: hidden;
+	padding: 0 1%;
+}
+.listMenuUl1 li.active{
+	background: #24998B;
+	color: #FFFFFF;
+}
+.listFix image{
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 15px;
+}
+.listDiqu image{
+  height:6px;
+}

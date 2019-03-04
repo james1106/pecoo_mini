@@ -1,0 +1,67 @@
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
+<loading hidden="{{paybtn}}">
+  获取支付数据...
+</loading>
+<view style="overflow: hidden;margin-bottom: 120rpx;overflow-y: auto;">
+  <!-- 收货地址 -->
+  <user-address userName="{{orderDetail.receiveName}}" mobile="{{orderDetail.receiveTel}}" address="{{orderDetail.receiveAddress}}" showArrow="{{false}}"></user-address>
+  <view style="height: 20rpx;background: #F3F3F3"></view>
+  <!-- 商品信息 -->
+  <extravagances-order pic="{{orderDetail.goodsThumbnailUrl}}" goodsName="{{orderDetail.goodsName}}" price="{{orderDetail.goodsPrice}}" color="{{orderDetail.goodsColor}}" size="{{orderDetail.goodsSize}}" priceUnit="{{orderDetail.priceUnit}}" num="{{orderDetail.buyNum}}"></extravagances-order>
+  <!-- 订单状态 -->
+  <view class="order-status">
+    <view>
+      <text>运费</text>
+      <text>¥{{orderDetail.priceFreight}}</text>
+    </view>
+    <view>
+      <text>订单状态</text>
+      <text class="theme-col">{{orderDetail.orderStateMc}}</text>
+    </view>
+    <view>
+      <text>订单号</text>
+      <text>{{orderDetail.orderNo}}</text>
+    </view>
+    <view style="font-size: 15px;border-bottom: none">
+      <text>支付总价</text>
+      <text>¥{{orderDetail.priceTotal}}</text>
+    </view>
+  </view>
+  <!-- 可用余额 -->
+  <view class="balance">
+    <view class="money" bindtap="changePay">
+      <view>
+        <text>可用余额</text>
+        <text class="theme-col">(¥{{orderDetail.usedMoney}})</text>
+      </view>
+      <view>
+        <text wx:if="{{realBalanceMoney}}" style="padding-right: 10rpx;">-¥{{realBalanceMoney}}</text>
+        <image src="{{baseImg}}common/no_checked.png" wx:if="{{!payType}}" class="checked-pic"></image>
+        <image src="{{baseImg}}common/checked.png" wx:else class="checked-pic"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 支付方式 -->
+  <view class="payment">
+    <view class="pay-mode">
+      <text>支付方式:</text>
+      <navigator url="/pages/limitState/limitState" style="color: #999;">限额说明<image style="width: 28rpx;height: 28rpx;" src="{{baseImg}}common/limit_icon.png"></image></navigator>
+    </view>
+    <view class="wx-box {{disable ? 'transparency' : ''}}">
+      <view style="display: flex;">
+        <image class="wx-pic" src="{{baseImg}}common/weixinIcon.png"></image>
+        <text style="padding-left: 10rpx;margin-top: 12rpx;">微信</text>
+      </view>
+      <view>
+        <image class="checked-pic" src="{{baseImg}}common/checked.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部支付 -->
+<view class="order-bottom" style="justify-content: space-between;">
+  <view style="margin-left: 30rpx;">合计: <text class="theme-col">¥{{payMoney}}</text></view>
+  <view style="margin-right: 30rpx;" class="pay" bindtap="pay">支付</view>
+</view>

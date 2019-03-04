@@ -1,0 +1,156 @@
+.message{
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #999999;
+  line-height: 24px;
+  background: #f3f3f3;
+}
+.message span{
+  padding:7px 5px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+.message image{
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-bottom: 4px;
+}
+.loginTitle{
+  margin: 15px 0 20px 0;
+}
+.loginTitle>view{
+  width: 50%;
+  float: left;
+  font-size: 15px;
+  text-align: center;
+  padding: 10px 0;
+  background: #f3f3f3;
+}
+.loginTitle>view.active{
+  background: url(https://www.pecoo.com/pecooh5/img/mine/loginBg.png)no-repeat;
+  color: #ffffff;
+  background-size: 100%;
+}
+.loginTitle>view span{
+  display: block;
+  font-size: 12px;
+  color: #999999;
+  padding-top: 3px
+}
+.loginTitle>view.active span{
+  color: #ffffff;
+}
+.formView{
+ padding: 0 10px 50px 10px;
+}
+.regPhone input{
+  display: block;
+  width: 75%;
+  float: left;
+  background: #f3f3f3;
+  font-size: 15px;
+  height: 48px;
+  border-radius: 5px 0 0 5px;
+  text-indent: 10px;
+}
+.loginPhone input{
+  background: #f3f3f3;
+  font-size: 15px;
+  height: 48px;
+  border-radius: 5px;
+  padding: 0 10px;
+  line-height: 48px;
+}
+.regPhone button{
+  height: 48px;
+  background: #24998b;
+  display: block;
+  width: 25%;
+  float: left;
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 0 5px 5px 0;
+  line-height: 48px;
+}
+.regPass>view{
+  font-size: 15px;
+  line-height: 50px;
+}
+.regPass>input{
+  background: #f3f3f3;
+  font-size: 15px;
+  height: 48px;
+  border-radius: 5px;
+  padding-left: 10px
+}
+.regPass>button{
+  position: absolute;
+  border:none;
+  background: none;
+  right: 0;
+  top: 50px;
+  z-index: 100;
+  font-size: 15px;
+  color: #24998b;
+  height: 48px;
+  line-height: 48px;
+}
+.regPass>image{
+  position: absolute;
+  width: 110px;
+  height: 38px;
+  right:5px;
+  top:55px;
+  z-index: 100;
+}
+.regXieyi{
+  font-size: 12px;
+  margin: 20px 0;
+}
+.regXieyi navigator{
+  color: #24998b;
+  display: inline
+}
+.submitBtn{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 48px;
+  color: #ffffff;
+  border-radius: 0;
+  font-size: 15px;
+  line-height: 48px;
+  background: #24998b!important;
+  left: 0;
+  z-index: 101;
+}
+.loginMima{
+  font-size: 12px;
+  text-align: right;
+  color: #24998b;
+  line-height: 40px;
+}
+#verificationCodeTemp{
+  width: 0;
+  height: 0;
+  padding: 0;
+  min-height: 0;
+}
+.getverificationCode{
+  width: 135px;
+}
+.registerTop{
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffffff;
+  right: 5px;
+  top:25px;
+}
+.registerTop image{
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}

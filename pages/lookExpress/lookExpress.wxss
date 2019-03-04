@@ -1,0 +1,91 @@
+page{
+	background: #FFFFFF;
+}
+.public-title{
+  margin: 20rpx 0;
+	font-size: 14px;
+	color: #0db789;
+	text-indent: 20rpx;
+	border-left: 10rpx solid #0DB789;
+}
+.list{
+  font-size: 15px;
+  margin: 20rpx 0rpx;
+  overflow: hidden;
+}
+.active{
+  color: #333333 !important;
+}
+.time{
+  width: 200rpx;
+  height: 100rpx;
+  text-align: center;
+}
+.hours{
+  color: #BBBBBB;
+}
+.date{
+  font-size: 12px;
+  padding-top: 10rpx;
+  color:#CCCCCC;
+}
+.msg{
+  flex: 1;
+  min-width: 500rpx;
+  padding-bottom: 40rpx;
+  color: #bbbbbb;
+  border-bottom: 1rpx solid #F3F3F3;
+  align-items: center;
+}
+.words{
+  float: left;
+}
+.bottom_arrow{
+  margin-top: 30rpx;
+  width: 14px;
+  height: 14px;
+}
+.arrow-box{
+  width: 50rpx;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.thread{
+  position: absolute;
+  left: 98rpx;
+  top: 102rpx;
+  min-height: 40rpx;
+  width: 4rpx;
+  background: #F3F3F3;
+}
+.info{
+  background: #F3F3F3;
+  float: left;
+  width: 100%;
+  color:#b4b4b4;
+}
+.infos{
+  display: flex;
+  font-size: 14px;  
+}
+.speck{
+  width: 200rpx;
+  height: auto;
+  border-left: 1rpx solid #dddddd;
+  text-align: center;
+  padding: 20rpx 0;
+  background: url(https://static.pecoo.com/images/common/express.png) no-repeat center top;
+  background-size: 6px;
+}
+.first{
+  margin-top: 20rpx;
+}
+.last{
+  background-size: 0;
+}
+.info-detail{
+  flex: 1;
+  padding: 20rpx 20rpx 20rpx 0;
+  border-bottom: 1rpx solid #dddddd;
+}

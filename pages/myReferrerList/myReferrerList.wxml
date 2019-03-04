@@ -1,0 +1,19 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view style="height: 100%;background: #FFFFFF">
+  <view class="referrerUl1">
+    <view>手机号</view>
+    <view>注册时间</view>
+  </view>
+  <!--推荐记录-->
+  <view style="margin-top: 140rpx;">
+    <view wx:for="{{userRecommendsList}}" wx:key="{{item.id}}" class="item-list"> 
+      <text>{{item.mobile}}</text>
+      <text>{{item.regTime || ''}}</text>
+    </view>
+  </view>
+  <pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+  <load-all wx:if="{{hidden && pageNum >= 2 && userRecommendsList.length >= totalCount}}"></load-all>
+  <no-data wx:if="{{hidden && !userRecommendsList.length}}"></no-data>
+</view>

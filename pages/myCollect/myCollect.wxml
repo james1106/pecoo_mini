@@ -1,0 +1,78 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<!-- 0 --》拍卖会  1 --》 拍卖行  2 --》 拍品 3 --》 奢侈品 -->
+<view class="cate-top">
+  <view wx:for="{{cateList}}" wx:key="{{item.id}}" data-index="{{index}}" data-type="{{item.type}}" bindtap="changeCate" class="{{selected == item.id ? 'active' : ''}}">{{item.title}}</view>
+</view>
+<view class="action" wx:if="{{renderData.length}}">
+  <text wx:if="{{selected == 0}}">共<text class="num">{{totalCount}}</text>场拍卖会</text>
+  <text wx:if="{{selected == 1}}">共<text class="num">{{totalCount}}</text>场拍卖行</text>
+  <text wx:if="{{selected == 2}}">共<text class="num">{{totalCount}}</text>件拍品</text>
+  <text wx:if="{{selected == 3}}">共<text class="num">{{totalCount}}</text>件奢侈品</text>
+  <text class="edit" wx:if="{{!edit}}" bindtap="edit">编辑</text>
+  <text class="complete" wx:if="{{edit}}" bindtap="complete">完成</text>
+</view>
+<view class="all-list-box {{edit ? 'margin' : ''}}" style="height:{{edit ? height + 'px' : 'auto'}}">
+  <view wx:for="{{renderData}}" wx:for-index="index" data-index="{{index}}" wx:key="{{item.id}}" data-id="{{item.id}}" class="item-list-box" bindtap="goPages">
+    <view wx:if="{{edit}}" class="checked-box">
+      <image class="pic" wx:if="{{item.checked}}" src="{{baseImage}}common/checked.png" mode="aspectFit"></image>
+      <image class="pic" wx:if="{{!item.checked}}" src="{{baseImage}}common/no_checked.png" mode="aspectFit"></image>
+    </view>
+    <view class="item-pic-box">
+      <image wx:if="{{selected == 0}}" src="{{item.auctionThumPic || baseImage + 'common/default_medium.png'}}" mode="aspectFit"></image>
+      <image wx:if="{{selected == 3 || selected == 2}}" src="{{item.thumbnailUrl|| baseImage + 'common/default_medium.png'}}" mode="aspectFit"></image>
+      <image wx:if="{{selected == 1}}" src="{{item.pic|| baseImage + 'common/default_medium.png'}}" mode="aspectFit"></image>
+    </view>
+    <view class="item-content" wx:if="{{selected == 0}}">
+      <view class="warp goodsname">{{item.lotNum}}{{item.name}}</view>
+      <view class="theme-col overdue" wx:if="{{currentTime > item.startTime}}">已过期</view>
+      <view class="pro-time">
+        <text>开拍时间:</text>
+        <text class="theme-col" style="padding-left: 10rpx">{{item.startTimeStr}}</text>
+      </view>
+    </view>
+    <view class="item-content" wx:if="{{selected == 1}}">
+      <view class="pro-name">{{item.name}}</view>
+      <view class="pro-time">
+        <text>竞拍地点:</text>
+        <text style="color: #D74A42;padding-left: 10rpx; font-size: 14px;">{{item.address}}</text>
+      </view>
+    </view>
+    <view class="item-content" wx:if="{{selected == 2}}">
+      <view class="warp goodsname">Lot{{item.lotNum}}:{{item.engName}}</view>
+      <view class="overdue" wx:if="{{currentTime < item.startTime}}">
+        <text>起拍价:</text>
+        <text style="color: #D74A42;padding-left: 10rpx; font-size: 14px;">{{item.priceUnit}}{{item.startPrice}}</text>
+      </view>
+      <view class="overdue theme-col" wx:else>已过期</view>
+      <view class="pro-time">开拍时间: <text class="theme-col">{{item.startTimeStr}}</text></view>
+    </view>
+    <view class="item-content" wx:if="{{selected == 3}}">
+      <view class="pro-name ">{{item.goodsName}}</view>
+      <view class="pro-time">
+        <text>一口价:</text>
+        <text style="color: #D74A42;padding-left: 10rpx; font-size: 14px;">{{item.priceUnit}}{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{edit}}" class="del-bottom">
+  <view class="all" bindtap="changeAllChecked">
+    <view class="all-checked">
+      <image class="pic" wx:if="{{checkedAll}}" src="{{baseImage}}common/checked.png" mode="aspectFit"></image>
+      <image class="pic" wx:if="{{!checkedAll}}" src="{{baseImage}}common/no_checked.png" mode="aspectFit"></image>
+    </view>
+    <text style="padding-left: 30rpx;" bindtap="checkedAll">全选</text>
+  </view>
+  <view class="del" bindtap="del">删除</view>
+</view>
+<view class="not-box" wx:if="{{!renderData.length && hidden}}">
+  <view class="not-pic">
+    <image src="{{baseImage}}common/notCollection.png" mode="aspectFit"></image>
+  </view>
+  <view class="not-words">暂无收藏</view>
+  <navigator class="btn" open-type="switchTab" url="{{selected == '3' ? '/pages/extravagances/extravagances' : '/pages/index/index'}}">随便看看</navigator>
+</view>
+<pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+<load-all wx:if="{{hidden && pageNum >= 2 && renderData.length == totalCount}}"></load-all>

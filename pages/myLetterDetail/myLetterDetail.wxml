@@ -1,0 +1,8 @@
+<view class="step-style"></view>
+<view class="msg-box">
+  <view class="msg-title">
+    <view>{{detail.title}}</view>
+    <view style="color: #999999;font-size: 12px;font-family: 'ArialMT'">{{detail.sendTimeStr}}</view>
+  </view>
+  <view class="msg-content">{{detail.content}}</view>
+</view>

@@ -1,0 +1,10 @@
+<view class="pay-title">
+  <view style="font-size: 14px;" wx:if="{{rechargeType == '01'}}">账户余额充值</view>
+  <view style="font-size: 14px;" wx:else>账户保证金充值</view>
+  <view class="money">¥{{rechargeMoney}}</view>
+</view>
+<view class="receivables">
+  <text>收款方</text>
+  <text>拍库网</text>
+</view>
+<view class="pay {{disable ? 'disable' : ''}}" bindtap="pay">立即支付</view>

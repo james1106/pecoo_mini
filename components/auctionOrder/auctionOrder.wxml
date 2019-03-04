@@ -1,0 +1,10 @@
+<view class="product-info" style="margin: {{marginVal}}" bindtap="jump">
+  <view class="product-img">
+    <image src="{{pic}}" mode="aspectFit"></image>
+  </view>
+  <view class="product-cont">
+    <view class="product-name">{{goodsName}}</view>
+    <view class="product-price" style="margin-top: 20rpx;">我的报价：{{priceUnit}}{{clientPrice}}</view>
+    <view class="product-price">成交价：{{priceUnit}}{{transPrice}}</view>
+  </view>
+</view>

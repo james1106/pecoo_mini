@@ -1,0 +1,67 @@
+<view class="user-box">
+  <view class="user-left {{userName ? 'change-top' : ''}}">
+    <view class="user-pic" wx:if="{{userName}}">
+      <image src="{{userImage}}"></image>
+    </view>
+    <view class="user-mobile" wx:if="{{userName}}">
+      <text>{{userName}}</text>
+      <view class="default uncertified" wx:if="{{isCertificated == null || isCertificated == 'N'}}">未认证</view>
+      <view class="default certified" wx:if="{{isCertificated == 'Y'}}">已认证</view>
+    </view>
+    <view class="user-mobile" wx:else>
+      <navigator url="/pages/login/login" class="go-login">登录/注册</navigator>
+      <view class="new-user">新用户注册赠送200金币</view>
+    </view>
+  </view>
+  <!-- <image src="{{baseImg}}mine/right-open.png" wx:if="{{isCertificated == 'Y'}}" class="right-icon" mode="widthFix"/> -->
+  <view class="go-myletter" bindtap="goMyLetters">
+    <image src="{{baseImg}}mine/msg.png" class="message"></image>
+    <text class="msg-count" wx:if="{{msgCount}}"></text>
+  </view> 
+</view>
+<view class="my-content">
+  <view class="my-order" bindtap="goOrder">
+    <view>我的订单</view>
+    <view style="color: #999999;">查看全部
+      <image src="{{baseImg}}mine/right-open.png" style="width:10rpx;height: 20rpx;"  mode="aspectFit"></image>
+    </view>
+  </view>
+  <view class="process-box">
+    <view wx:for="{{process}}" wx:key="{{item.name}}" data-url="{{item.url}}" data-isLogin="{{item.isLogin}}" bindtap="goPages" >
+      <image class="item-image" style="max-width:{{item.width}};max-height:{{item.height}}" src="{{baseImg + item.image}}" mode="aspectFit"></image>
+      <view>{{item.name}}</view>
+    </view>
+  </view>
+</view>
+<view class="my-fn">
+  <view wx:for="{{myFn}}" wx:key="{{item.name}}" data-isLogin="{{item.isLogin}}" class="elem-box {{(index+1) % 3 !== 0 ? 'border' : ''}}" data-url="{{item.url}}" bindtap="goPages">
+     <view class="elem-image" style="width: {{item.width}};height: {{item.height}}">
+      <image src="{{baseImg + item.image}}" mode="aspectFit"></image>
+    </view>
+    <view class="elem-name">{{item.name}}</view>
+  </view>
+</view>
+<view class="new-task-box" wx:if="{{versionNewStatus == 'Y' && (taskCertificated != 'Y' || buyStatus != 'Y')}}">
+  <view class="new-task-title" bindtap="goNewTask">
+    <text>新手任务</text>
+    <image src="{{baseImg}}common/right_arrow.png" class="arrow"></image>
+  </view>
+  <view class="new-task-content" bindtap="goNewTask">
+    <view>
+      <image wx:if="{{!userName}}" class="common-pic" src="{{baseImg}}mine/registered.png"></image>
+      <image wx:else class="common-pic" src="{{baseImg}}mine/not_registered.png"></image>
+      <view class="{{userName ? '' : 'have'}}">完成注册</view>
+    </view>
+    <view>
+      <image wx:if="{{taskCertificated == 'Y'}}" class="common-pic" src="{{baseImg}}mine/not_authenticate.png"></image>
+      <image wx:else class="common-pic" src="{{baseImg}}mine/authenticate.png"></image>
+      <view class="{{taskCertificated == 'Y' ? '' : 'have'}}">实名认证</view>
+    </view>
+    <view>
+      <image wx:if="{{buyStatus == 'Y'}}" class="common-pic" src="{{baseImg}}mine/not_purchased.png"></image>
+      <image wx:else class="common-pic" src="{{baseImg}}mine/purchased.png"></image>
+      <view class="{{buyStatus == 'Y' ? '' : 'have'}}">首单购买</view>
+    </view>
+  </view>
+</view>
+<view class="call" bindtap="callme">客服热线: 400-111-2016</view>

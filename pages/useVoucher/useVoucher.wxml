@@ -1,0 +1,28 @@
+<view class="not" bindtap="notUseVoucher">
+  <text>不使用优惠券</text>
+  <image wx:if="{{!selectedId}}" src="{{baseImg}}common/check_green.png" class="check-pic"></image>
+  <image wx:else src="{{baseImg}}common/no_checked.png" class="check-pic">></image>
+</view>
+<view class="len">有<text style="color: #D74A42">{{useVoucherList.length}}</text>个优惠券可用</view>
+<view wx:for="{{useVoucherList}}" wx:key="{{item.id}}" class="item-list" wx:for-index="index" data-index="{{index}}" data-id="{{item.id}}" bindtap="clickVoucher">
+  <view class="item-top">
+    <view style="min-width: 200rpx;">
+      <text class="code">¥</text>
+      <text class="actual-money">{{item.actualMoney}}</text>
+    </view>
+    <view class="actual-detail">
+      <view>{{item.rule}}</view>
+      <view class="private">{{item.scope}}</view>
+    </view>
+    <view class="pics">
+      <image wx:if="{{selectedId == item.id}}" src="{{baseImg}}common/check_green.png" class="check-pic"></image>
+      <image wx:else src="{{baseImg}}common/no_checked.png" class="check-pic">></image>
+    </view>
+  </view>
+  <view class="item-bottom">
+    <text class="term">有效期：{{item.startTimeShow}} 至 {{item.endTimeShow}}</text>
+    <navigator class="records" wx:if="{{currentTab==3}}" hover-class="none" url="/pages/useRecords/useRecords?id={{item.id}}">使用记录</navigator>
+    <image wx:if="{{currentTab==3}}" src="{{baseImg}}common/use.png" class="voucher-pic"></image>
+    <image wx:if="{{currentTab==4}}" src="{{baseImg}}common/overstayed.png" class="voucher-pic"></image>
+  </view>
+</view>

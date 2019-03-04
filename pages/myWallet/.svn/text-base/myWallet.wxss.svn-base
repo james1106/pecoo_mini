@@ -1,0 +1,153 @@
+page{
+	background:#f3f3f3;
+}
+.walletDiv{
+	top:0;
+	width:100%;
+	background :#fff;
+}
+header{
+	height: 44px;
+	text-align: center;
+	line-height: 44px;
+	display: -webkit-box;
+	font-size: 15px;
+	background: #f3f3f3;
+	position: fixed;
+	top:0;
+	color:#333;
+	width: 100%;
+	z-index:300;
+	border-bottom:1px solid #d5d5d5;
+}
+header p{
+	-webkit-box-flex: 1;
+	color:#333;
+	font-size:16px;
+}
+
+.walletUl1{
+	display: -webkit-box;
+	width: 100%;
+	height: 44px;
+	font-size: 15px;
+	line-height: 44px;
+	text-align: center;
+	position: fixed;
+	z-index: 500;
+	background: #ffffff;
+	top: 0px;
+	border-bottom: 1px solid #F3F3F3;
+}
+.walletUl2{
+	margin-top: 44px; 
+}
+.walletUl2>div{
+	display:none;
+}
+.walletUl1 view{
+	-webkit-box-flex: 1;
+	margin: 0 20px;
+}
+.walletUl1 view.active{
+	border-bottom: 2px solid #24988b;
+	color: #24988b;
+}
+
+/**底部**/
+.fixUl{
+	position: fixed;
+	bottom: 0;
+	height: 44px;
+	font-size: 15px;
+	line-height: 44px;
+	width: 100%;
+	background: #FFFFFF;
+}
+.fixUl>navigator,.fixUl>view{
+	width: 33.33%;
+	float: left;
+	text-align: center;
+}
+.moneyDiv{
+	margin-top: 44px;
+	background: #FFFFFF;
+	text-align: center;
+	padding-bottom: 50px;
+}
+.moneyDiv image{
+	vertical-align: middle;
+	width: 30px;
+  height: 30px;
+	margin-top: -13px;
+	margin-right: 10px;
+}
+.moneyDivD>view{
+	padding-top: 50px;
+	font-size: 15px;
+	line-height: 20px;
+}
+.moneyDiv span{
+	font-size: 24px;
+	line-height: 50px;
+}
+/**收支明细部分**/
+.walletUl2 ul{
+	display: none;
+}
+.walletUl2 ul li{
+	height: 50px;
+	padding: 10px 20px;
+	border-bottom: 1px solid #F3F3F3;
+	font-size: 14px;
+	line-height: 25px;
+}
+.walletUl2P1{
+	width: 70%;
+	float: left;
+	text-align: left;
+}
+.walletUl2P1 span:first-child{
+	font-size: 15px;
+}
+.walletUl2P1 span:last-child{
+	color: #999999;
+}
+.walletUl2P2{
+	width: 30%;
+	float: right;
+	text-align: right;
+}
+.walletUl2P2 span:first-child{
+	color: #24988b;
+	/*color: #0db718;*/
+}
+.myWalletIncome{
+	width: 80%;
+	height: 44px;
+	background: #24998B;
+	display: block;
+	margin: 30px auto;
+	text-align: center;
+	line-height: 44px;
+	color: #FFFFFF;
+	font-size: 14px;
+}
+
+.voucherNone{
+	text-align: center;
+	font-size: 14px;
+	line-height: 25px;
+	background: #F3F3F3;
+}
+.voucherNone img{
+	margin-top: 30px;
+	width: 80px;
+}
+.voucherNone p{
+	color: #999999;
+	line-height: 40px;
+}
+.voucherNone a{
+	color: #DB1014;
+}

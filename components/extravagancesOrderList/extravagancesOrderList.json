@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "extravagances-order": "/components/extravagancesOrder/extravagancesOrder"
+  }
+}

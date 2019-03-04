@@ -1,0 +1,66 @@
+<auction-goods thumbnailUrl="{{goods.thumbnailUrl}}" goodsName="{{goods.goodsName}}" priceUnit="{{goods.priceUnit}}" clientPrice="{{goods.clientPrice}}" startTimeShow="{{goods.startTimeShow}}" address="{{goods.address}}"></auction-goods>
+<view class="apply-content">
+  <view class="apply-title" bindtap="showType">
+    <text>申请原因<text class="theme-col">*</text></text>
+    <text>{{applyCause}}   ></text>
+  </view>
+  <view class="desc-title">问题描述<text class="theme-col">*</text></view>
+  <view class="detail-info">
+    <textarea style="width: {{textareaWidth}}px" placeholder='请您在此描述包裹的详细问题' placeholder-style="color: #999999;font-size: 12px;" value="{{problemDesc}}" maxlength="200" bindinput="changeText"></textarea>
+    <text class="cur-num">{{curNumber}} /</text>
+    <text class="total-num">200</text>
+  </view>
+  <view class="upload-title">上传图片
+    <text class="theme-col">*</text>
+    <text style="color: #999999; font-size: 12px;">(5-8张)</text>
+  </view>
+  <view class="upload-info">
+    <view>为了更好处理您的申请，请务必上传如下要求的图片：</view>
+    <view>●外箱多角度照片</view>
+    <view>●箱子内部照片</view>
+    <view>●货品破损照片</view>
+    <view>●开箱查验单</view>
+    <view>●部分地区邮政的开拆单（必须签字盖章）</view>
+    <view>具体照片示例<text class="look" bindtap="look">点击查看></text></view>
+  </view>
+  <view class="upload-file" bindtap="selectPic" wx:if="{{!picture.length}}">
+    <image src="{{baseImg}}order/add.png" class="add-pic"></image>
+    <view class='add-file'>添加图片</view>
+  </view>
+  <scroll-view class="picture" scroll-with-animation="true" wx:else scroll-x>
+    <view wx:for="{{picture}}" wx:key="item" wx:for-index="index" class="item-picture-box">
+      <image class="item-pics" src="{{item}}" mode="aspectFit"></image>
+      <image src="{{baseImg}}order/delete.png" class="delete" data-index="{{index}}" bindtap="deletePic"></image>
+    </view>
+    <view wx:if="{{picture.length < 8}}" class="item-picture-box default-box" bindtap="selectPic">
+      <image src="{{baseImg}}order/default_add.png" style='width: 164rpx;height: 164rpx;'></image>
+    </view>
+  </scroll-view>
+  <view class="submit" bindtap="submit">提交</view>
+</view>
+<!-- 遮罩 -->
+<view class="shade-black {{showPopup ? '' : 'none'}}" bindtap="close"></view>
+<view class="apply-type {{showPopup ? '' : 'none'}}">
+  <view class="title">申请原因</view>
+  <view class="cur-type" style="border-bottom: 1rpx solid #EEEEEE;" data-type="d" bindtap="changeType">
+    <view>
+      <view class="type-icon">丢</view>
+      <view class="type-content">
+        <view class="fail-goods">丢货</view>
+        <view class="fail-detail">收到货物部分或全部丢失</view>
+      </view>
+    </view>
+    <image class="checked-pic" src="{{reasonType == 'd' ? baseImg + 'common/checked.png' : baseImg + 'common/no_checked.png'}}"></image>
+  </view>
+  <view class="cur-type" data-type="p" bindtap="changeType">
+    <view>
+      <view class="type-icon">碎</view>
+      <view class="type-content">
+        <view class="fail-goods">碎货</view>
+        <view class="fail-detail">收到货物破损</view>
+      </view>
+    </view>
+    <image class="checked-pic" src="{{reasonType == 'p' ? baseImg + 'common/checked.png' : baseImg + 'common/no_checked.png'}}"></image>
+  </view>
+  <view class="close" bindtap="close">关闭</view>
+</view>

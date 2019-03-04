@@ -1,0 +1,58 @@
+const app = getApp()
+const api = require('../../utils/api.js')
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    banners:[],
+    classify:[],
+    Hei:''
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    let H5 = "H5";
+    let tokenId = wx.getStorageSync('tokenId');
+    let requestBanner = api.queryBannerUrl({
+      sourceMode: H5,
+      tokenId: tokenId,
+      type: "02"
+    });
+    requestBanner.then((res) => {
+      this.setData({
+        banners: res.banners
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+
+    let requestclassify = api.getSubSaleKindsUrl({
+      sourceMode: H5,
+      tokenId: tokenId
+    });
+    requestclassify.then((res) => {
+      this.setData({
+        classify: res.firstKinds
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  imgH: function (e) {
+    var winWid = wx.getSystemInfoSync().windowWidth;    
+    var imgh = e.detail.height;　　　　　　
+    var imgw = e.detail.width;
+    var swiperH = winWid * imgh / imgw + "px"　
+    this.setData({
+      Hei: swiperH　　　　　　　　
+    })
+  },
+  onShareAppMessage: function () {
+    
+  }
+})

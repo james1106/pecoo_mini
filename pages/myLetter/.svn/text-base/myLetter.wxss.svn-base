@@ -1,0 +1,67 @@
+page{
+	background: #F3F3F3;
+}
+div,p,ul,li{
+  display: block;
+}
+.letterUl{
+	padding: 0 10px;
+}
+.letterUl li{
+	position: relative;
+}
+.letterUl li navigator>p{
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	text-align: center;
+}
+.letterUl li image{
+	right:-10px;
+	top:20px;
+	width: 25px;
+  height: 25px;
+}
+.letterUl li navigator{
+	color: #666666;
+}
+.letterUl li div{
+	border: 1px solid #DDDDDD;
+	background: #FFFFFF;
+	padding:5px 10px;
+}
+.letterUl li navigator div p:first-child{
+	font-size: 14px;
+	line-height: 30px;
+}
+.letterUl li div p:last-child{
+	color: #999;
+	line-height: 30px;
+  font-size: 14px;
+}
+.letterUl li navigator span{
+	position: absolute;
+	left: -3px;
+	top:27px;
+	display: block;
+	width: 8px;
+	height: 8px;
+	background: #E93B39;
+	border-radius: 50%;
+}
+
+
+/**站内信详情**/
+.letterDetail{
+	background: #FFF;
+	padding: 10px;
+	color: #666;
+}
+.letterDetail>p{
+	font-size: 14px;
+	line-height: 30px;
+}
+.letterDetail>div{
+	font-size: 12px;
+	line-height: 20px;
+}

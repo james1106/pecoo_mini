@@ -1,0 +1,78 @@
+<view wx:for="{{auctionOrderList}}" wx:key="{{item.goodsId}}" class="item-order" wx:for-index="index">
+  <view class="item-order-num">
+    <text class="order-no">订单号:    {{item.orderNo}}</text>
+    <text style="white-space:nowrap;" class="theme-col">{{item.orderStatusMc}}</text>
+  </view>
+  <view class="item-order-content" bindtap="goOrderDetail" data-id="{{item.orderId}}">
+    <view class="pic-box">
+      <image src="{{item.thumbnailUrl}}" mode="aspectFit"></image>
+    </view>
+    <!-- item.orderStatus == '01' && item.orderType == '01' 修改报价 -->
+    <view class="{{item.orderStatus == '01' && item.orderType == '01' ? 'height' : ''}} item-name" wx:if="{{item.orderId != modifyId}}">
+      <view class="goods-name">{{item.goodsName}}</view>
+      <view class="item-info" wx:if="{{item.orderStatus == '01'}}">起拍价:{{item.priceUnit}}{{item.startPrice}}</view>
+      <view class="item-info" wx:if="{{item.orderStatus != '01'}}">成交价:{{item.priceUnit}}{{item.transPrice ? item.transPrice : 0}}</view>
+      <view class="item-info">我的报价:{{item.priceUnit}}{{item.clientPrice}}</view>
+      <!-- 00 || 01 || 10  显示开拍时间和地点 -->
+      <view class="item-info" wx:if="{{item.surplusTime < 0 && (item.orderStatus == '00' || item.orderStatus == '01' || item.orderStatus == '10')}}">开拍时间:{{item.startTimeShow}}</view>
+      <view wx:if="{{item.surplusTime > 0}}">距开拍:<text class="theme-col {{item.showTime[0] == '00'?'none':''}}">{{item.showTime[0]}}天</text>
+        <text class="theme-col">{{item.showTime[1]}}时</text>
+        <text class="theme-col">{{item.showTime[2]}}分</text>
+        <text class="theme-col">{{item.showTime[3]}}秒</text>
+      </view>
+      <view class="item-info" wx:if="{{item.orderStatus == '00' || item.orderStatus == '01' || item.orderStatus == '10'}}">开拍地点:{{item.address ? item.address : '暂无'}}</view>
+    </view>
+    <!-- 修改报价 -->
+    <view class="{{item.orderStatus == '01' && item.orderType == '01' ? 'height' : ''}} price" wx:else>
+      <view class="reduce {{disableReduce ? 'min-reduce' : ''}}" data-maxPrice="{{item.highestClientPrice}}" data-clientPrice="{{item.clientPrice}}" data-unit="{{item.priceUnit}}" bindtap="reduce"></view>
+      <input type="number" value="{{modifyPrice}}" bindinput="changeNumber" class="num"></input>
+      <view class="add add-bg" data-maxPrice="{{item.highestClientPrice}}" bindtap="add"></view>
+    </view>
+  </view>
+  <view class="item-order-price">
+    <view style="display: flex;font-size: 12px;">
+      <view wx:if="{{item.orderStatus == '90' || item.orderStatus == '92'}}">
+        总价:   <text class="texts"> - </text>
+      </view>
+      <view wx:if="{{item.orderStatus == '30' || item.orderStatus == '20'}}">
+        货款:   ¥<text class="texts" style="padding-right: 20rpx;">{{item.goodsAmountRmb}}</text>
+        运费:   ¥<text class="texts">{{item.totalFreightRmb}}</text>
+      </view>
+      <view wx:if="{{item.orderStatus == '25' || item.orderStatus == '94' || item.orderStatus == '96'}}">
+        总价:   ¥<text class="texts">{{item.sumAmount}}</text>
+      </view>
+      <view wx:if="{{item.orderStatus == '15' && item.paymentStatus == '05'}}">
+        运费总价:    ¥<text class="texts">{{item.totalFreightRmb}}</text>
+      </view>
+      <view wx:if="{{item.orderStatus == '15' && item.paymentStatus == '04'}}">
+        运费总价:    <text class="texts">正在核算运费</text>
+      </view>
+      <view wx:if="{{item.orderStatus == '15' && item.paymentStatus == '03'}}">
+        货款总价:    ¥<text class="texts">{{item.realMoney}}</text>
+      </view>
+      <!-- <view wx:if="{{item.orderType == '03'}}">
+        货款总价:    ¥<text class="texts">{{item.realMoney}}</text>
+      </view> -->
+      <view wx:if="{{item.orderStatus == '10' || item.orderStatus == '01' || item.orderStatus == '00'}}">
+        货款总价:    <text wx:if="{{item.realMoney}}">¥</text><text class="texts">{{item.realMoney ? item.realMoney : '待核算'}}</text>
+      </view>
+    </view>
+    <view>
+      <text class="process-btn1 process-btn" data-price="{{item.clientPrice}}" data-maxprice="{{item.highestClientPrice}}" data-id="{{item.orderId}}" data-index="{{index}}" wx:if="{{item.orderStatus == '01' && item.orderType == '01' && item.orderId != modifyId}}" bindtap="modify">修改报价</text>
+      <text data-index="{{index}}" data-id="{{item.orderId}}" data-startPrice="{{item.startPrice}}" wx:if="{{item.orderId == modifyId}}" class="process-btn1 process-btn" bindtap="changePrice">完成</text>
+      <text wx:if="{{item.orderId == modifyId}}" class="process-btn2 process-btn" bindtap="cancelModify">取消</text>      
+      <text wx:if="{{item.orderStatus == '00' || (item.orderStatus == '01' && item.orderType == '01' && item.orderId != modifyId) || (item.orderType == '03' && item.orderStatus == '01' && item.orderId != modifyId)}}" class="process-btn1 process-btn" bindtap="cancelOrder" data-id="{{item.orderId}}" data-index="{{index}}">取消订单</text>
+      <text wx:if="{{item.orderStatus == '00' && item.isCancel == 'Y'}}" class="process-btn2 process-btn" bindtap="goPay" data-paymentStatus="{{item.paymentStatus}}" data-id="{{item.orderId}}">去支付</text>
+      <text wx:if="{{item.orderStatus == '15' && ( item.paymentStatus == '01' || item.paymentStatus == '03' || item.paymentStatus == '05' || item.paymentStatus == '07' )}}" class="process-btn2 process-btn"  bindtap="goPay" data-paymentStatus="{{item.paymentStatus}}" data-id="{{item.orderId}}">去支付</text>
+      <text wx:if="{{item.orderStatus == '25' || item.orderStatus == '30'}}" class="process-btn1 process-btn" data-id="{{item.orderId}}" bindtap="lookLogistics">查看物流</text>
+      <text wx:if="{{item.orderStatus == '25'}}" class="process-btn2 process-btn" data-id="{{item.orderId}}" data-index="{{index}}" bindtap="confirmGoods">确认收货</text>
+    </view>
+  </view>
+</view>
+<view class="rules bottom-pos" animation="{{animationData}}" wx:if="{{showRecommendPrice}}">
+  <view class="rules-title">您的报价不符合出价规则，请从以下报价中选择一个正确报价</view>
+  <view>
+    <view hover-class="item-suggest-price" wx:for="{{recommendList}}" wx:key="{{item}}" bindtap="setPrice" data-variable="{{item}}" class="item-price">{{item}}</view> 
+  </view>
+</view>
+<view class="mask" bindtap="hideMask" wx:if="{{showRecommendPrice}}"></view>

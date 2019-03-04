@@ -1,0 +1,12 @@
+<view class="love-list" style="margin: {{marginValue}}">
+  <view wx:for="{{extravagancesList}}" wx:key="{{item.id}}" data-id="{{item.id}}" for-index="index" class="item-list {{(index+1) % 2 == 0 ? 'right' : 'left'}}" bindtap="clickHandle">
+    <view class="image-box">
+      <image src="{{item.thumbnailUrl}}" mode="aspectFit"></image>
+    </view>
+    <view class="name">{{item.goodsName}}</view>
+    <view class="price">
+      <text class="discount" wx:if="{{item.isDiscount == 'Y'}}">{{item.priceDiscount}}折</text>
+      {{item.priceUnit}}{{item.price}}
+    </view>
+  </view>
+</view>

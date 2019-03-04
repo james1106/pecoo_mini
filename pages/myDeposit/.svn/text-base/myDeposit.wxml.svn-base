@@ -1,0 +1,47 @@
+<view >
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading>
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">已激活</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">已过期</view>
+    </scroll-view>
+    <!--滚动tab-->
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}rpx">
+        <swiper-item wx:for="{{[0,1]}}" wx:key="">
+            <scroll-view scroll-y="true" class="scoll-h" bindscrolltolower='lower'>
+                <block style="margin-bottom:50px;">
+                  <view class="voucherUl2" id="vouchersListId">
+                    <view style="display: block;" wx:for="{{voucherList}}"  wx:key="">
+                      <view class="{{currentTab==0?'voucherUl2Dl1':'voucherUl2Dl2'}}">
+                        <dt>
+                          ￥ <span>{{item.actualMoney}}</span>
+                        </dt>
+                        <view class="voucherUl2Dl1DD1">
+                          <view>保证金券</view>
+                          <view>仅限拍卖使用</view>
+                          <view>每张券可拍3件拍品</view>
+                          <view>有效期至：<span>{{item.endTime}}</span></view>
+                        </view>
+                        <view class="voucherYes"></view>
+                      </view>
+                    </view>
+                    <div class="voucherNone none" style="display: block;" wx:if="{{voucherList.length == 0}}">
+                      <image src="{{baseImg}}mine/voucherOutdate.png"></image>
+                      <p>没有更多保证金券~</p>
+                    </div>
+                  </view>
+                </block>
+                <view style='height:40px;'></view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+    <!--兑换代金券-->
+		<view class="changeVou" bindtap='jihuo'>激活保证金券</view>
+		<!--兑换代金卷的弹框-->
+		<view class="duihuanVou {{duihuanTan?'show':'hidden'}}">
+			<input type="text" placeholder="请输入要激活的保证金卷码" id="voucherVal" name="voucherVal" bindinput='voucherInput'/>
+			<view bindtap='convertVoucher'>确定激活</view>
+		</view>
+</view>

@@ -1,0 +1,1 @@
+<view wx:for="{{brandList}}" wx:key="{{item.code}}" class="item-brand {{brand == item.name ? 'selected' : ''}}" data-code="{{item.code}}" data-name="{{item.name}}" bindtap="changeBrand">{{item.name}}</view>

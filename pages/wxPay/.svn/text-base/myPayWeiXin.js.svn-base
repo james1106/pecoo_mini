@@ -1,0 +1,134 @@
+var app = getApp();
+const api = require('../../utils/api.js')
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    tokenId:'',
+    messId:'',
+    moneyId:'',
+    rechargeOrder: '',
+    rechargeWay: '',
+    pay:false
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId')
+    })
+    var rechargeType;
+    if (options.rechargeWay == "01") {
+      rechargeType ='账户余额充值';
+    } else {
+      rechargeType = '账户保证金充值';
+    }
+    this.setData({
+      messId: rechargeType,
+      moneyId: options.rechargeMoney
+    })
+    this.setData({
+      rechargeOrder: options.rechargeOrder
+    })
+    this.setData({
+      rechargeWay: options.rechargeWay,
+      pay: true
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  // onShareAppMessage: function () {
+    
+  // },
+  wxPayment: function (e) {
+    var self = this
+    self.setData({
+      loading: true
+    })
+    let openid = wx.getStorageSync('wxOpenId');
+    if (openid) {
+      let rechargeApp = api.rechargeAppUrl({
+        sourceMode: app.globalData.sourceMode,
+        openId: openid,
+        tokenId: this.data.tokenId,
+        rechargeOrder: this.data.rechargeOrder,
+        rechargeWay: '03'
+      });
+      rechargeApp.then((res) => {
+        if (res.code == "0000") {
+          var payargs = JSON.parse(res.backdata)
+          wx.requestPayment({
+            'timeStamp': payargs.timestamp,
+            'nonceStr': payargs.noncestr,
+            'package': payargs.package,
+            'signType': payargs.signType, 
+            'paySign': payargs.finalsign,
+            'success': function (rs) {
+              wx.switchTab({
+                url: `/pages/mine/mine`
+              })
+             },
+            'fail': function (rs) {
+            }
+          })
+          self.setData({
+            loading: false
+          })
+        }
+      })
+    } else {
+      console.log('err:', "请求支付失败,openid为空")
+      self.setData({
+        loading: false
+      })
+    }
+  }
+})

@@ -1,0 +1,29 @@
+<view>
+  <view id="addresDiv" class="address">
+    <view class="addressDiv {{item.isDefault == 'Y' ?'active':''}}"  wx:for="{{addresses}}"  wx:key="">
+      <view class="addressDivP1">
+        <span>{{item.recipientName}}</span>
+        <span class="fr">{{item.phone}}</span>
+      </view>
+      <view class="addressDivP2">
+        {{item.province}}{{item.city}}{{item.area}}{{item.detailAddress}}
+      </view>
+      <view class="addressDivP3">
+        <span class="addressDivP3Span" bindtap='defaultAddress' data-variable="{{item.pkId}}">
+          默认地址</span>
+        <span class="delete fr" bindtap='deleteAddressCha' data-variable="{{item.pkId}}">删除</span>
+        <navigator class="bianji fr" url="/pages/addAddress/addAddress?recipientName={{item.recipientName}}&pkId={{item.pkId}}&phone={{item.phone}}&detailAddress={{item.detailAddress}}&isDefault={{item.isDefault}}&province={{item.province}}&city={{item.city}}&area={{item.area}}&zipCode={{item.zipCode}}">编辑</navigator>
+      </view>
+    </view>
+    <div class="voucherNone none" style="display: block; margin-top:80px;" wx:if="{{addresses.length == 0}}">
+      <image src="{{baseImg}}mine/voucherOutdate.png"></image>
+      <p>没有更多地址</p>
+    </div>
+  </view>
+  <!--无地址-->
+  <view class="addressNone none">您还没有添加新地址</view>
+  <!--添加新地址-->
+  <navigator url="/pages/addAddress/addAddress" class="{{addressesLength?'':'hidden'}}">
+    <p class="addAddress"><span>+</span>添加新地址</p>
+  </navigator>
+</view>

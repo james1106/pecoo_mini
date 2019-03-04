@@ -1,0 +1,8 @@
+<view class="user-address" bindtap="clickEvent">
+  <image class="address-pic" src="{{baseImg}}common/address1.png"></image>
+  <view class="user-info">
+    <view>收件人：{{userName}}<text style="padding-left: 20rpx;">{{mobile}}</text></view>
+    <view class="address">{{address}}</view>
+  </view>
+  <image class="arrow-pic" wx:if="{{showArrow}}" src="{{baseImg}}common/right_arrow.png"></image>
+</view>

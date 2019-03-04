@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "分类",
+  "usingComponents": {
+    "pull-up-loading": "/components/pullUpLoading/pullUpLoading",
+    "load-all": "/components/loadAll/loadAll",
+    "no-data": "/components/noData/noData"
+  }
+}

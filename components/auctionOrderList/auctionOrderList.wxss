@@ -1,0 +1,207 @@
+/* 订单内容 */
+.order-content{
+  width: 100%;
+  font-family: 'MicrosoftYaHei';
+}
+.order-no{
+  white-space: nowrap;
+  max-width: 560rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.item-order{
+  background: #FFFFFF;
+  margin-bottom: 20rpx;
+  font-size: 14px;
+}
+.theme-col{
+  color: #D74A42;
+}
+.texts{
+  font-size: 16px;
+}
+.item-order-num{
+  padding: 0 30rpx;  
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  color: #333333;
+  align-items: center;
+}
+.item-order-content{
+  width: 100%;
+  display: flex;
+  padding-top: 20rpx;
+  align-items: center;
+  min-height: 180rpx;
+  background: #FAFAFA;
+  color: #999999;
+}
+.pic-box{
+  margin: 10rpx 20rpx 0 30rpx;
+  width: 140rpx;
+  height: 140rpx;
+}
+.pic-box image{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.item-name{
+  flex: 1;
+  padding-right: 30rpx;
+  align-items: center;
+}
+/* width得改成自适应 */
+.goods-name{
+  width: 500rpx;
+  color: #333333;
+  font-size: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.item-info{
+  padding: 5rpx 0;
+  font-size: 14px;
+}
+.set-width{
+  width: 350rpx;
+}
+.item-order-price{
+  padding: 0 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+}
+.item-money{
+  min-width: 100rpx;
+  margin-right: 29rpx;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+}
+.process-btn{
+  display: inline-block;
+  width: 180rpx;
+  height: 60rpx;
+  font-family: 'MicrosoftYaHei';
+  font-size: 13px;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 60rpx;
+}
+.process-btn1{
+  color: #666666;
+  border: 1rpx solid #CCCCCC;
+  margin-left: 20rpx;
+}
+.process-btn2{
+  color: #D74A42;
+  border: 1rpx solid #D74A42;
+  margin-left: 20rpx;
+}
+/* 修改报价 */
+.price{
+  flex: 1;
+  min-height: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.num{
+  color: #333333;
+  display: block;
+  width: 150rpx;
+  border: 1rpx solid #757575;
+  text-align: center;
+  height: 72rpx;
+  font-size: 16px;
+}
+.reduce{
+  background: url(https://static.pecoo.com/images/detail/reduce_selected.png) no-repeat center center;
+}
+.min-reduce{
+  background: url(https://static.pecoo.com/images/detail/reduce.png) no-repeat center center;
+  border-color: #DDDDDD !important;
+}
+.add{
+  border-left: none !important;
+}
+.reduce{
+  border-right: none !important;
+}
+.reduce, .add{
+  border: 1rpx solid #757575;
+  width: 72rpx;
+  height: 72rpx;
+  text-align: center;
+  line-height: 72rpx;
+  background-size: 26rpx;
+}
+.add-bg{
+  background: url(https://static.pecoo.com/images/detail/add_selected.png) no-repeat center center;
+  background-size: 26rpx;
+}
+.height{
+  height: 262rpx;
+}
+/* 推荐价格 */
+.rules{
+  position: fixed;
+  width:100%;
+  height: auto;
+  left:0%;
+  bottom:0px;
+  background: #fff;
+  font-size: 18px;
+  text-align:center;
+  line-height: 20px;
+  z-index: 3001;
+}
+.rules-title{
+  font-size: 13px;
+  color: #999999;
+  display: flex;
+  align-items: center;
+  font-family: 'PingFang SC';
+  height: 109rpx;
+  padding:0 40px;
+  border-bottom: 1rpx solid #E2E2E2;
+}
+.item-price{
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #333333;
+}
+.sug-box>view:last-child{
+  height: 130rpx;
+  display: flex;
+  align-items: center;
+}
+.item-suggest-price{
+  background: #F4F4F4;
+}
+.cancel{
+  width: 90%;
+  margin-left: 5%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #1B1B1B;
+  color: #FFFFFF;
+}
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0,0,0,.5);
+  overflow: hidden;
+}
+.bottom-pos{-webkit-transform:translateY(100%);transform:translateY(100%);}

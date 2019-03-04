@@ -1,0 +1,84 @@
+<!--头部-->
+<view>
+<!-- <view class='registerTop'>
+  <image src='/images/index/indexIcon-active.png'></image>
+</view> -->
+  <view class='message'>
+  <span>
+  <image src='/images/index/indexIcon-active.png' bindtap='messageImagebackIndex'></image>
+  </span>
+  您正在使用的是微信默认分配的临时拍库账号，请补齐拍库信息或登录已有拍库账号。拍库承诺保障您的手机号码及账号信息隐私安全。补全后，手机号码或微信账号均可登录拍库APP及PC网站。
+  </view>
+  <view class='loginTitle clearfix'>
+    <view class="{{formShow?'active':''}}" bindtap='registerShow'>
+      补全账号信息
+      <span>填写手机号</span>
+    </view> 
+    <view class="{{formShow?'':'active'}}" bindtap='loginShow'>
+      已有拍库账号
+      <span>登录并关联</span>
+    </view>
+  </view>
+  <!--注册登录-->
+  <view class='formView clearfix'>
+   <form bindsubmit='formSubmintReg' class="form {{formShow?'':'none'}} clearfix">
+    <view class='regPhone'>
+     <input type="number" placeholder="手机号码" name="userName" bindinput='setUserName'/>
+     <button bindtap='findCheckRegister'>校验</button>
+    </view>
+    <view class="regPass {{regHide?'none':''}}">
+      <view>设置密码</view>
+      <input type="password" placeholder="6-20个字符，建议至少使用2种字符组合" name="pwd"/>
+    </view>
+    <view class="regPass {{regHide?'none':''}}">
+      <view>确认密码</view>
+      <input type="password" placeholder="请再次输入密码" name="password"/>
+    </view>
+    <view  class="regPass {{regHide?'none':''}} rel">
+      <view>验证码</view>
+      <input type="text" placeholder="请输入图片验证码" name="picCode" bindinput='setPicCode'/>
+      <input hidden="true" value='{{verificationCodeTemp}}' name="verificationCodeTemp"/>
+      <image src='{{picCodeImg}}' bindtap='validateImg'/>
+    </view>
+    <view class="regPass {{regHide?'none':''}} rel">
+      <view>输入短信验证码</view>
+      <input type="number" placeholder="请输入短信验证码" name="messageCode"/>
+      <button bindtap='verificationCode' disabled="{{disabled}}" class='getverificationCode'>{{time}}</button>
+    </view>
+    <view class="regPass {{regHide?'none':''}}">
+      <view>推荐码</view>
+      <input type="text" placeholder="请输入推荐码" name="regCode" value="{{shareCode}}"/>
+    </view>
+    <view class="regXieyi {{regHide?'none':''}}">
+      确定提交即表示您同意
+      <navigator url="/pages/argeement/argeement">
+        《拍库用户注册协议》
+      </navigator>
+    </view>
+    <button class="submitBtn {{regHide?'none':''}}" type="primary" form-type='submit'>确定提交</button>
+  </form>
+  <!--登录-->
+   <form bindsubmit='formSubmintLogin' class="form {{formShow?'none':''}} clearfix">
+    <view class='loginPhone'>
+     <input type="number" placeholder="手机号码" name="userName" value='{{userName}}'/>
+    </view>
+    <view  class='regPass'>
+      <view>登录密码</view>
+      <input type="password" placeholder="密码" name="pwd"/>
+    </view>
+    <view class="fotDiv">
+      <navigator url="/pages/backPassword/backPassword" class="loginMima">忘记密码？</navigator>
+    </view> 
+    <button class="submitBtn" type="primary" form-type='submit'>确定提交</button>
+  </form> 
+  </view>
+  <!--黑色遮罩层-->
+    <view class="shadeBlack {{wxOpenId?'hidden':''}} {{getUser?'':'none'}}"></view>
+  <!--注册成功-->
+<!-- 需要使用 button 来授权登录 -->
+  <view class="drawer_box {{wxOpenId?'hidden':''}} {{getUser?'':'none'}}"> 
+    <view>请确定授权微信登录</view>
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfoAction" class="btn_ok">确定</button>
+  </view>
+</view>
+		

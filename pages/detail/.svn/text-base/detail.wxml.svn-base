@@ -1,0 +1,140 @@
+<view>
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading>
+<!--语音播报-->
+<audio id="myAudio"   src="{{voicebbUrl}}"> 
+</audio> 
+ <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-active-color="#666" style='height:{{Hei}}'>    
+    <block wx:for="{{banners}}" wx:for-index="index" wx:key="banners">    
+      <swiper-item>    
+        <view>  
+          <image src="{{item.bigPicUrl}}" class="slide-image"  mode="aspectFit" />  
+          </view> 
+      </swiper-item>    
+    </block>    
+  </swiper> 
+  <!---商品详情-->
+  <view class="productDetail rel">
+    <view class="proName">
+      <view>Lot:{{lotNum}}{{goodsName}}</view>
+      <image src="{{collectBg}}" bindtap='collectWay' class="proCollect"/>
+    </view>
+    <view class="proPrice">起拍价：
+      <span class="{{deletedata?'priceDel':'proPriceUnit'}}">{{priceUnit}}{{auctionGoods.startPrice}}</span> <span class="{{deletedata?'show':'hidden'}}" > {{priceUnit}}{{nowStartPrice}}</span>
+    </view>
+    <view class="proPrice2">估计报价：{{estimateMinMax}}</view>
+    <view class="proPrice2 bidNum {{deletedataNo?'show':'hidden'}}">当前竞拍人数：{{auctionGoods.bidNo}}人</view>
+    <view ><image src="{{baseImg}}detail/timeIcon.png" class="timeIcon"/>开拍时间：{{auctionGoods.startTime}} </view>
+    <view class="auctionAddress {{auctionGoods.address?'show':'hidden'}}"><image src="{{baseImg}}detail/didianIcon.png" class="timeIcon"/>开拍地点：{{auctionGoods.address}} </view>
+    <view class="auctionAuc {{auctionGoods.paName?'show':'hidden'}}"><image src="{{baseImg}}detail/auctionIcon.png" class="timeIcon"/> <navigator url="/pages/saleList/saleList?auctionId={{auctionGoods.paId}}" style="color:#24988B;display:inline;">所属拍卖会：{{auctionGoods.paName}}</navigator></view>
+  </view>
+  <!--横条-->    
+    <view class="hengP"></view>
+    <!--收货地址-->
+    <view class="addAddress" id="addAddressD">
+       <view class='addAddressIcon' bindtap='addressTan' wx:if="{{addresses.length == 0}}"><image src="{{baseImg}}detail/addAddressIcon.png"/> 请先添加收货地址</view> 
+      <view bindtap='addressTan' wx:if="{{addresses.length > 0}}" bindtap='addressTan'>送至  <span id="querenAddress">{{addressActive}}</span></view>
+      <image src="{{baseImg}}mine/rightOpen.png" class="rightOpen"/>
+    </view>
+  	<!--横条-->
+    <view class="hengP"></view> 
+    <!--拍品描述-->
+    <view class="proDescribe clearfix" style="margin-bottom: 55px;">
+      <view class="proDesUl1">
+        <view class="{{selected?'active':''}}" bindtap='selected'>拍品描述</view>
+        <view class="{{selected1?'active':''}}" bindtap='selected1'>注意事项</view>
+        <view class="{{selected2?'active':''}}" bindtap='selected2'>保证金规则</view>
+        <view class="{{selected3?'active':''}}" bindtap='selected3'>出价规则</view>
+      </view>
+      <view class="proDesUl2">
+        <view class="{{selected?'show':'hidden'}}">
+          <view class="productPic" id="productPic">
+            {{goodsDesc}}
+          </view>
+        </view>
+        <view class="{{selected1?'show':'hidden'}}">注：根据《拍卖法》的规定：买方应按照约定支付拍卖标的价款，未按照约定支付价款的，应当承担违约责任。通过竞买取得的拍品为特殊属性之商品，属于2014年3月15日起施行的《中华人民共和国消费者权益保护法》规定的“其他根据商品性质并经消费者在购买时确认不宜退货的商品，不适用无理由退货”。为了维护买卖双方的利益，规范网络拍卖市场的行为，如果因实物与描述明显不符，客户对拍品有退货的诉求，请在提货之日起7个工作日之内、物流发货请在签收之日起7个工作日内提出，逾期不予受理。不便之处，敬请谅解。</view>
+        <view class="{{selected2?'show':'hidden'}}">
+          <image src="{{baseImg}}detail/baoGui.png" mode="widthFix"></image>
+        </view>
+        <view class="{{selected3?'show':'hidden'}}">
+          <image src="{{baseImg}}detail/jingjiajieti.png" mode="widthFix" ></image>
+        </view>
+      </view>
+    </view>
+    <view style='height:50px;'></view>
+    <!--底部Fix-->
+    <view class="detailFix">
+      <view class="detailIndex detailKefu" bindtap='callMe'>
+          <image src="{{baseImg}}detail/kefuCoin.png" ></image>客服
+      </view>
+      <view class="detailIndex detailKefu" id="fanyiDiv" bindtap='fanyiDiv'>
+          <image src="{{baseImg}}detail/fanyiCoin.png" ></image>{{fanyiHtml}}
+      </view>
+      <view class="detailIndex detailKefu" id="yuyinCH" bindtap='yuyinCH'>
+          <image src="{{yuyinIcon}}" style="width:21px;"></image>语音播报
+      </view>
+      <view class="detailBid" bindtap='detailBid'>我要出价</view>
+    </view>
+    <!--出价弹框-->
+    <view class="bidDiv {{bidDivHide?'none':''}}" catchtouchmove="preventTouchMoveBid">
+      <view class="bidDiv1 rel">
+        <view class="abs bidDiv1D">
+          <view class="bidDiv1P">
+            <image src="{{bannersOne}}" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="bidDiv1D2" bindtap='detailBidNone'>
+          <view id="name2">Lot:{{lotNum}}{{goodsName}}</view>
+          <view class='proPrice'>起拍价：
+            <span class="{{deletedata?'priceDel':'proPriceUnit'}}">{{priceUnit}}{{auctionGoods.startPrice}}</span>            <span class="{{deletedata?'show':'hidden'}}" > {{priceUnit}}{{nowStartPrice}}</span>
+          </view>
+        </view>
+        <image src="{{baseImg}}detail/closeIcon.png" class="closeIcon"  bindtap='detailBidNone'></image>
+      </view>
+      <view class="bidMoney">
+        <view>出价金额：</view>
+        <view class="bidMoneyP2">
+          <span>拍卖行佣金：30%</span>
+          <span style="border-right: none;">平台服务费：10%</span>
+        </view>
+        <view class="rel bidMoneyP3">
+          <image src="{{baseImg}}detail/minIcon.png" class="min" bindtap='priceMin'></image>
+          <input class="text_box" name=""  value="{{priceValue}}"  id="inputPrice" type="number" pattern="^1\d{10}$" bindinput='priceInput'/> 
+          <image src="{{baseImg}}detail/addIcon.png" class="add abs" bindtap='priceAdd'></image>
+        </view>
+        <view class="rel bidMoneyP4">总价：<span class="unit">{{priceUnit}}{{priceValueAll}}</span>
+          <b  style="color:#999; font-size:14px;">约合人民币（￥{{priceValueRmb}}）元</b>
+        </view>
+      </view>
+      <view class="bidYes" bindtap='isHaveMoney'>确定</view>
+    </view>
+    <!--地址弹框-->
+    <view class="addressTan {{addressTanHide?'none':''}}" catchtouchmove="preventTouchMoveAdd">
+  <view class='addressTanTitle'>
+      选择地址
+    <image src="{{baseImg}}detail/closeIcon.png" class="closeIcon2" bindtap='addressTanHide'/>
+  </view>
+    <view class="addTanUl" id="allAddress"> 
+      <view bindtap='setClass' class="{{addressId == item.pkId?'active':''}}" data-text="{{item.province}}{{item.city}}{{item.area}}{{item.detailAddress}}" data-variable="{{item.pkId}}" wx:for="{{addresses}}"  wx:key="">
+        <b></b><p>{{item.province}}{{item.city}}{{item.area}}{{item.detailAddress}}</p><span></span>
+      </view>
+      <div class="voucherNone none" style="display: block; margin-top:80px;" wx:if="{{addresses.length == 0}}">
+        <p>您还没有收货地址奥~</p>
+      </div>
+    </view>
+    <view class="addNewDiv {{addressesLength?'':'hidden'}}">
+      <navigator url="/pages/addAddress/addAddress" style="color: #FFFFFF; display: block;"> ┼ 添加新地址</navigator>
+    </view>
+  </view> 
+  <!--推荐报价三个选项-->
+  <view class='sugView {{sugViewShow?"":"none"}}'>
+    <view>您的报价不符合出价规则，请从以下报价中选择一个正确报价</view>
+    <ul>
+       <li wx:for="{{SuggestPrice}}" wx:key="{{SuggestPrice}}" bindtap="setPrice" data-variable="{{item}}">{{item}}</li> 
+    </ul>
+    <view bindtap='setPriceNone'>取消</view>
+  </view>
+  <!--遮罩-->
+  <view class="shadeBlack {{shadeBlack?'':'none'}}" bindtap='shadeHide'></view>
+</view>

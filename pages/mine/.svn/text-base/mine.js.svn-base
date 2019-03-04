@@ -1,0 +1,136 @@
+var app = getApp();
+const api = require('../../utils/api.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    baseImg: 'https://www.pecoo.com/pecooh5/img/',
+    userName: '',
+    tokenId:'',
+    isChannel:'',
+    wxOpenIdLogin:'',
+    wxOpenId:'',
+    BalanceMoney:[],
+    wxNickName:'拍库',
+    wxHeadImage: 'https://www.pecoo.com/pecooh5/img/mine/logo.png',
+    messagesStateCount:''
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onShow: function (options) {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId'),
+      userName: wx.getStorageSync('userName'), 
+      isChannel: wx.getStorageSync('isChannel'),
+      wxOpenId: wx.getStorageSync('wxOpenId'),
+      wxOpenIdLogin: wx.getStorageSync('wxOpenIdLogin'),
+    })
+    if (this.data.wxOpenId == this.data.wxOpenIdLogin){
+      if (wx.getStorageSync('wxNickName')) {
+        this.setData({
+          wxNickName: wx.getStorageSync('wxNickName'),
+        })
+      }
+      if (wx.getStorageSync('wxHeadImage')) {
+        this.setData({
+          wxHeadImage: wx.getStorageSync('wxHeadImage'),
+        })
+      }
+    }else{
+      this.setData({
+        wxNickName: '拍库',
+        wxHeadImage: 'https://www.pecoo.com/pecooh5/img/mine/logo.png',
+      })
+    }
+    if (this.data.tokenId){
+      this.getBalanceMoney();
+    }
+    //获取未读站内信个数
+    let queryMyMessagesStateCount = api.queryMyMessagesStateCountUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId
+    });
+    queryMyMessagesStateCount.then((res) => {
+      if(res.code == "0000"){
+        this.setData({
+          messagesStateCount: res.messagesStateCount
+        })
+      }
+    }).catch((error) => { 
+     // console.log(error)
+    })
+  },
+  letterHref(){
+    wx.navigateTo({
+      url: `/pages/myLetter/myLetter`,
+    })
+  },
+  callme:function(){
+    wx.makePhoneCall({
+      phoneNumber: '4001112016',
+    })
+  },
+  getBalanceMoney(){
+    let queryMyPecoo = api.queryMyPecooUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId
+    });
+    queryMyPecoo.then((res) => {
+      this.setData({
+        BalanceMoney: res
+      })
+    }).catch((error) => {
+     // console.log(error)
+    })
+  }, 
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+ 
+ 
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.getBalanceMoney();
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  // onShareAppMessage: function () {
+    
+  // }
+})

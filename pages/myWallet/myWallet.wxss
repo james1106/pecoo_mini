@@ -1,0 +1,87 @@
+page{
+	background:#f3f3f3;
+}
+.wallet-header{
+	display: -webkit-box;
+	width: 100%;
+	height: 60px;
+	font-size: 15px;
+	line-height: 60px;
+	text-align: center;
+	position: fixed;
+	z-index: 500;
+	background: #ffffff;
+  font-family: 'MicrosoftYaHei';
+	top: 0px;
+	border-bottom: 1px solid #F3F3F3;
+}
+.wallet-header view{
+	-webkit-box-flex: 1;
+	margin: 0 60px 10px;
+}
+.wallet-header view.active{
+	border-bottom: 2px solid #D74A42;
+	color: #D74A42;
+}
+.payments{
+  margin: 30rpx 30rpx 0 0;
+  text-align: right;
+  font-size: 14px;
+  color: #999999;
+}
+/**底部**/
+.bottom{
+	position: fixed;
+	bottom: 0;
+	height: 130rpx;
+	font-size: 15px;
+	width: 100%;
+  line-height: 130rpx;
+	background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.expressive{
+  width: 290rpx;
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.recharge{
+  width: 290rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #1A191E;
+  margin-right: 20rpx;
+  color: white;
+  text-align:center;
+}
+.money-content{
+  margin-top: 70px;
+  background: #FFFFFF;
+  font-family: 'Microsoft YaHei';
+  font-size: 15px;
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.balance{
+  width: 50%;
+  height: 200rpx;
+  border-right: 1rpx solid #E2E2E2;
+  text-align: center;
+}
+.bond{
+  flex:1;
+  height: 200rpx;
+  text-align: center;
+}
+.public{
+  margin: 40rpx 0 59rpx; 
+}
+.primary{
+  font-size: 12px;
+  padding-left: 2px;
+}

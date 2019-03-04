@@ -1,0 +1,112 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<!-- 订单状态（00下单未付款；01已下单；10已受理（开始竞拍）；15竞拍成功，20已收款；25：已发货；30：已完成；90已取消；92竞拍失败；94违约冻结；96确认违约） -->
+<!-- 订单支付状态（01：待支付；03：待支付货款；04:待核算运费；05：待支付运费；07：待支付货款差额；10：已付运费） -->
+<!-- 货款支付状态（01未核算；03已核算；05已支付；04待支付差价） -->
+<!-- 运费支付状态（01未核算；03已核算；05已支付） -->
+<!-- commission 境外拍行佣金
+    serviceFee 拍卖平台服务费
+    goodsAmount 货款金额-合计（不含运费）
+    goodsAmountRmb 货款金额-合计-人民币（不含运费）
+    voucherMoney 优惠券抵扣金额
+    paySucTime 货款支付时间
+    freight 运费=实际运费+拍卖代运服务费
+    premiumAmount 保险费;
+    totalFreightRmb 合计运费-人民币(不含保险)
+    totalFreight 合计运费(不含保险)
+    freightSucTime 运费支付时间
+    totalNopremiumRmb 总金额-合计-人民币（不含保险费）
+    havePayRmb 已支付金额（人民币）
+    realMoney 实际支付金额 -->
+<!-- 地址 -->
+<view class="address-box" wx:if="{{curOrderDetail.receiveName && curOrderDetail.orderStatus != '00'}}">
+  <image class="address-pic" src="{{baseImg}}common/address_red.png" mode="aspectFit"></image>
+  <view class="address-cont">
+    <view>
+      <text>{{curOrderDetail.receiveName}}</text>
+      <text style="padding-left: 30rpx;">{{curOrderDetail.receiveTel}}</text>
+    </view>
+    <view style="color: #999999;font-size: 14px;padding-top: 14rpx;">地址：{{curOrderDetail.receiveAddress}}</view>
+  </view>
+  <view class="order-bg"></view>
+</view> 
+<!-- 订单号 -->
+<view style="overflow:hidden;" wx:if="{{hidden}}">
+  <view class="order-content {{curOrderDetail.collectGoodsCountdown != 0 ? 'bottom' : ''}}">
+    <view class="order-num">
+      <text>订单号:     {{curOrderDetail.orderNo}}</text>
+      <text class="theme-col">{{curOrderDetail.orderStatusMc}}</text>
+    </view>
+    <auction-goods thumbnailUrl="{{curOrderDetail.thumbnailUrl}}" goodsName="{{curOrderDetail.goodsName}}" priceUnit="{{curOrderDetail.priceUnit}}" clientPrice="{{curOrderDetail.clientPrice}}" startTimeShow="{{curOrderDetail.startTimeShow}}" address="{{curOrderDetail.address}}" goodsId="{{curOrderDetail.goodsId}}"></auction-goods>
+    <view wx:if="{{curOrderDetail.paymentStatus != '00' && curOrderDetail.paymentStatus != '01'}}">
+      <view class="total-price" wx:if="{{curOrderDetail.orderStatus == '90' || curOrderDetail.orderStatus == '15' || curOrderDetail.orderStatus == '92' || curOrderDetail.orderStatus == '94' || curOrderDetail.orderStatus == '96'}}">
+        <text>成交价</text>
+        <!-- <text class="theme-col" style="font-size: 14px">{{curOrderDetail.priceUnit}}{{curOrderDetail.clientPrice || '0.00'}}</text> -->
+        <text class="theme-col" style="font-size: 14px">{{curOrderDetail.priceUnit}}{{curOrderDetail.transPrice || 0}}</text>
+      </view>
+      <view style="overflow: hidden">
+        <view class="total-price" wx:if="{{curOrderDetail.orderStatus == '25' || curOrderDetail.orderStatus == '20' || curOrderDetail.orderStatus == '30'}}">
+          <text>总金额</text>
+          <text class="theme-col" style="font-size: 14px">¥{{curOrderDetail.totalNopremiumRmb}}</text>
+        </view>  
+        <view class="loans-price" wx:if="{{curOrderDetail.goodsAmountRmb * 1}}">
+          <text>货款金额</text>
+          <text class="theme-col">{{curOrderDetail.priceUnit}}{{curOrderDetail.goodsAmount}}(¥{{curOrderDetail.goodsAmountRmb}})</text>
+        </view>
+        <view class="price-detail" wx:if="{{curOrderDetail.goodsAmountRmb * 1}}">
+          <view>
+            <text>成交价</text>
+            <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.transPrice || '0.00'}}</text>
+          </view>
+          <view>
+            <text>境外拍卖会佣金</text>
+            <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.commission}}</text>
+          </view>
+          <view>
+            <text>平台服务费</text>
+            <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.serviceFee}}</text>
+          </view>
+          <view>
+            <text>使用优惠券</text>
+            <text>¥{{curOrderDetail.voucherMoney}}</text>
+          </view>
+        </view>
+        <view class="loans-price" wx:if="{{curOrderDetail.totalFreightRmb * 1}}">
+          <text>运费金额</text>
+          <text class="theme-col">{{curOrderDetail.priceUnit}}{{curOrderDetail.totalFreight}}(¥{{curOrderDetail.totalFreightRmb}})</text>
+        </view>
+        <view class="express-detail" wx:if="{{curOrderDetail.totalFreightRmb * 1}}"> 
+          <view>
+            <text>取货费</text>
+            <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.pickupFee}}</text>
+          </view>
+          <view>
+            <text>包装费</text>
+            <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.packFee}}</text>
+          </view>
+          <view>
+            <text>运费</text>
+            <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.freight}}</text>
+          </view>
+          <view>
+            <text>保险费</text>
+            <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.premiumAmount}}</text>
+          </view>
+          <view>
+            <text>代运服务费</text>
+            <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.freightServiceFee}}</text>
+          </view>
+          
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="confirm-goods-time" wx:if="{{curOrderDetail.collectGoodsCountdown != 0}}">剩余自动确认收货时间:{{curOrderDetail.collectGoodsCountdown}}</view>
+  <view class="detail-box" wx:if="{{curOrderDetail.orderStatus != '90' && curOrderDetail.orderStatus != '92'}}">
+    <!-- 没有申请售后或处理失败:0 已经申请售后正在处理:1 不显示申请售后过期或已完成:2 -->
+    <view class="after-sales" wx:if="{{curOrderDetail.afterSaleStatus == 0 || curOrderDetail.afterSaleStatus == 1}}" bindtap="afterSales">申请售后</view>
+    <!-- <navigator class="look" wx:if="{{curOrderDetail.orderStatus == '25' || curOrderDetail.orderStatus == '30'}}" hover-class="none" url="/pages/lookExpress/lookExpress?orderId={{curOrderDetail.id}}">查看物流</navigator> -->
+    <view class="services" bindtap="callMe">联系客服</view>
+  </view>
+</view>

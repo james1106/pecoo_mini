@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单详情",
+  "usingComponents": {
+    "process-btn": "/components/processBtn/processBtn",
+    "user-address": "/components/userAddress/userAddress"
+  }
+}

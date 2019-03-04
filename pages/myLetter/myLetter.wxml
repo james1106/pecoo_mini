@@ -1,0 +1,27 @@
+<loading hidden="{{hidden}}">
+  加载中...
+</loading> 
+<view class="msg-box">
+  <view wx:for="{{messagesList}}" wx:key="{{item.id}}" class="item-list {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" wx:for-index="index"  bindtouchmove='touchMove' bindtouchstart='touchStart'>
+    <navigator hover-class="none" url="/pages/myLetterDetail/myLetterDetail?title={{item.title}}&content={{item.content}}&id={{item.id}}&messageState={{item.messageState}}&index={{index}}&sendTimeStr={{item.sendTimeStr}}" class="item-detail">
+      <view wx:if="{{item.messageState == '01'}}" class="marking"></view>
+      <view class="item-left">
+        <image class="pics" src="{{baseImg}}mine/message.png" mode="aspectFit"></image>
+      </view>
+      <view class="item-right">
+        <view class="item-time">
+          <text style="color:#333333">系统通知</text>
+          <text style="float: right;color:#999999;font-size: 12px;">{{item.sendTimeStr}}</text>
+        </view>
+        <view class="item-content">{{item.content}}</view>
+      </view>
+    </navigator>
+    <view class="del" bindtap="delMessage" data-id="{{item.id}}" data-index="{{index}}">删除</view>
+  </view>
+</view>
+<view wx:if="{{messagesList.length == 0 && hidden}}" class="not-msg">
+  <image src="{{baseImg}}common/notMsg.png"></image>
+  <view class="words">暂无消息</view>
+</view>
+<pull-up-loading wx:if="{{loadMore}}"></pull-up-loading>
+<load-all wx:if="{{hidden && totalCount && messagesList.length >= 10 && messagesList.length == totalCount}}"></load-all>

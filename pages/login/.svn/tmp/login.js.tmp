@@ -1,0 +1,344 @@
+const app = getApp()
+const api = require('../../utils/api.js')
+const utilMd5 = require('../../utils/md5.js')
+Page({
+  data: {
+    userName: '',
+    pwd: '',
+    password: '',
+    messageCode: '',
+    regCode: '',
+    verificationCodeTemp: '',
+    picCodeImg: '',
+    formShow: true,
+    regHide:true,
+    tokenId:'',
+    userName:''
+  },
+  onLoad: function (options) { 
+  },
+  getIsSetting: function () {// 判断是否已授权 
+    wx.getSetting({
+      success(setRes) { 
+        if (!setRes.authSetting['scope.userInfo']) {
+          // wx.openSetting({//校验用户是否已授权
+          //   success: (res) => {
+          //   }
+          // })
+          wx.switchTab({
+            url: `/pages/login/login`
+          })
+        }
+      }
+    })
+  },
+  onShow:function () {
+    this.getIsSetting()
+    this.validateImg()
+  },
+  formSubmintReg: function (e) {
+    this.getIsSetting()// 判断是否已授权 
+    let objData = e.detail.value;
+    let pwd = utilMd5.hexMD5(objData.pwd);
+    let password = utilMd5.hexMD5(objData.password);
+    let wxOpenId = wx.getStorageSync('wxOpenId');
+    let wxNickName = wx.getStorageSync('wxNickName');
+    let wxHeadImage = wx.getStorageSync('wxHeadImage');
+    if (!wxOpenId) {
+      this.getIsSetting()// 判断是否已授权 
+    }
+    var mobile = /(^1[3|4|5|7|8|9][0-9]{9}$)/;
+    if (!mobile.test(objData.userName)) {
+      return app.showErrorModal('请输入正确手机号码！');
+    }
+    if (!objData.pwd || !objData.password) {
+      return app.showErrorModal('请输入您的密码！');
+    }
+    if (pwd != password) {;
+      return app.showErrorModal('两次密码不一致！');
+    }
+    if (!objData.messageCode){
+      return app.showErrorModal('请输入短信验证码！');
+    }
+    let registerUser = api.registerUrl({
+      sourceMode: app.globalData.sourceMode,
+      mobile: objData.userName,
+      pwd: pwd,
+      messageCode: objData.messageCode,
+      regCode: objData.regCode,
+      wxOpenId: wxOpenId,
+      wxNickName: wxNickName,
+      wxHeadImage: wxHeadImage
+    });
+    registerUser.then((res) => {
+      wx.setStorageSync('tokenId', res.tokenId);
+      wx.setStorageSync('userName', res.userName);
+      wx.setStorageSync('isCertificated', res.isCertificated);
+      wx.setStorageSync('isBindCard', res.isBindCard);
+      app.globalData.tokenId = res.tokenId;
+      if (res.code == "0000") {
+        wx.showToast({
+          title: '注册成功',
+          icon: 'success',
+          success: () => {
+            setTimeout(function () {
+              wx.switchTab({
+                url: `/pages/index/index`
+              })
+            }, 1500);
+          }
+        })
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.message,
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              return;
+            }
+          }
+        })
+      }
+    }).catch((error) => {
+      wx.showModal({
+        title: '提示',
+        content: error.data.message,
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+          }
+        }
+      })
+    })
+  },
+  formSubmintLogin: function (e) {
+    this.getIsSetting()// 判断是否已授权 
+    let objData = e.detail.value;
+    let pwd = utilMd5.hexMD5(objData.pwd);
+    let wxOpenId = wx.getStorageSync('wxOpenId');
+    let wxNickName = wx.getStorageSync('wxNickName');
+    let wxHeadImage = wx.getStorageSync('wxHeadImage');
+    if (!wxOpenId) {
+      this.getIsSetting()// 判断是否已授权 
+    }
+    var mobile = /(^1[3|4|5|7|8|9][0-9]{9}$)/;
+    if (!mobile.test(objData.userName)) {
+      return app.showErrorModal('请输入正确手机号码！');
+    }
+    if (!objData.pwd) {
+      return app.showErrorModal('请输入您的密码！');
+    }
+    let requestLogin = api.loginUrl({
+      sourceMode: app.globalData.sourceMode,
+      mobile: objData.userName,
+      pwd: pwd,
+      wxOpenId: wxOpenId,
+      wxNickName: wxNickName,
+      wxHeadImage: wxHeadImage
+    }); 
+    requestLogin.then((res) => { 
+      if (res.code == "0000") {
+        wx.setStorageSync('tokenId', res.tokenId);
+        wx.setStorageSync('userName', res.userName);
+        wx.setStorageSync('isCertificated', res.isCertificated);
+        wx.setStorageSync('isBindCard', res.isBindCard);
+        
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success',
+          success: () => {
+            setTimeout(function () { 
+              wx.switchTab({
+                url: `/pages/index/index`
+              })
+              // wx.navigateBack({
+              //   delta: 2
+              // }) 
+            }, 1500);
+          }
+        })
+      } else {
+        console.log(res.message);
+        wx.showModal({
+          title: '提示',
+          content: res.message,
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              return;
+            }
+          }
+        })
+      }
+    }).catch((error) => {
+      wx.showModal({
+        title: '提示',
+        content: error.data.message,
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+          }
+        }
+      })
+    })
+  },
+  registerShow() {
+    this.setData({
+      formShow: true
+    })
+    this.validateImg()
+  },
+  loginShow() {
+    this.setData({
+      formShow: false
+    })
+  },
+  validateImg: function(){
+    //console.log("用户登录,获取图片验证码", this.data.userName)
+    let verificationCode = api.verificationCodeTempUrl({});
+    verificationCode.then((res) => {
+      this.setData({
+        verificationCodeTemp: res
+      })
+      let validateImg = api.validateImgUrl({
+        getVerificationCodeTemp: res
+      });
+      validateImg.then((res) => {
+        var array = wx.base64ToArrayBuffer(res)
+        var base64 = wx.arrayBufferToBase64(array)
+        this.setData({ picCodeImg: 'data:image/png;base64,' + base64 })
+      })
+    })
+  },
+  verificationCode: function () {//用户登录注册,获取短信验证码
+    if (!this.data.userName) {
+      return app.showErrorModal('请输入您的手机号！');
+    }
+    if (!this.data.picCode) {
+      return app.showErrorModal('请输入图片验证码！');
+    }
+    let verificationCode = api.verificationCodeUrl({
+      sourceMode: app.globalData.sourceMode,
+      verificationCodeTemp: this.data.verificationCodeTemp,
+      picCode: this.data.picCode,
+      mobile: this.data.userName
+    });
+    verificationCode.then((res) => {
+      if (res.code != '0000') {//图片验证码填写错误
+        this.validateImg()
+        return app.showErrorModal(res.message);
+      }
+    })
+  },
+  setPicCode: function (e) {
+    this.data.picCode = e.detail.value;
+  },
+  setUserName: function (e) {
+    this.data.userName = e.detail.value;
+  },
+  findCheckRegister: function (e) {//校验手机号是否注册
+    //console.log("用户登录,校验手机号是否注册", this.data.userName)
+    var mobile = /(^1[3|4|5|7|8|9][0-9]{9}$)/;
+    if (!mobile.test(this.data.userName)) {
+      return app.showErrorModal('请输入正确手机号码！');
+    }
+    let verificationUserIsRegister = api.verificationUserIsRegisterUrl({
+      mobile: this.data.userName
+    });
+    verificationUserIsRegister.then((res) => {
+      if (res.code == '0000') {//手机号已注册
+        this.setData({
+          userName: this.data.userName
+        })
+        this.loginShow()
+      }else{
+        this.setData({
+          regHide: false
+        })
+      }
+      //console.log("用户登录,校验手机号是否注册", res)
+    })
+  },
+  getUserInfoAction: function () {
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (res_user) {
+              wx.request({
+                //后台接口地址
+                url: 'https://demo.pecoo.cn/API/api/login/getUserInfo.htm',
+                data: {
+                  code: res.code,
+                  encryptedData: res_user.encryptedData,
+                  iv: res_user.iv
+                },
+                method: 'GET',
+                header: {
+                  'content-type': 'application/json'
+                },
+                success: function (res) {
+                  wx.setStorageSync('wxOpenId', res.data.openid);
+                  wx.setStorageSync('wxNickName', res.data.nickName);
+                  wx.setStorageSync('wxHeadImage', res.data.avatarUrl);
+                  console.log("用户正常授权登录,获取用户信息")
+                }
+              })
+            },
+            // fail: function () {//用户拒绝授权登录
+            //   wx.showModal({
+            //     title: '提示',
+            //     content: '您点击了拒绝授权,将无法正常使用小程序,点击确定重新获取授权.',
+            //     success: function (res) {
+            //       if (res.confirm) {
+            //         wx.openSetting({//校验用户是否已授权
+            //           success: (res) => {
+            //             if (res.authSetting["scope.userInfo"]) {//用户重新授权登录
+            //               wx.login({
+            //                 success: function (res_login) {
+            //                   if (res_login.code) {
+            //                     wx.getUserInfo({
+            //                       withCredentials: true,
+            //                       success: function (res_user) {
+            //                         wx.request({
+            //                           url: 'https://demo.pecoo.cn/API/api/login/getUserInfo.htm',
+            //                           data: {
+            //                             code: res_login.code,
+            //                             encryptedData: res_user.encryptedData,
+            //                             iv: res_user.iv
+            //                           },
+            //                           method: 'GET',
+            //                           header: {
+            //                             'content-type': 'application/json'
+            //                           },
+            //                           success: function (res) {
+            //                             wx.setStorageSync('wxOpenId', res.data.openid);
+            //                             wx.setStorageSync('wxNickName', res.data.nickName);
+            //                             wx.setStorageSync('wxHeadImage', res.data.avatarUrl);
+            //                             console.log("用户拒绝授权后重新授权获取用户信息")
+            //                           }
+            //                         })
+            //                       }
+            //                     })
+            //                   }
+            //                 } 
+            //               });
+            //             }
+            //           },
+            //           fail: function (res) {
+            //           }
+            //         })
+            //       }
+            //     }
+            //   })
+            // },
+            complete: function (res) {
+            }
+          })
+        }
+      }
+    })
+  }
+})

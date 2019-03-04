@@ -1,0 +1,69 @@
+<view style="margin-top: 20rpx;height: 100%;">
+  <!-- 添加地址 -->
+  <view style="background: white;height: 100%;">
+		<div class="addAddress">
+			<p>
+				<span>收货人</span>
+				<input id="recipientName" value="{{recipientName}}" name="recipientName" type="text" bindinput='recipientNameInput' placeholder="请输入收货人的姓名" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" maxlength="60"/>
+			</p>
+			<p>
+				<span>联系电话</span>
+				<input id="phone" type="number" value="{{phone}}" name="phone" bindinput='phoneInput' placeholder="请输入收货人的手机号"  maxlength="15" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
+			</p>
+			<p>
+				<span>邮政编码</span>
+				<input id="zipCode" type="number" value="{{zipCode}}" name="zipCode" bindinput='zipCodeInput' placeholder="邮政编码" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" maxlength="10"/>
+			</p>
+			<p id="addAddress rel" bindtap="translate">
+				<span>所在地区</span>
+				<import src="../../model/model.wxml"/>
+        <view class="infoText">{{province}} {{city}} {{county}}</view>
+        <template is="areaData" data="{{...item}}"/>
+				<view class="addressRight"><image src="{{baseImg}}common/right_arrow.png" mode="aspectFit"/></view>
+			</p>
+			<p class="xiangxi">
+				<span>详细地址</span> 
+				<input id="detailAddress" name="detailAddress" value="{{detailAddress}}" bindinput='detailAddressInput' placeholder="请输入详细收货地址"  onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"></input>
+			</p>
+		</div>
+		<view wx:if="{{switchValue == 'N'}}" data-checkVal="Y" class="setMoren" bindtap="switchChange">
+      <image src="{{baseImg}}common/no_checked.png" mode="aspectFit" class="check"></image>
+			<text style="padding-left: 20rpx;">设为默认</text>
+		</view>
+    <view wx:else class="setMoren" data-checkVal="N" bindtap="switchChange">
+      <image src="{{baseImg}}common/checked.png" mode="aspectFit" class="check"></image>
+			<text style="padding-left: 20rpx;color: #E83E3E">设为默认</text>
+    </view>
+    <view class="bottom">
+      <view class="confirm" bindtap='saveClick'>确认</view>
+    </view>
+</view>
+</view>
+<!-- <view class="address-box">
+  <view>
+    <text>收货人</text>
+    <input placeholder="请输入收货人的姓名"></input>
+  </view>
+  <view>
+    <text>联系电话</text>
+    <input placeholder='请输入收货人的手机号'></input>
+  </view>
+  <view>
+    <text>邮政编辑</text>
+    <input placeholder='邮政编辑'></input>
+  </view>
+  <view bindtap="translate">
+    <text>所在地区</text>
+    <import src="../../model/model.wxml"/>
+    <view class="infoText">{{province}} {{city}} {{county}}</view>
+    <template is="areaData" data="{{...item}}"/>
+    <view class="addressRight">请选择<image src="{{baseImg}}mine/rightOpen.png" /></view>
+  </view>
+  <view>
+    <text>详细地址</text>
+    <input value="{{detailAddress}}"></input>
+  </view>
+  <view>
+    设为默认
+  </view>
+</view> -->

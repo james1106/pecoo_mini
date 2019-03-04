@@ -1,0 +1,11 @@
+<view wx:for="{{voucherList}}" wx:key="{{item.voucherCode}}" class="voucher-money">
+  <view class="item-top {{currentTab == 1 ? 'change-bgcol' : ''}}">
+    <text class="code">¥</text>
+    <text class="actual-money">{{item.actualMoney}}</text>
+    <view class="actual-detail">
+      <view>每张券最多可拍3件</view>
+      <view class="private">{{words}}</view>
+    </view>
+  </view>
+  <view class="item-bottom {{currentTab == 1 ? 'change-bgcol' : ''}}">有效期：{{item.startTime}} 至 {{item.endTime}}</view>
+</view>

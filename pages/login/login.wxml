@@ -1,0 +1,65 @@
+<view class="user-info">
+  <view data-selected="0" class="{{!selected ? 'active' : ''}}" bindtap="changeAccountHead">补全账号信息</view>
+  <view data-selected="1" class="{{!selected ? '' : 'active'}}" bindtap="changeAccountHead">已有拍库账号</view>
+</view>
+<view class="complete-info" wx:if="{{!selected}}">
+  <form class="clear" bindsubmit="regFormSubmit">
+    <view class="user-input">
+      <input type="number" name="username" bindinput="mobileInputHandle" style="min-width: 80%" placeholder='输入手机号'></input>
+      <text class="verify" bindtap='checkMobile'>校验</text>
+    </view>
+    <view wx:if="{{isMobile}}">
+      <view class="user-input">
+        <input type="text" placeholder='输入图形码' name="picCodeVal" bindinput="picCodeInputHandle"></input>
+        <image src="{{picCode}}" style="width: 200rpx;height: 80rpx" bindtap="changePicCode"></image>
+      </view>
+      <view class="user-input">
+        <input type="number" placeholder='输入验证码' name="msgCode" bindinput="changeMsgCode"></input>
+        <text bindtap="getMsgCode" class="{{disabled ? 'computing' : 'msg-code'}}" style="display: inline-block;min-width: 200rpx;"> {{msgHtml}}</text>
+      </view>
+      <view class="user-input">
+        <input type="text" style="min-width: 65%" password="{{isPwd}}" name="password" value="{{password}}" placeholder='输入密码(8～20位字母/数字)' bindinput='pwdInputHandle'></input>
+        <view style="display: flex;">
+          <view class="password-pic" bindtap="claerPassword">
+            <image class="del" src="{{baseImg}}common/del.png"></image>
+          </view>
+          <view class="password-pic" bindtap="showPwd">
+            <image class="shut-eye" src="{{baseImg}}common/shut.png" wx:if="{{isPwd}}"></image>
+            <image class="open-eye" src="{{baseImg}}common/open.png" wx:else></image>
+          </view>
+        </view>
+      </view>
+      <view class="user-input">
+        <input type="text" bindinput="shareCodeInputHandle" value="{{shareCode}}" placeholder='输入推荐码(选填)'></input>
+      </view>
+      <view class="user-submit">
+        <button formType="submit" class="btn-action">提交</button>
+      </view>
+      <view class="agree">点击“提交”即表示您同意<navigator url="/pages/argeement/argeement" class="protocol">《拍库用户协议》</navigator></view>
+    </view>
+  </form>
+  <view class="words" style="margin: 30rpx 70rpx 0;">
+您正在使用的是微信默认分配的临时拍库账号，请补齐拍库信息或登录已有拍库账号。拍库承诺保障您的手机号码及账号信息隐私安全。补全后，手机号码或微信账号均可登录拍库APP及PC网站。</view>
+</view>
+<!-- <view wx:if="{{selected}}" class="have">
+  <input type="number" value="{{username}}" placeholder='输入手机号'></input>
+  <input type="text" value="{{password}}" password placeholder='输入密码(6～20位字母/数字)'></input>
+  <navigator url="/pages/backPassword/backPassword" hover-class="none" class="forget-pwd">忘记密码</navigator>
+  <view class="login btn-action" bindtap="loginIn">登陆并关联</view>
+  <view class="words">您正在使用的是微信默认分配的临时拍库账号，请补齐拍库信息或登录已有拍库账号。拍库承诺保障您的手机号及账号信息隐私安全。补齐后，手机号码或微信账号均可登录拍库APP及PC网站。</view>
+</view> -->
+<view wx:if="{{selected}}" class="have">
+  <form bindsubmit="loginIn">
+    <input type="number" name="username" value="{{username}}" placeholder='输入手机号'></input>
+    <input type="text" name="password"  password placeholder='输入密码'></input>
+    <navigator url="/pages/backPassword/backPassword" hover-class="none" class="forget-pwd">忘记密码</navigator>
+    <button class="login btn-action" formType="submit">登录</button>
+    <view class="words">您正在使用的是微信默认分配的临时拍库账号，请补齐拍库信息或登录已有拍库账号。拍库承诺保障您的手机号及账号信息隐私安全。补齐后，手机号码或微信账号均可登录拍库APP及PC网站。</view>
+  </form>
+</view>
+<view class="drawer_box" wx:if="{{hideBtn}}"> 
+  <view>请确定授权微信登录</view>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfoAction" class="btn_ok">确定</button>
+</view>
+<go-home-btn bottom="50rpx;"></go-home-btn>
+		

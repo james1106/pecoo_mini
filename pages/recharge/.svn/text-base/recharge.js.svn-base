@@ -1,0 +1,168 @@
+var app = getApp();
+const api = require('../../utils/api.js')
+var re2000 = /^[0-9]*[0-9]$/i; 
+var re = /^(?=.*[1-9])\d+(\.\d{1,2})?$/i;  
+
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    tokenId:'',
+    baseImg: 'https://www.pecoo.com/pecooh5/img/',
+    value:'01',
+    rechargeMoney:'',
+    rechargeOrder:''
+  },
+  /**
+   * 点击radio切换
+   */
+  radioChange: function (e) {
+    var that = this;
+    var radioValue = e.detail.value;
+    that.setData({
+      value: radioValue
+    })
+    console.log(that.data.value);
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  rechargeInput: function (e) {
+    this.setData({
+      rechargeMoney: e.detail.value
+    })
+  },
+  submitOrder(){
+    if (this.data.value == '01') {
+      if (this.data.rechargeMoney > 500000) {
+        wx.showModal({
+          title: '提示',
+          content: '充值金额不高于50万元',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+            }
+          }
+        })
+      }
+      else if (re.test(this.data.rechargeMoney) && this.data.rechargeMoney != "") {
+        this.submitOrderEnd();
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '请输入正确的金额',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+            }
+          }
+        })
+      }
+    }
+    else if (this.data.value == '02') {
+      if (re2000.test(this.data.rechargeMoney) && this.data.rechargeMoney % 2000 === 0 && this.data.rechargeMoney != "") {
+        this.submitOrderEnd();
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '请确保充值金额是2000或2000的整数倍',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+            }
+          }
+        })
+      }
+    }
+    else {
+      wx.showModal({
+        title: '提示',
+        content: '请输入正确的金额',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+          }
+        }
+      })
+    }
+  },
+  submitOrderEnd(){
+    let creatRechargeOrder = api.creatRechargeOrderUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+      rechargeMoney: this.data.rechargeMoney,
+      rechargeType: this.data.value
+    });
+    creatRechargeOrder.then((res) => {
+      if (res.code == "0000") {
+        this.setData({
+          rechargeOrder: res.rechargeOrder
+        })
+        wx.redirectTo({
+          url: `/pages/myPayWeiXin/myPayWeiXin?rechargeOrder=${this.data.rechargeOrder}&rechargeWay=${this.data.value}&rechargeMoney=${this.data.rechargeMoney}`
+        });
+      } else {
+        app.isLoginGo();
+      }
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  onLoad: function (options) {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId')
+    }) 
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  // onShareAppMessage: function () {
+
+  // }
+})

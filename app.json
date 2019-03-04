@@ -1,0 +1,114 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/afterSales/afterSales",
+    "pages/lookExpress/lookExpress",
+    "pages/payFreight/payFreight",
+    "pages/confirmOrder/confirmOrder",
+    "pages/myReferrerOrder/myReferrerOrder",
+    "pages/saleList/saleList",
+    "pages/lists/lists",
+    "pages/class/class",
+    "pages/auctionHouseDetail/auctionHouseDetail",
+    "pages/screen/screen",
+    "pages/extravagancesDetail/extravagancesDetail",
+    "pages/myReferrerOrderDetail/myReferrerOrderDetail",
+    "pages/brand/brand",
+    "pages/webviewPage/webviewPage",
+    "pages/addAddress/addAddress",
+    "pages/goldShop/goldShop",
+    "pages/myOrder/myOrder",
+    "pages/auction/auction",
+    "pages/orderPay/orderPay",
+    "pages/realName/realName",
+    "pages/useVoucher/useVoucher",
+    "pages/mine/mine",
+    "pages/login/login",
+    "pages/extravagancesOrderDetail/extravagancesOrderDetail",
+    "pages/extravagances/extravagances",
+    "pages/myLetter/myLetter",
+    "pages/paymentsDetail/paymentsDetail",
+    "pages/wxPay/wxPay",
+    "pages/recharge/recharge",
+    "pages/getReviceMobileCode/getReviceMobileCode",
+    "pages/reviceMobile/reviceMobile",
+    "pages/credentials/credentials",
+    "pages/extravagancesList/extravagancesList",
+    "pages/myWallet/myWallet",
+    "pages/myCollect/myCollect",
+    "pages/extravagancesConfirmOrder/extravagancesConfirmOrder",
+    "pages/list/list",
+    "pages/classify/classify",
+    "pages/voucher/voucher",
+    "pages/uploadCard/uploadCard",
+    "pages/set/set",
+    "pages/myLetterDetail/myLetterDetail",
+    "pages/myReferrer/myReferrer",
+    "pages/extravagancesSearch/extravagancesSearch",
+    "pages/auctionSearch/auctionSearch",
+    "pages/address/address",
+    "pages/auctionOrderDetail/auctionOrderDetail",
+    "pages/newTask/newTask",
+    "pages/editPassword/editPassword",
+    "pages/backPassword/backPassword",
+    "pages/backPasswordNext/backPasswordNext",
+    "pages/moreBrands/moreBrands",
+    "pages/argeement/argeement",
+    "pages/limitState/limitState",
+    "pages/myReferrerList/myReferrerList",
+    "pages/myDeposit/myDeposit",
+    "pages/useRecords/useRecords",
+    "pages/transfer/transfer",
+    "pages/aboutUs/aboutUs",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "拍库",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#bdbec0",
+    "selectedColor": "#333333",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/index/home.png",
+        "selectedIconPath": "images/index/home_selected.png"
+      },
+      {
+        "pagePath": "pages/class/class",
+        "text": "分类",
+        "iconPath": "images/index/class.png",
+        "selectedIconPath": "images/index/class_selected.png"
+      },
+      {
+        "pagePath": "pages/auction/auction",
+        "iconPath": "images/index/auction.png",
+        "text": "拍卖",
+        "selectedIconPath": "images/index/auction_selected.png"
+      },
+      {
+        "pagePath": "pages/extravagances/extravagances",
+        "text": "奢侈品",
+        "iconPath": "images/index/luxuries.png",
+        "selectedIconPath": "images/index/luxuries_selected.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/index/mine.png",
+        "selectedIconPath": "images/index/mine_selected.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 30000,
+    "downloadFile": 30000
+  }
+}

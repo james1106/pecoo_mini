@@ -1,0 +1,72 @@
+
+<view >
+<!-- <loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading> -->
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+        <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">艺术品</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">名表</view>
+        <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">珠宝</view>
+        <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">收藏品</view>
+        <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">老爷车</view>
+        <view class="tab-item {{currentTab==5?'active':''}}" data-current="5" bindtap="swichNav">相机&乐器</view>
+    </scroll-view>
+    <!--头部固定部分-->
+      <div class="listFix">
+	    	<ul>
+	    		 <li class="listAll {{listIndex==0?'active':''}}" bindtap="listNav" data-current="0">综合</li>
+        <li class="listPrice {{listIndex==1?'active':''}}" bindtap="listNav" data-current="1">价格 <image src="{{priceBg}}" ></image></li>
+        <li class="listCreated {{listIndex==2?'active':''}}" bindtap="listNav" data-current="2">上架时间 <image src="{{createdBg}}" ></image></li>
+        <li class="listDiqu {{listIndex==3?'active':''}}" bindtap='listMenu'  data-current="3">{{fontName}} <image src="{{listBg}}"></image></li>
+		    </ul>
+	   	</div>
+	   	<div class="listMenu {{meunShow?'':'none'}}">
+		    <ul class="listMenuUl1 clearfix" id="listMenuUl1">
+         <li bindtap='changeNameAll' class="{{changeNameAll?'active':''}}">全部</li>
+		   		<li wx:for="{{kinds}}" wx:key="" bindtap='changeName' data-variable="{{item.code}}" data-text="{{item.name}}" class="{{kindCode == item.code?'active':''}} {{kinds.length>1?'':'none'}}">{{item.name}}</li>
+		    </ul>
+	   	</div>
+    <!--滚动tab--> 
+    <block id="wrapper" scroll-top="{{scrollTop}}">
+                  <ul id="listProduct">
+                    <li wx:for="{{listAll}}"  wx:key="">
+                      <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+                        <image src="{{item.thumbnailUrl}}" mode="aspectFit"></image>
+                      </navigator>
+                      <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+                        <p class="loveDdP1">Lot{{item.lotNum}} {{item.goodsName}}</p>
+                        <p class="loveDdP2">起拍价：<view>{{item.priceUnit}}{{item.startPrice}}</view></p>
+                      </navigator>
+                    </li> 
+                  </ul>
+                  <div class="voucherNone none" style="display: block;" wx:if="{{listAll.length == 0}}">
+                      <image src="{{baseImg}}mine/voucherOutdate.png"></image>
+                      <p>没有更多拍品~</p>
+                    </div>
+                </block>
+    <!-- <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight+180}}rpx">
+        <swiper-item wx:for="{{[0,1,2,3,4,5]}}" wx:key="">
+            <scroll-view scroll-y="true" class="scoll-h" bindscrolltolower='lower'>
+                <block id="wrapper">
+                  <ul id="listProduct">
+                    <li wx:for="{{listAll}}"  wx:key="">
+                      <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+                        <image src="{{item.thumbnailUrl}}" mode="aspectFit"></image>
+                      </navigator>
+                      <navigator url="/pages/detail/detail?goodId={{item.pkId}}&shareCode={{shareCode}}">
+                        <p class="loveDdP1">Lot{{item.lotNum}} {{item.goodsName}}</p>
+                        <p class="loveDdP2">起拍价：<view>{{item.priceUnit}}{{item.startPrice}}</view></p>
+                      </navigator>
+                    </li> 
+                  </ul>
+                  <div class="voucherNone none" style="display: block;" wx:if="{{listAll.length == 0}}">
+                      <image src="{{baseImg}}mine/voucherOutdate.png"></image>
+                      <p>没有更多拍品~</p>
+                    </div>
+                </block>
+            </scroll-view>
+        </swiper-item>
+    </swiper> -->
+    
+</view>

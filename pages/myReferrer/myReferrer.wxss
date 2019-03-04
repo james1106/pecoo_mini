@@ -1,0 +1,59 @@
+page{
+  font-family: 'PingFang-SC-Medium';
+  color: #333333;
+}
+.box{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hide{
+  visibility: hidden;
+}
+.show{
+  opacity: 1;
+  color: #D74A42;
+}
+.bgcols{
+  opacity: .5;
+}
+.qr-code{
+  margin-top: 60rpx;
+  width: 500rpx;
+  height: 500rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #DDDDDD;
+}
+.words{
+  font-family: 'PingFang-SC-Medium';
+  font-size: 14px;
+  color: #999999;
+  padding: 29rpx 0 79rpx;
+}
+.btn-share{
+  height: 88rpx;
+  background: #1B1B1B;
+  color: #FFFFFF;
+  width: 80%;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 14px;
+}
+.share-order{
+  margin-top: 80rpx;
+  font-size: 15px;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.share-record{
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 40rpx;
+  font-size: 15px;
+}

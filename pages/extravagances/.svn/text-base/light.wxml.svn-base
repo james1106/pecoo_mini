@@ -1,0 +1,39 @@
+<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-active-color="#666" style='height:{{Hei}}'>    
+  <block wx:for="{{banners}}" wx:for-index="index">    
+    <swiper-item>    
+      <navigator url="{{item.webUrl}}" hover-class="navigator-hover">  
+        <image src="{{item.picUrl}}" class="slide-image"  mode="widthFix" bindload='imgH'/>  
+        </navigator> 
+    </swiper-item>    
+  </block>    
+</swiper>
+<!--分类展示-->  
+<view id="classify">
+    <view wx:for="{{classify}}">
+      <view class="logoDiv">
+        <view class="selectGoodP">
+          {{item.name}}
+        </view>
+      </view>
+
+    <view class="saleUlDiv3">
+      <view class="saleUlDiv31"  wx:for="{{item.secondKinds}}" wx:for-index="index" wx:for-item="trade" wx:if="{{index==0}}">
+        <navigator href="lightList.html?sort=1">
+          <image src="{{trade.picWeb}}"  mode="widthFix"></image>
+        </navigator>
+      </view>
+      <view class="saleUlDiv32">
+        <view wx:if="{{index==1}}"  wx:for="{{item.secondKinds}}" wx:for-index="index" wx:for-item="trade">
+          <navigator href="lightList.html?sort=1">
+            <image src="{{trade.picWeb}}"  mode="widthFix"></image>
+          </navigator>
+        </view>
+        <view wx:if="{{index==2}}"  wx:for="{{item.secondKinds}}" wx:for-index="index" wx:for-item="trade">
+          <navigator href="lightList.html?sort=1">
+            <image src="{{trade.picWeb}}"  mode="widthFix"></image>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

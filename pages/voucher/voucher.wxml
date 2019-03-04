@@ -1,0 +1,40 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading>
+<view class="voucher-head">
+  <view class="{{currentTab==2?'active':''}}"  data-current="2" bindtap="switchHead">未使用({{countActivation}})</view>
+  <view class="{{currentTab==3?'active':''}}" data-current="3" bindtap="switchHead">已使用({{countUsed}})</view>
+  <view class="{{currentTab==4?'active':''}}" data-current="4" bindtap="switchHead">已过期({{countOverdue}})</view>
+</view>
+<scroll-view class="voucher-list" style="height: {{height}}px" wx:if="{{hidden}}" scroll-y bindscrolltolower="loadmore">
+  <view wx:for="{{voucherList}}" wx:key="{{item.voucherCode}}" class="voucher-money  {{currentTab >= 3 ? 'change-bgcol' : ''}}">
+    <view class="item-top">
+      <view style="min-width: 200rpx;">
+        <text class="code">¥</text>
+        <text class="actual-money">{{item.actualMoney}}</text>
+      </view>
+      <view class="actual-detail">
+        <view style="max-width: 300rpx">{{item.rule}}</view>
+        <view class="private">{{item.scope}}</view>
+      </view>
+      <view class="use" wx:if="{{currentTab==2}}" bindtap="use">立即使用</view>
+    </view>
+    <view class="item-bottom">
+      <text class="term">有效期：{{item.startTimeShow}} 至 {{item.endTimeShow}}</text>
+      <navigator class="records" wx:if="{{currentTab==3 && item.voucherRange != 2}}" hover-class="none" url="/pages/useRecords/useRecords?id={{item.id}}">使用记录</navigator>
+      <image wx:if="{{currentTab==3}}" src="{{baseImg}}common/use.png" class="voucher-pic"></image>
+      <image wx:if="{{currentTab==4}}" src="{{baseImg}}common/overstayed.png" class="voucher-pic"></image>
+    </view>
+  </view>
+  <pull-up-loading wx:if="{{loading}}"></pull-up-loading>
+</scroll-view>
+<view class="exchange">
+  <input value="{{voucherVal}}" type="text" placeholder='请输入兑换码' name="voucherVal" bindinput="voucherInput"></input>
+  <view bindtap="exchange">兑换</view>
+</view>
+<view class="not-box" wx:if="{{(currentTab == 2 && !countActivation &&hidden) || (currentTab == 3 && !countUsed &&hidden) || (currentTab == 4 && !countOverdue &&hidden)}}">
+  <view class="not-pic">
+    <image src="{{baseImg}}common/notCoupon.png"></image>
+  </view>
+  <view class="not-words">暂无优惠券</view>
+</view>

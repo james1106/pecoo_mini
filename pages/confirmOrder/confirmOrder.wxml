@@ -1,0 +1,89 @@
+<loading hidden="{{hidden}}">
+  加载中...
+</loading>
+<loading hidden="{{paybtn}}">
+  获取支付数据...
+</loading>
+<view wx:if="{{hidden}}" style="overflow: hidden">
+  <view style="overflow: hidden;margin-bottom: 120rpx;overflow-y: auto;">
+    <!-- 收货地址 -->
+    <user-address wx:if="{{userAddress.id}}" mobile="{{userAddress.phone}}" userName="{{userAddress.recipientName}}" address="{{userAddress.city + userAddress.area + userAddress.detailAddress}}" bindeventHandle="clickAddress"></user-address>
+    <navigator hover-class="none" class="not-address" wx:else url="/pages/address/address?back=1">
+      <image class='add-address' src="{{baseImg}}common/add_address.png" mode="aspectFit"></image>
+      请先添加收货地址
+    </navigator>
+    <!-- 商品信息 -->
+    <auction-order disable="true" pic="{{curOrderDetail.thumbnailUrl}}" goodsName="{{curOrderDetail.goodsName}}" clientPrice="{{curOrderDetail.clientPrice}}" transPrice="{{curOrderDetail.transPrice}}" goodsId="{{curOrderDetail.goodsId}}" priceUnit="{{curOrderDetail.priceUnit}}"  marginVal="20rpx 0 0 0"></auction-order>
+    <!-- 订单状态 -->
+    <view class="order-status">
+      <view>
+        <text>订单状态</text>
+        <text class="theme-col">{{curOrderDetail.paymentStatusMc}}</text>
+      </view>
+      <view>
+        <text>订单号</text>
+        <text>{{curOrderDetail.orderNo}}</text>
+      </view>
+      <view style="font-size: 15px;border-bottom: none">
+        <text>支付总价</text>
+        <text>{{curOrderDetail.priceUnit}}{{curOrderDetail.goodsAmount}}(¥{{curOrderDetail.realMoney}})</text>
+      </view>
+    </view>
+    <!-- 优惠券/可用余额 -->
+    <view class="balance">
+      <view class="voucher" bindtap="selectedVoucher">
+        <text>优惠券</text>
+        <text>{{voucherHtml}}<text style="padding-left: 20rpx;color: #C9C9C9;">·<text style="color: #4E4E4E;">•</text>·</text></text>
+      </view>
+      <view class="money">
+        <view>
+          <text>可用余额</text>
+          <text class="theme-col">(¥{{curOrderDetail.usedMoney}})</text>
+        </view>
+        <view>
+          <text wx:if="{{realBalanceMoney > 0}}" style="padding-right: 20rpx;">-¥{{realBalanceMoney}}</text>   
+          <image class="checked-pic" wx:if="{{balancePay}}" bindtap="balancePay" src="{{baseImg}}common/checked.png"></image>
+          <image class="checked-pic" wx:else bindtap="balancePay" src="{{baseImg}}common/no_checked.png"></image>
+        </view>  
+      </view>
+      <view class="balance-order">
+        <view style="color: #999999">
+          订单¥{{curOrderDetail.realMoney}}  可抵金额¥{{fareMoney}}
+        </view>
+        <view>待支付:<text class="theme-col">¥{{payMoney}}</text></view>
+      </view>
+    </view>
+    <!-- 购买保险 -->
+    <view class="insurance">
+      <view bindtap="showTips">
+        <image src="{{baseImg}}common/insurance.png" style="width: 38rpx;height: 48rpx"></image>
+        <text style="padding: 0 10rpx">购买保险</text>
+        <image src="{{showTips ? baseImg + 'common/top_arrow.png' : baseImg + 'common/bottom_arrow.png'}}" style="width: 24rpx; height: 14rpx;"></image>
+      </view>
+      <image class="checked-pic" bindtap="isInsurance" src="{{insurance ? baseImg + 'common/checked.png' : baseImg + 'common/no_checked.png'}}"></image>
+    </view>
+    <view class="tips" wx:if="{{showTips}}">温馨提示：如果您希望购买保险，我们会默认为对拍品的落槌价进行保值，保险费=保险费率*保值金额，保险费在支付运费时共同支付，保险费率会随着承运人的不同而不同，通常会在1%-6%之间，最终保费请以核算金额为准。如果还有其他疑问，请具体咨询您的客户经理或者拨打客服热线。</view>
+    <!-- 支付方式 -->
+    <view class="payment">
+      <view class="pay-mode">
+        <text>支付方式:</text>
+        <navigator url="/pages/limitState/limitState" style="color: #999;display: flex; align-items: center">
+        限额说明<image style="width: 30rpx;height: 30rpx;margin-left: 10rpx" src="{{baseImg}}common/limit_icon.png"></image>
+        </navigator>
+      </view>
+      <view class="wx-box {{disable? 'transparency' : ''}}">
+        <view style="display: flex;">
+          <image class="wx-pic" src="{{baseImg}}common/weixinIcon.png"></image>
+          <text style="padding-left: 10rpx;margin-top: 12rpx;">微信</text>
+        </view>
+        <image class="checked-pic" src="{{baseImg}}common/checked.png"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 底部支付 -->
+  <view class="order-bottom">
+    <view>待支付:<text class="theme-col">¥{{payMoney}}</text></view>|
+    <view>抵付: ¥{{fareMoney}}</view>
+    <view class="pay" bindtap="pay">支付</view>
+  </view>
+</view>

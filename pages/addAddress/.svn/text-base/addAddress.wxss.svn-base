@@ -1,0 +1,112 @@
+@import '../../model/model.wxss';
+page{
+	background: #F0F0F0;
+}
+header{
+	height: 35px;
+	border-bottom: 1px solid #DDDDDD;
+	text-align: center;
+	line-height: 35px;
+	display: -webkit-box;
+	font-size: 15px;
+	background: #FFFFFF;
+	position: fixed;
+	top:0;
+	width: 100%;
+}
+.hengp{
+	height: 8px;
+	border-top: 1px solid #DDDDDD;
+	background: #EEEEEE;
+	border-bottom: 1px solid #DDDDDD;
+}
+header p{
+	-webkit-box-flex: 1;
+}
+.addAddress p{
+	height: 30px;
+	padding: 10px;
+	background: #FFFFFF;
+	border-bottom: 1px solid #e4ecf3;
+	font-size: 15px;
+	color: #444;
+	line-height: 30px;
+	display:-webkit-box;
+}
+.addAddress p input{
+	-webkit-box-flex: 1;
+	display: block;
+	height: 30px;
+	margin-left: 10px;
+	text-align: right;
+}
+.addressRight{
+  position: absolute;
+  right:0;
+  margin-left: 50px;
+}
+.addressRight image{
+	width:10px;
+  height:15px;
+  vertical-align:middle;
+  margin-left:10px;
+  margin-right:10px;
+}
+.addAddress p.xiangxi{
+	height: 100px;
+	padding: 10px;
+}
+.xiangxi textarea{
+	-webkit-box-flex: 1;
+	height: 90px;
+	display: block;
+	margin-left: 10px;
+	line-height: 30px;
+  margin-top: 3px;
+}
+.setMoren{
+	margin-top: 10px;
+	height: 30px;
+	padding: 10px;
+	background: #FFFFFF;
+	font-size: 15px;
+	color: #444444;
+	line-height: 30px;
+  position: relative;
+}
+.setMoren>view{
+  position: absolute;
+  right:10px;
+  top:10px;
+}
+.save{
+	width: 90%;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	color: #FFFFFF;
+	font-size: 18px;
+	background: #24998B;
+	margin: 20px auto;
+	margin-top: 50px;
+}
+/*��ַ*/
+.dqld_div{
+	width:100%;
+	background-color:#fff;
+	top:0;
+	font-size: 14px;
+	position: absolute;
+	z-index: 50;
+}
+
+.dqld_div ul{
+	width:100%;
+}
+
+.dqld_div ul li{
+	height:35px;
+	line-height:35px;
+	border-bottom:1px solid #cccccc;
+	padding-left:10px;
+}

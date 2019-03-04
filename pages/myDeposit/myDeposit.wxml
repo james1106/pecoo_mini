@@ -1,0 +1,20 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view class="voucher-head">
+  <view class="{{currentTab == 0 ? 'active' : ''}}" data-flag="0" bindtap="switchTab">已激活({{voucherList.length}})</view>
+  <view class="{{currentTab == 1 ? 'active' : ''}}" bindtap="switchTab" data-flag="1">已过期({{voucherList.length}})</view>
+</view>
+<view class="voucher-list">
+  <view wx:for="{{voucherList}}" wx:key="{{item.voucherCode}}" class="voucher-money">
+    <view class="item-top {{currentTab == 1 ? 'change-bgcol' : ''}}">
+      <text class="code">¥</text>
+      <text class="actual-money">{{item.actualMoney}}</text>
+      <view class="actual-detail">
+        <view>每张券最多可拍3件</view>
+        <view class="private">仅拍卖会使用</view>
+      </view>
+    </view>
+    <view class="item-bottom {{currentTab == 1 ? 'change-bgcol' : ''}}">有效期：{{item.startTime}} 至 {{item.endTime}}</view>
+  </view>
+</view>

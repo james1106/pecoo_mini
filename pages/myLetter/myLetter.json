@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的消息",
+  "usingComponents": {
+    "pull-up-loading": "/components/pullUpLoading/pullUpLoading",
+    "load-all": "/components/loadAll/loadAll"
+  }
+}

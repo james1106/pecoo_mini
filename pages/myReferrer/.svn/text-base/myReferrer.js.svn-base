@@ -1,0 +1,107 @@
+var app = getApp();
+const api = require('../../utils/api.js')
+import drawQrcode from '../../utils/weapp.qrcode.min.js'
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    shareClick:false,
+    tokenId:'',
+    shareCode:'',
+    text:'https://www.pecoo.com/pecooh5/mine/register.html'
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    
+  },
+  codeShare(){
+    this.setData({
+      shareClick: true
+    })
+  },
+  shareClick(){
+    this.setData({
+      shareClick: false
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId')
+    })
+    let getRecommendCode = api.getRecommendCodeUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+    });
+    getRecommendCode.then((res) => {
+      this.setData({
+        shareCode: res.shareCode,
+        text: 'https://www.pecoo.com/pecooh5/mine/register.html?regCode=' + res.shareCode
+      })
+      drawQrcode({
+        width: 180,
+        height: 180,
+        canvasId: 'myQrcode',
+        text: this.data.text
+      }) 
+      wx.setStorageSync('shareCode', res.shareCode);
+    }).catch((error) => {
+      console.log(error)
+    })
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */ 
+  onShareAppMessage: function () {
+    return {
+      title: '分享给好友，一起来捡漏',
+      desc: '欢迎注册拍库，跨境拍卖第一平台，聚集全球拍卖，就等您来捡漏!',
+      path: `/pages/login/login?shareCode=${this.data.shareCode}`
+    }
+  }
+})

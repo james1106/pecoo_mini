@@ -1,0 +1,196 @@
+page{
+	background: #F3F3F3;
+}
+div,p,dl,dt,dd,ul,li{
+  display: block;
+}
+header{
+	height: 35px;
+	border-bottom: 1px solid #DDDDDD;
+	text-align: center;
+	line-height: 35px;
+	display: -webkit-box;
+	font-size: 15px;
+}
+.hengp{
+	height: 10px!important;
+	background: #F1EFF5;
+}
+header p{
+	-webkit-box-flex: 1;
+}
+.orderNo{
+	height: 44px;
+	background: #24988B;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	padding: 0 15px;
+	line-height: 44px;
+	display: -webkit-box;
+}
+.orderNo>p:last-child{
+	text-align: right;
+	-webkit-box-flex: 1;
+}
+.address{
+	padding: 8px 15px;
+	display: -webkit-box;
+	border-bottom: 1px solid #e9e9e9;
+	margin-bottom: 10px;
+	background: #FFFFFF;
+}
+.addressDl{
+	display: -webkit-box;
+	font-size: 15px;
+	line-height: 24px;
+}
+.addressDl dt span{
+	background: url(https://www.pecoo.com/pecooh5/img/detail/addressRed.png) no-repeat  left 3px;
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-size: 14px;
+}
+.addressDl dd p:last-child{
+	color: #666666;
+}
+/*鎷嶅搧淇℃伅*/
+.listDivLi{
+	box-sizing: border-box;
+	padding:10px;
+	height:125px;
+	background: #FFFFFF;
+	border-bottom: 1px solid #E9E9E9;
+	border-top: 1px solid #E9E9E9;
+	margin-bottom: 10px;
+}
+.listDivImg{
+	width: 34%;
+	float: left;
+	border: 1px solid #F3F3F3;
+}
+.listDivImg>div{
+	vertical-align: middle;
+	text-align: center;
+	height: 100px;
+	width: 100%;
+}
+.listDivImg image{
+  height: 100px;
+	width: 100%;
+	max-width: 100%;
+	max-height: 100px;
+}
+.listDivItr{
+	width: 65%;
+	float: right;
+	box-sizing: border-box;
+	padding-left: 10px;
+	line-height: 25px;
+}
+.listDivItr p{
+	font-size: 12px;
+	color: #666666;
+	display:-webkit-box;
+	overflow:hidden;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+}
+.listDivItr p.listDivItrP1{
+	font-size: 13px;
+	color: #333;
+	line-height: 30px;
+	padding-bottom: 3px;
+	
+}
+.orderPayAll{
+	height: 44px;
+	font-size:15px;
+	font-weight: bold;
+	color: #f23030;
+	display: -webkit-box;
+	background: #FFFFFF;
+	padding: 0 15px;
+	line-height: 44px;
+	border-top:1px solid #E9E9E9 ;
+
+}
+.orderPayAll p:first-child{
+	-webkit-box-flex: 1;
+	color: #333333;
+}
+.orderProduct,.orderFright{
+	background: #F9F9F9;
+}
+
+.orderProductDiv{
+	height: 44px;
+	font-size:15px;
+	color: #f23030;
+	display: -webkit-box;
+	background: #FFFFFF;
+	padding: 0 15px;
+	line-height: 44px;
+	border-bottom:1px solid #E9E9E9 ;
+	border-top:1px solid #E9E9E9 ;
+}
+.orderProductDiv p:first-child{
+	-webkit-box-flex: 1;
+	color: #999;
+}
+.orderProductUl{
+	padding: 5px 15px;
+	font-size: 12px;
+	color: #999999;
+	line-height: 22px;
+}
+.orderProductUl li{
+	display: -webkit-box;
+}
+.orderProductUl li p:first-child{
+	-webkit-box-flex: 1;
+}
+.orderFix{
+	height: 48px;
+	position: fixed;
+	bottom: 0;
+	background: #FFFFFF;
+	font-size: 12px;
+	width: 100%;
+	display: -webkit-box;
+}
+.orderFix navigator{
+	-webkit-box-flex: 1;
+	text-align: right;
+	display:block;
+}
+button{
+  margin: 0;
+  padding: 0;
+}
+.orderFix button{
+	width: 90px;
+	height: 34px;
+	vertical-align: middle;
+	text-align: center;
+	line-height: 34px;
+	margin-top: 6px;
+	font-size: 12px;
+	border-radius: 5px;
+}
+.orderFix>button{
+	background: #24988B;
+	color: #FFFFFF;
+	margin:6px 15px 6px 0px;
+}
+.orderFix navigator button{
+	background: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	color: #999999;
+  float: right
+}
+.orderFix navigator{
+	margin-right: 15px;
+}

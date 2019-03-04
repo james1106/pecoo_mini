@@ -1,0 +1,44 @@
+/* 商品信息 */
+.product-info{
+  width: 100%;
+  height: 220rpx;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+.product-img{
+  width: 160rpx;
+  height: 160rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+}
+.product-img image{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.product-cont{
+  flex: 1;
+  margin-right: 30rpx;
+}
+.product-name{
+  font-size: 15px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.product-price{
+  color: #999999;
+  font-size: 12px;
+}
+.product-number{
+  padding-right: 30rpx;
+  height: 140rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

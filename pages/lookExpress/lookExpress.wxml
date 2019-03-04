@@ -1,0 +1,30 @@
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+  加载中...
+</loading>
+<view wx:if="{{type != 'luxury'}}" class="public-title">包裹信息</view>
+<process-btn wx:if="{{type != 'luxury'}}" processData="{{packagesInfo}}" currentIndex="{{currentProcess}}"></process-btn>
+<view class="public-title">包裹状态</view>
+<view class="list" wx:for="{{progressBeanList}}" wx:for-index="index" wx:key="{{item.time}}" bindtap="getExpressInfo" data-index="{{index}}" data-canSearch="{{item.informationBean.canSearch}}" data-expressCompany="{{item.informationBean.expressCompany}}" data-expressNumber="{{item.informationBean.expressNumber}}">
+  <view style="display: flex;float: left">
+    <view class="time">
+      <view class="{{!index ? 'active' : ''}} hours">{{item.hours}}</view>
+      <view class="date">{{item.date}}</view>
+    </view>
+    <view class="{{!index ? 'active' : ''}} msg">{{item.msg}}</view>
+    <view class="arrow-box" wx:if="{{item.informationBean.canSearch == 'Y'}}">
+      <image src="{{baseImg}}/common/top_arrow.png"  wx:if="{{item.flag}}" class="bottom_arrow" mode="aspectFit"></image>
+      <image src="{{baseImg}}/common/bottom_arrow.png" wx:else class="bottom_arrow" mode="aspectFit"></image>
+    </view>
+  </view>
+  <view wx:if="{{item.flag}}" class="info">
+    <view class="{{index == 0 ? 'first' : ''}} infos" wx:for="{{item.infos}}" wx:for-index="{{index}}" wx:key="{{item.Date}}">
+      <view class="speck"></view>
+      <view class="info-detail">
+        <view>{{item.StatusDescription}}<text wx:if="{{item.Details}}">({{item.Details}})</text></view>
+        <view wx:if="{{item.Date}}">{{item.Date}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="thread" wx:if="{{index + 1 != progressBeanList.length}}"></view> -->
+</view>
+

@@ -1,0 +1,294 @@
+/**index.wxss**/
+page{
+  background: #f3f3f3;
+}
+ .header{
+    height: 44px;
+    background:#FFFFFF;
+    text-align: center;
+    font-size: 25px;
+    width: 100%;
+    line-height: 44px;
+    color: #24998B;
+    font-family:"Baskerville-SemiBold";
+    position: relative;
+    font-weight: bold;
+} 
+.searchIcon{
+  position: absolute;
+	right: 5px;
+	top:12px; 
+	width: 20px;
+	height: 20px;
+}
+.swiper{
+  width: 100%;
+}
+.slide-image {
+  width: 100%;
+}
+/**拍卖会**/
+.recommend_scroll_x_box {
+ padding: 15px 0;
+ white-space: nowrap;
+ background: #FFFFFF;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.recommend_hot_box {
+  width:80%;
+  margin-right: 24rpx;
+  display: inline-block;
+  background: #fff;
+}
+.recommend_hot_box2 {
+  width:28%;
+  margin-right: 24rpx;
+  display: inline-block;
+}
+
+.auctionDl{
+  width: 100%
+}
+.auctionDt{
+	width:35%;
+	height:100px;
+	border: 1px solid #F3F3F3;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	float: left;
+   align-items: center;
+}
+.selectGoodP{
+	height: 40px;
+	text-indent: 15px;
+	vertical-align: middle;
+	line-height:40px;
+	font-size: 15px;
+	color: #333333;
+	background: #f0f0f0;
+}
+.auctionDt view{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width:35%;
+	height:100px;
+}
+.auctionDt image{
+	display: block;
+	max-width: 100%;
+	max-height: 100px;
+	margin: 0 auto;
+}
+.auctionDd{
+	float: left;
+	margin-left: 5%;
+	width: 59%;
+	line-height: 25px;
+}
+.auctionDd view{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px; 
+    color: #666666;
+}
+.auctionDd>view:first-child{
+	color: #333333;
+}
+.auctionDd>view:nth-child(2){
+	color: #24988b;
+}
+.auctionDd>view:last-child image{
+	width: 12px;
+  height: 14px;
+  vertical-align: middle;
+  padding-right: 3px;
+  padding-bottom: 2px;
+}
+.WxMasonryView{
+  column-count:2;
+  column-gap: 2px;
+  width: 100%;
+  background: #F3F3F3
+}
+.WxMasonry{
+  width: 98%;
+  background: #fefefe;
+ box-shadow: 0 1px 5px #DDDDDD;
+  margin: 1px 0 7px 0;
+
+  padding-bottom: 5px;
+  transition: opacity .4s ease-in-out;
+  display: inline-block;
+}
+.WxMasonryImage{
+  max-width: 100% !important;
+  display: inline-block;
+}
+.list-box-title{
+    font-size: 13px;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 10px;
+    padding-bottom: 2px;
+}
+
+/* 返回顶部 */
+.backTop {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    z-index: 5000;
+    border-radius: 50%;
+    bottom: 5px;
+    right: 5px;
+    background: #999;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 25px;
+    opacity: 0.5
+}
+.processDl{
+	background: #FFFFFF;
+	/* border:1px solid #f0f0f0; */
+	height: 160px;
+  width: 100%;
+  margin-right: 10px;
+}
+.processDt{
+	vertical-align: middle;
+	text-align: center;
+	height:95px;
+	width:100%;
+	padding: 1px;
+	border: 1px solid #f3f3f3;
+}
+.processDt image{
+	 max-width: 100%; 
+	max-height: 95px;
+	display: block;
+	margin:0 auto;
+}
+.processDd{
+	text-align: left;
+	line-height: 30px;
+	font-size: 14px;
+	padding:5px;
+  width: 100%;
+}
+.processSwiperDdP1{
+	color: #FFFFFF;
+	width: 100%;
+	font-size: 12px;
+	background: #D90004;
+	margin:4px auto;
+	border:1px solid #DDDDDD;
+	border-radius: 20px;
+	line-height: 20px;
+}
+.processSwiperDdP2{
+	display:-webkit-box;
+	overflow:hidden;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+	font-size: 13px;
+}
+.processSwiperDdP3{
+	font-size: 12px;
+}
+page{height: 100%}
+
+/*瀑布流*/
+scroll-view{
+  width: 100%;
+  /*height: 1200px*/
+}
+.waterfall{
+  background: #f3f3f3;
+  margin: 0;
+  box-sizing: border-box;
+}
+.waterfall .view {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+.waterfall .view>view{
+  width: 98%;
+  background: #fefefe;
+ box-shadow: 0 1px 5px #DDDDDD;
+  margin: 1px 0 7px 0;
+  padding-bottom: 5px;
+  transition: opacity .4s ease-in-out;
+  display: inline-block;
+}
+.waterfall text{
+  text-align: center;
+  width: 100%;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  height: 68rpx;
+  line-height: 68rpx;
+  display: inline-block;
+  font-size: 24rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color: #646464;
+}
+.waterfall .view>view image{
+  display:block;
+  margin:0 auto;
+  margin-bottom: 5px;
+}
+image{
+  width: 100%;
+  height: 1;
+}
+.water_fall {
+  width: 100%;
+  position: relative;
+  background: #f3f3f3;
+  height: 100%;
+}
+
+.img_box {
+  width: 50%;
+  position: absolute;
+  display: block;
+  animation: fadeShow 0.1s;
+}
+.img_box>view{
+  width: 98%;
+  background: #fefefe;
+  box-shadow: 0 1px 5px #DDDDDD;
+  margin: 1px 0 7px 0;
+  padding-bottom: 5px;
+  transition: opacity .4s ease-in-out;
+  display: inline-block;
+}
+.img_box image {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.item_desc {
+  font-size: 24rpx;
+}
+.loveView{
+  position: relative;
+  z-index: 1000;
+  background: #fff;
+}

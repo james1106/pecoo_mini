@@ -1,0 +1,96 @@
+.process-box{
+  height: 146rpx;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #CCCCCC;
+}
+.item-process{
+  float: left;
+  font-size: 14px;
+}
+.item-status{
+  min-width: 130rpx;
+  text-align: center;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+}
+.flow-line{
+  margin-top: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.dash{
+  display: inline-block;
+  width: 120rpx;
+  border-top: 4rpx solid #CCCCCC;
+  position: absolute;
+  left: 110rpx; 
+}
+.cur-process{
+  color: #FFFFFF;
+  background: #24988B;
+  border-radius: 30px;
+}
+.cur-fail{
+  background:#E83E3E;
+  color: #FFFFFF;
+  border-radius: 30px;
+}
+.hand{
+  position: absolute;
+}
+.cur-triangle{
+  width: 0;
+  height: 0;
+  border: transparent solid 6px;
+  border-top: #24988B solid 6px;
+  position: absolute;
+  top: -4px;
+}
+.cur-triangle-fail{
+  width: 0;
+  height: 0;
+  border: transparent solid 6px;
+  border-top: #E83E3E solid 6px;
+  position: absolute;
+  top: -4px;
+}
+.cur-col{
+  color: #24988B;
+}
+.cur-col-fail{
+  color: #E83E3E;
+}
+.three-hand{
+  position: absolute;
+  right: 140rpx;
+}
+.fours-hand{
+  position: absolute;
+  right: 165rpx;
+  top: 107rpx;
+  font-size: 14px;
+  background: #24988B;
+  padding: 0 10rpx;
+  color: #FFFFFF;
+  border-radius: 30px;
+  text-align: center;
+}
+.border{
+  position: absolute;
+}
+.in-way{
+  position: absolute;
+  right: 166rpx;
+  top: 108rpx;
+  font-size: 14px;
+  padding: 0 10rpx;
+  background: #24988B;
+  color: #FFFFFF;
+  border-radius: 30px;
+}

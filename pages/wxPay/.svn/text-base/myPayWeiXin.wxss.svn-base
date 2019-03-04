@@ -1,0 +1,48 @@
+page{
+  background: #F3F3F3;
+}
+.payWei{
+  padding: 20px;
+  text-align: center;
+  line-height: 30px;
+}
+.payWei>view{
+  font-size: 16px;
+}
+.payWei>view:last-child{
+  font-size: 30px;
+  font-weight: bold;
+}
+.payShou{
+  height: 44px;
+  line-height: 44px;
+  padding: 0 20px;
+  color: #333333;
+  background: #FFFFFF;
+  font-size: 14px;
+}
+.payShou span:first-child{
+  color: #666666;
+}
+.payNow{
+  width: 90%;
+  margin:30px auto;
+  background:#1AAD19;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  color: #FFFFFF;
+  font-size: 16px;
+  display: block;
+}
+.payNow1{
+  width: 90%;
+  margin:30px auto;
+  background:#999999;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  color: #FFFFFF;
+  font-size: 16px;
+  display: block;
+}

@@ -1,0 +1,67 @@
+<view>
+<loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+</loading>
+<p class="expressTitle">包裹信息</p>
+		<!--物流流程-->
+		<div class="clearfix rel {{data.currentNode == 'DIRECT'?'expressState2':'expressState'}}">
+			<div class="AUCTION {{(data.currentNode == 'AUCTION'&& data.orderState != '30') ?'active':''}}">
+				<p>
+					<m>拍卖行</m>
+					<span><span></span></span>
+				</p>
+				<span></span>
+			</div>
+			<div class="DIRECT {{data.warehouse == 'DIRECT'?'hidden':''}} {{(data.currentNode == 'TRANSFER'&& data.orderState != '30') ?'active':''}}">
+				<p>
+					<m class="m2">境外中转站</m>
+					<span><span></span></span>
+				</p>
+				<span></span>
+				
+			</div>
+			<div class="CUSTOMS {{(data.currentNode == 'CUSTOMS'&& data.orderState != '30')?'active':''}}">
+				<p>
+					<m class="m3">海关</m>
+					<span><span></span></span>
+				</p>
+				<span></span>
+			</div>
+			<div class="expressStateLast {{data.orderState == '30'?'active':''}}"> 
+				<p>
+					<m>目的地</m>
+					<span><span></span></span>
+				</p>
+				<span></span>
+			</div>
+			<p class="abs {{data.currentNode == 'DIRECT'?'expressHr2':'expressHr'}}"></p>
+			<p class="abs expressFly none">在途</p>
+		</div>
+		<p class="expressTitle">包裹状态</p>
+		<!--包裹状态-->
+		<div class="lookState">
+			<ul class="lookStateUl">
+				<li wx:for="{{data.data}}"  wx:key="" bindtap="{{item.canSearch == 'Y'?'lookExpress':''}}" data-variable="{{item.expressNumber}}" data-text="{{item.expressCompany}}">
+					<div class="lookStateDiv">
+						<p class="lookStatePLeft"><span>{{item.time}}</span> <text>\n</text><span>{{time2}}</span></p>
+						<p class="lookStateP">{{item.msg}}</p>
+						<p class="lookStateImg" wx:if="{{item.canSearch == 'Y'}}">
+              <image src="{{baseImg}}mine/sanBottom.png" /> 
+            </p>
+						<span class="{{(expressNumber == item.expressNumber && bindTap)?'none':''}}"><m></m></span>
+					</div> 
+					<div class="expressDiv {{(expressNumber == item.expressNumber && bindTap)?'':'none'}}" wx:if="{{item.canSearch == 'Y'}}">
+						<ul>
+							<li wx:for="{{infos}}"  wx:key="" wx:for-item="itemInfos">
+								<span></span>
+								<div class="expressDivD">
+									<p>{{itemInfos.StatusDescription}}{{itemInfos.Details?itemInfos.Details:''}}</p>
+									<p>{{itemInfos.Date}}</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+</view>

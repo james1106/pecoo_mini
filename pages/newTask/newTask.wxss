@@ -1,0 +1,35 @@
+.task-box{
+  width: 100%;
+}
+.item-task{
+  padding: 0 30rpx;
+  height: 139rpx;
+  border-bottom: 1rpx solid #E2E2E2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'PingFang-SC-Medium';
+}
+.reward{
+  font-family: 'PingFang SC';
+  color: #999999;
+  font-size: 14px;
+}
+.complete{
+  width: 178rpx;
+  height: 58rpx;
+  border: 1rpx solid #DDDDDD;
+  color: #999999;
+  font-size: 14px;
+  text-align: center;
+  line-height: 58rpx;
+}
+.go{
+  width:180rpx;
+  height: 60rpx;
+  background: #1B1B1B;
+  color: #FFFFFF;
+  font-size: 14px;
+  text-align: center;
+  line-height: 60rpx;
+}

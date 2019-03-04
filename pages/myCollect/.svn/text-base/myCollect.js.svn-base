@@ -1,0 +1,337 @@
+var app = getApp();
+const api = require('../../utils/api.js')
+var switchZong = true;
+var switchPrice = true;
+var switchUnit = true;
+var sort = "";
+var priceUnit = '';
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    tokenId:'',
+    priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+    createdBg: 'https://www.pecoo.com/pecooh5/img/list/san1.png',
+    baseImg: 'https://www.pecoo.com/pecooh5/img/',
+    auctionView:true,
+    auction: [],
+    goods:[],
+    unitList:[], 
+    pageNo: 1, 
+    hidden: false,
+    hasMore: true,
+    hasRefesh: false,
+    colleType:true,
+    listIndex:0,
+    fontName:'货币单位',
+    kindCode: '',
+    changeNameAll: false,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.setData({
+      tokenId: wx.getStorageSync('tokenId')
+    })
+    this.getUnit();
+  },
+  //点击综合
+  listZong(e){
+    var cur = e.target.dataset.current;
+    this.setData({
+      listIndex: cur
+    })
+    sort = "";
+    switchPrice = true;
+    switchUnit = true;
+    this.setData({
+      auctionView:true,
+      priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+      createdBg: 'https://www.pecoo.com/pecooh5/img/list/san1.png',
+    })
+    this.selectPro();
+  },
+  //点击价格
+  listPrice(e){
+    var cur = e.target.dataset.current;
+    this.setData({
+      listIndex: cur
+    })
+    switchUnit = true;
+    this.setData({
+      auctionView: true,
+      createdBg: 'https://www.pecoo.com/pecooh5/img/list/san1.png',
+    })
+    if (switchPrice){
+      this.setData({
+        auctionView: true,
+        priceBg: 'https://www.pecoo.com/pecooh5/img/list/sanTop.png',
+      })
+      sort = "start_price/02";
+      this.selectPro();
+      switchPrice = false;
+    }else{
+      this.setData({
+        auctionView: true,
+        priceBg: 'https://www.pecoo.com/pecooh5/img/list/sanBottom.png',
+      })
+      sort = "start_price/01";
+      this.selectPro();
+      switchPrice = true;
+    }
+  },
+  //点击货币单位
+  listUnit(e){
+    var cur = e.target.dataset.current;
+    this.setData({
+      listIndex: cur,
+      priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+    })
+    switchPrice = true;
+    if (switchUnit){
+      switchUnit = false;
+      this.setData({
+        auctionView:false,
+        createdBg: 'https://www.pecoo.com/pecooh5/img/list/san2.png',
+      })
+    }else{
+      switchUnit = true;
+      this.setData({
+        auctionView: true,
+        createdBg: 'https://www.pecoo.com/pecooh5/img/list/san1.png',
+      })
+    }
+  },
+  //点击分类列表
+  changeName: function (e) {
+    var kindCode = e.currentTarget.dataset.variable;
+    var name = e.currentTarget.dataset.text;
+    this.setData({
+      kindCode: kindCode,
+      fontName: name
+    })
+    switchUnit = true;
+    this.setData({
+      changeNameAll: false,
+      auctionView: true,
+      createdBg: "https://www.pecoo.com/pecooh5/img/list/san1.png",
+      priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+    })
+    priceUnit = kindCode;
+    this.selectPro();
+  },
+  changeNameAll() {
+    var kindCode = '';
+    switchUnit = true;
+    this.setData({
+      changeNameAll: true,
+      auctionView: true,
+      fontName: '全部',
+      createdBg: "https://www.pecoo.com/pecooh5/img/list/san1.png",
+      priceBg: 'https://www.pecoo.com/pecooh5/img/list/san.png',
+    }) 
+    priceUnit = kindCode;
+    this.selectPro();
+  },
+  //获取货币单位列表
+  getUnit(){
+    let queryUnitList = api.queryUnitListUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+    });
+    queryUnitList.then((res) => {
+      this.setData({
+        unitList: res.data
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  selectSale(){
+    let queryMyCollection = api.queryMyCollectionUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: this.data.tokenId,
+      colleType: '01'
+    });
+    queryMyCollection.then((res) => {
+      res.goods.forEach(item => {
+        let startTime = item.startTime
+        var outofDate = new Date(startTime.replace(/-/g, "/")).getTime() < new Date().getTime();
+        if (outofDate){
+          item.startTime = "已过期"
+        } 
+      })
+      this.setData({
+        auction: res.goods,
+        colleType: true,
+        pageNo: 1
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  },
+  selectPro(){
+    var that = this;
+    let queryMyCollection = api.queryMyCollectionUrl({
+      sourceMode: app.globalData.sourceMode,
+      tokenId: that.data.tokenId,
+      colleType: '02',
+      pageNo:1,
+      sort:sort,
+      priceUnit:priceUnit
+    });
+    queryMyCollection.then((res) => {
+      res.goods.forEach(item => {
+        let startTime = item.startTime
+        var outofDate = new Date(startTime.replace(/-/g, "/")).getTime() < new Date().getTime();
+        if (outofDate) {
+          item.startTime = "已过期"
+        }
+      })
+      that.setData({
+        goods: res.goods,
+        colleType: false
+      })
+    }).catch((error) => {
+      console.log(error)
+    })
+  }, 
+  //删除拍卖会
+  collectDelete(event){
+    var auctionId = event.currentTarget.dataset.variable;
+    var colleType = event.currentTarget.dataset.text;
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '您确定取消收藏吗？',
+      success: function (res) {
+        if (res.confirm) {
+          let delUserCollection = api.delUserCollectionUrl({
+            sourceMode: app.globalData.sourceMode,
+            tokenId: that.data.tokenId,
+            colleType: colleType,
+            goodsId: auctionId
+          });
+          delUserCollection.then((res) => {
+            if (that.data.colleType) {
+              that.selectSale();
+            } else {
+              that.selectPro();
+            }
+          }).catch((error) => {
+            console.log(error)
+          })
+        } else if (res.cancel) {
+
+        }
+      }
+    })
+    
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.selectSale();
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    this.setData({
+      hasRefesh: true,
+    });
+    //console.log(this.data.pageNo)
+    if (!this.data.hasMore) return;
+    console.log(this.data.auctionView)
+    if (this.data.colleType){
+      let queryMyCollection = api.queryMyCollectionUrl({
+        sourceMode: app.globalData.sourceMode,
+        tokenId: this.data.tokenId,
+        pageNo: ++this.data.pageNo,
+        colleType: '01'
+      });
+      queryMyCollection.then((res) => {
+        res.goods.forEach(item => {
+          let startTime = item.startTime
+          var outofDate = new Date(startTime.replace(/-/g, "/")).getTime() < new Date().getTime();
+         // console.log(new Date(startTime.replace(/-/g, "/")).getTime())
+         // console.log(outofDate)
+          if (outofDate) {
+            item.startTime = "已过期"
+          }
+        })
+        this.setData({
+          auction: this.data.auction.concat(res.goods),
+          hidden: true,
+          hasRefesh: false,
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
+    }else{
+      let queryMyCollection = api.queryMyCollectionUrl({
+        sourceMode: app.globalData.sourceMode,
+        tokenId: this.data.tokenId,
+        pageNo: ++this.data.pageNo,
+        colleType: '02'
+      });
+      queryMyCollection.then((res) => {
+        res.goods.forEach(item => {
+          let startTime = item.startTime
+          var outofDate = new Date(startTime.replace(/-/g, "/")).getTime() < new Date().getTime();
+          if (outofDate) {
+            item.startTime = "已过期"
+          }
+        })
+        this.setData({
+          goods: this.data.goods.concat(res.goods),
+          hidden: true,
+          hasRefesh: false,
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  // onShareAppMessage: function () {
+    
+  // }
+})
